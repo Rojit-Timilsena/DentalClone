@@ -171,19 +171,31 @@ export const teamMembers = [
   }
 ]
 
-// Testimonials data - Using dummy testimonial content
+// Testimonials data - Using realistic dental testimonial content
 export const testimonials = [
   {
     id: 1,
-    name: 'Happy Patient',
+    name: 'Rajesh Sharma',
     image: ASSET_PATHS.testimonials.testimonial1,
-    text: 'Excellent dental care with professional staff and modern equipment. The treatment was comfortable and the results exceeded my expectations. Highly recommend this dental practice for quality care.'
+    text: 'Excellent dental care with professional staff and modern equipment. Dr. Smith and his team made me feel comfortable throughout my root canal treatment. The results exceeded my expectations. Highly recommend this dental practice for quality care.'
   },
   {
     id: 2,
-    name: 'Satisfied Client',
+    name: 'Priya Patel',
     image: ASSET_PATHS.testimonials.testimonial2,
-    text: 'Outstanding service and attention to detail. The dental team made me feel comfortable throughout the entire process. The facility is clean, modern, and the staff is very knowledgeable and friendly.'
+    text: 'Outstanding service and attention to detail. The dental team made me feel comfortable throughout the entire teeth whitening process. The facility is clean, modern, and the staff is very knowledgeable and friendly. My smile has never looked better!'
+  },
+  {
+    id: 3,
+    name: 'Amit Kumar',
+    image: ASSET_PATHS.testimonials.testimonial1,
+    text: 'I was nervous about getting dental implants, but the team at Suhaas Dental Care made the entire process smooth and painless. The results are amazing and I can eat all my favorite foods again. Thank you for giving me my confidence back!'
+  },
+  {
+    id: 4,
+    name: 'Sunita Thapa',
+    image: ASSET_PATHS.testimonials.testimonial2,
+    text: 'Professional, caring, and affordable dental care. My family has been coming here for years and we always receive excellent treatment. The staff is friendly and the doctors explain everything clearly. Highly recommended for all dental needs.'
   }
 ]
 

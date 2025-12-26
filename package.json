@@ -23,10 +23,8 @@
     "react-dom": "^19.2.0",
     "react-hook-form": "^7.69.0",
     "react-icons": "^5.5.0",
-    "react-tempusdominus-bootstrap": "^1.12.0",
-    "react-twentytwenty": "^1.2.1",
+
     "swiper": "^12.0.3",
-    "tempusdominus-bootstrap-4": "^5.39.2",
     "waypoints": "^4.0.1",
     "wowjs": "^1.1.3"
   },

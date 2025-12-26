@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { initializeTestimonialCarousel } from '../utils/externalLibraries'
 import '../styles/Testimonials.css'
 import { testimonials } from '../data/siteData'
-import carousel2 from '../assets/images/carousel/carousel-2.jpg'
+import { ASSET_PATHS } from '../utils/assetPaths'
 
 const Testimonials = () => {
   // Initialize Owl Carousel after component mounts
@@ -16,13 +16,14 @@ const Testimonials = () => {
 
   return (
     <div 
-      className="container-fluid bg-primary bg-testimonial py-5 my-5 wow fadeInUp" 
+      className="container-fluid bg-primary bg-testimonial py-5 mb-5 wow fadeInUp" 
       data-wow-delay="0.1s"
       style={{
-        backgroundImage: `url(${carousel2})`,
+        backgroundImage: `url(${ASSET_PATHS.carousel.carousel2})`,
         backgroundPosition: 'center center',
         backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover'
+        backgroundSize: 'cover',
+        marginTop: '90px'
       }}
     >
       <div className="container py-5">

@@ -658,3 +658,26 @@ img[src^="data:image/svg+xml"] {
     height: 180px;
   }
 }
+/* Team section spacing adjustments */
+#team {
+  padding: 3rem 0 !important; /* Reduced from default 5rem */
+}
+
+/* Reduce gap after team section */
+#team + section {
+  margin-top: -2rem;
+}
+
+/* Ensure proper spacing between sections */
+section {
+  padding: 3rem 0; /* Reduced from 5rem default */
+}
+
+/* Special spacing for specific sections */
+#testimonials {
+  padding: 5rem 0; /* Keep original spacing for testimonials */
+}
+
+#contact {
+  padding: 5rem 0; /* Keep original spacing for contact */
+}

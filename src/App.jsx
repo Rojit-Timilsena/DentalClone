@@ -153,7 +153,7 @@ function App() {
           <Pricing />
         </section>
 
-        <section id="team" className="py-5 bg-light">
+        <section id="team">
           <Team />
         </section>
 

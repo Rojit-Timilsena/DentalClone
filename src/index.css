@@ -18,9 +18,6 @@
 /* WOW.js Animate CSS - Exact replica */
 @import 'wowjs/css/libs/animate.css';
 
-/* Tempus Dominus CSS - Exact replica */
-@import 'tempusdominus-bootstrap-4/build/css/tempusdominus-bootstrap-4.min.css';
-
 /********** Template CSS - Direct Copy from Original **********/
 @import url('https://fonts.googleapis.com/css2?family=Bellota+Text:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
 :root {

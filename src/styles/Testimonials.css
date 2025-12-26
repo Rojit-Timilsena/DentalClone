@@ -111,7 +111,7 @@
   font-size: 1.1rem;
   line-height: 1.6;
   margin-bottom: 1.5rem;
-  font-style: italic;
+  color: white;
 }
 
 .testimonial-item hr {
@@ -126,6 +126,7 @@
   font-size: 1.3rem;
   font-weight: 600;
   margin-bottom: 0;
+  color: white;
 }
 
 /* Responsive adjustments */

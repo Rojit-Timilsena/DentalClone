@@ -39,43 +39,6 @@ const loadTempusDominus = () => {
   document.head.appendChild(tempusScript)
 }
 
-// Load Twenty-Twenty CSS and JS exactly as original
-const loadTwentyTwenty = () => {
-  // Create and append CSS link
-  const twentyTwentyCss = document.createElement('link')
-  twentyTwentyCss.rel = 'stylesheet'
-  twentyTwentyCss.href = 'https://cdnjs.cloudflare.com/ajax/libs/twentytwenty/1.0.0/css/twentytwenty.css'
-  document.head.appendChild(twentyTwentyCss)
-
-  // Load Twenty-Twenty JS files
-  const eventMoveScript = document.createElement('script')
-  eventMoveScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/twentytwenty/1.0.0/js/jquery.event.move.js'
-  eventMoveScript.onload = () => {
-    const twentyTwentyScript = document.createElement('script')
-    twentyTwentyScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/twentytwenty/1.0.0/js/jquery.twentytwenty.js'
-    twentyTwentyScript.onload = () => {
-      console.log('✅ Twenty-Twenty loaded from CDN')
-      // Initialize twenty-twenty after loading
-      setTimeout(() => {
-        if ($('.twentytwenty-container').length) {
-          $('.twentytwenty-container').twentytwenty({
-            default_offset_pct: 0.5,
-            orientation: 'horizontal',
-            before_label: 'Before',
-            after_label: 'After',
-            no_overlay: false,
-            move_slider_on_hover: false,
-            move_with_handle_only: true,
-            click_to_move: false
-          })
-        }
-      }, 100)
-    }
-    document.head.appendChild(twentyTwentyScript)
-  }
-  document.head.appendChild(eventMoveScript)
-}
-
 // Load WOW.js from CDN exactly as original
 const loadWOWjs = () => {
   const wowScript = document.createElement('script')
@@ -108,9 +71,6 @@ export const initializeWOW = () => {
   // Load WOW.js from CDN for exact replica
   loadWOWjs()
 }
-
-// Initialize smooth scrolling exactly as original - REMOVED (handled by navigation.js)
-// This function is now handled by the navigation utility to avoid conflicts
 
 // Initialize back to top functionality exactly as original
 export const initializeBackToTop = () => {
@@ -198,29 +158,6 @@ export const initializeTestimonialCarousel = () => {
       }
     })
   }
-}
-
-// Initialize Twenty-Twenty for before/after image comparison exactly as original
-export const initializeTwentyTwenty = () => {
-  // Load Twenty-Twenty from CDN for exact replica
-  loadTwentyTwenty()
-  
-  // Also initialize any existing containers
-  setTimeout(() => {
-    if ($('.twentytwenty-container').length) {
-      $('.twentytwenty-container').twentytwenty({
-        default_offset_pct: 0.5,
-        orientation: 'horizontal',
-        before_label: 'Before',
-        after_label: 'After',
-        no_overlay: false,
-        move_slider_on_hover: false,
-        move_with_handle_only: true,
-        click_to_move: false
-      })
-      console.log('✅ Twenty-Twenty initialized for', $('.twentytwenty-container').length, 'containers')
-    }
-  }, 500)
 }
 
 // Initialize Tempus Dominus date/time pickers exactly as original
@@ -343,9 +280,6 @@ export const initializeAllLibraries = () => {
     // Initialize carousels
     initializePricingCarousel()
     initializeTestimonialCarousel()
-    
-    // Initialize Twenty-Twenty
-    initializeTwentyTwenty()
     
     // Initialize Tempus Dominus
     initializeTempusDominus()

@@ -1,37 +1,5 @@
 import React, { useState } from 'react'
-
-// Import team images
-import team1Image from '../assets/images/team/team-1.jpg'
-import team2Image from '../assets/images/team/team-2.jpg'
-import bhuwanImage from '../assets/images/team/bhuwan.png'
-
-// Team member data exactly as in original
-const teamMembers = [
-  {
-    id: 1,
-    name: "Dr. Lok Raj Dhakal",
-    position: "Principal Dentist / Managing Director",
-    image: team2Image,
-    bio: "Dr. Lok is a firm believer of professional growth and development, continuously trying to get his best in Dentistry. He is a registered Dentist, graduated from Kathmandu University.Having experience of more than 12 years as a dental professional, carries experience of 6 years from Dental clinics in UK. He holds Masters Degree in Marketing and Innovation from Anglia Ruskin University, UK. He is an enthusiast of scientific management.",
-    contact: "dr.lok@gmail.com"
-  },
-  {
-    id: 2,
-    name: "Dr. Bhuwan Sharma",
-    position: "Dental Surgeon",
-    image: bhuwanImage,
-    bio: "Dr. Bhuwan is the dentist you want to see for all your dental needs. His passion for dentistry is evident in the quality of care he provides to each and every patient. With his degree from Kathmandu University and his commitment to continuing education, Dr. Bhuwan is equipped with the knowledge and skills to provide the best possible dental care. He takes pride in delivering treatments that are tailored to each individual patient and their unique needs, ensuring a comfortable and stress-free experience.",
-    contact: "dr.bhuwan@gmail.com"
-  },
-  {
-    id: 3,
-    name: "DH. Anjana Parajuli",
-    position: "Dental Hygienist",
-    image: team1Image,
-    bio: "DH. Anjana Parajuli is a dental hygienist who provides quality oral care to patients of all ages, with a focus on prevention and education.Anjana Parajuli, graduated as a Dental Hygienist from CTEVT in 2009. She is result oriented and positive about the treatment she has to offer to everyone including children and young adults to elderly. During the appointment Anjana will pay attention to details and offer advice on maintaining oral hygiene in long run. Her treatments include Oral Hygiene care, Periodontal maintenance, Child Oral Care etc.",
-    contact: "dh.anjana@gmail.com"
-  }
-]
+import { teamMembers } from '../data/siteData'
 
 const Team = () => {
   const [showNotification, setShowNotification] = useState(false)
@@ -124,6 +92,7 @@ const Team = () => {
           padding: 10px;
           border-radius: 5px;
           text-align: center;
+          margin-top: 10px;
         }
 
         .team-member:hover .member-details {
@@ -158,6 +127,16 @@ const Team = () => {
 
       <div className="container-fluid py-5">
         <div className="container">
+          {/* Section Title */}
+          <div className="row mb-5">
+            <div className="col-12 text-center">
+              <div className="section-title">
+                <h5 className="position-relative d-inline-block text-primary text-uppercase">Our Team</h5>
+                <h1 className="display-5 mb-0">Meet Our Professional Team</h1>
+              </div>
+            </div>
+          </div>
+
           {/* Notification Section */}
           <div className="notification" id="team-notification">
             Click on a team member's picture to view more information.
@@ -165,24 +144,17 @@ const Team = () => {
           </div>
 
           <div className="team-members-container">
-            {teamMembers.map((member, index) => (
+            {teamMembers.map((member) => (
               <div key={member.id} className="team-member">
                 <div className="member-image">
                   <img src={member.image} alt={member.name} />
                   <div className="overlay">
                     <div className="social-icons">
-                      <a href="#" className="social-icon">
-                        <i className="fab fa-twitter fw-normal"></i>
-                      </a>
-                      <a href="#" className="social-icon">
-                        <i className="fab fa-facebook-f fw-normal"></i>
-                      </a>
-                      <a href="#" className="social-icon">
-                        <i className="fab fa-linkedin-in fw-normal"></i>
-                      </a>
-                      <a href="#" className="social-icon">
-                        <i className="fab fa-instagram fw-normal"></i>
-                      </a>
+                      {member.socialLinks.map((social, index) => (
+                        <a key={index} href={social.url} className="social-icon">
+                          <i className={`fab fa-${social.platform} fw-normal`}></i>
+                        </a>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -195,7 +167,6 @@ const Team = () => {
                   <p>{member.bio}</p>
                   <p>Contact: {member.contact}</p>
                 </div>
-                {index < teamMembers.length - 1 && <br />}
               </div>
             ))}
           </div>

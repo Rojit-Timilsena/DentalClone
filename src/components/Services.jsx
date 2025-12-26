@@ -1,45 +1,41 @@
-import React, { useEffect, useRef } from 'react'
-import { initializeTwentyTwenty } from '../utils/externalLibraries'
+import React from 'react'
 import { ASSET_PATHS } from '../utils/assetPaths'
 
 const Services = () => {
-  const containerRef = useRef(null)
-
-  // Initialize Twenty-Twenty after component mounts
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      initializeTwentyTwenty()
-    }, 100) // Small delay to ensure DOM is ready
-
-    return () => clearTimeout(timer)
-  }, [])
 
   return (
     <div className="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
       <div className="container">
         {/* First Row - Before/After and First Two Services */}
         <div className="row g-5 mb-5">
-          {/* Left Side - Twenty-Twenty Before/After Comparison */}
+          {/* Left Side - Simple Before/After Comparison */}
           <div className="col-lg-5 wow zoomIn" data-wow-delay="0.3s" style={{ minHeight: '400px' }}>
-            <div 
-              ref={containerRef}
-              className="twentytwenty-container position-relative h-100 rounded overflow-hidden"
-            >
-              {/* Before Image */}
-              <img 
-                className="position-absolute w-100 h-100" 
-                src={ASSET_PATHS.services.before} 
-                alt="Before Treatment"
-                style={{ objectFit: 'cover' }}
-              />
-              
-              {/* After Image */}
-              <img 
-                className="position-absolute w-100 h-100" 
-                src={ASSET_PATHS.services.after} 
-                alt="After Treatment"
-                style={{ objectFit: 'cover' }}
-              />
+            <div className="position-relative h-100 rounded overflow-hidden">
+              {/* Before/After Images Side by Side */}
+              <div className="row g-0 h-100">
+                <div className="col-6 position-relative">
+                  <img 
+                    className="w-100 h-100" 
+                    src={ASSET_PATHS.services.before} 
+                    alt="Before Treatment"
+                    style={{ objectFit: 'cover' }}
+                  />
+                  <div className="position-absolute bottom-0 start-0 bg-dark text-white px-2 py-1 small">
+                    Before
+                  </div>
+                </div>
+                <div className="col-6 position-relative">
+                  <img 
+                    className="w-100 h-100" 
+                    src={ASSET_PATHS.services.after} 
+                    alt="After Treatment"
+                    style={{ objectFit: 'cover' }}
+                  />
+                  <div className="position-absolute bottom-0 end-0 bg-primary text-white px-2 py-1 small">
+                    After
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
