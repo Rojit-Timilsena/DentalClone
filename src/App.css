@@ -1,0 +1,660 @@
+/* App-specific styles */
+.App {
+  min-height: 100vh;
+}
+
+/* Navbar styles */
+.navbar {
+  transition: all 0.3s;
+}
+
+.navbar-brand img {
+  max-height: 100px;
+}
+
+/* Modal styles */
+.modal.show {
+  display: block !important;
+}
+
+/* Carousel styles */
+.carousel-item img {
+  height: 100vh;
+  object-fit: cover;
+}
+
+.carousel-caption {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(9, 30, 62, .85);
+  z-index: 1;
+}
+
+/* Banner styles */
+.banner {
+  margin-bottom: 5rem;
+}
+
+@media (min-width: 991.98px) {
+  .banner {
+    position: relative;
+    margin-top: -90px;
+    z-index: 1;
+  }
+}
+
+/* Section spacing */
+section {
+  padding: 5rem 0;
+}
+
+/* Animation classes */
+.wow {
+  visibility: hidden;
+}
+
+.animated {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
+/* Utility classes */
+.section-title h5 {
+  position: relative;
+  display: inline-block;
+  text-transform: uppercase;
+  color: var(--primary-color);
+}
+
+.section-title h5::before {
+  content: '';
+  position: absolute;
+  width: 50px;
+  height: 2px;
+  background: var(--primary-color);
+  bottom: -5px;
+  left: 0;
+}
+
+/* Service item styles */
+.service-item {
+  transition: all 0.3s;
+}
+
+.service-item:hover {
+  transform: translateY(-10px);
+}
+
+/* Price item styles */
+.price-item {
+  transition: all 0.3s;
+}
+
+.price-item:hover {
+  transform: translateY(-10px);
+}
+
+/* Team member styles */
+.team-member {
+  transition: all 0.3s;
+}
+
+.team-member:hover {
+  transform: translateY(-10px);
+}
+
+/* Testimonial styles */
+.testimonial-item {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+/* Contact form styles */
+.contact-form {
+  background: var(--light-color);
+  border-radius: 10px;
+}
+
+/* Footer styles */
+.footer {
+  background: var(--secondary-color);
+  color: white;
+}
+
+.footer a {
+  color: #ccc;
+  transition: color 0.3s;
+}
+
+.footer a:hover {
+  color: var(--primary-color);
+}
+/* Loading spinner styles */
+.spinner-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  z-index: 9999;
+}
+
+/* Back to top button styles */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 1000;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.back-to-top:hover {
+  transform: translateY(-3px);
+}
+
+/* Navigation active state */
+.navbar-nav .nav-link.active {
+  color: #0d6efd !important;
+  font-weight: 600;
+}
+
+/* Search modal styles */
+.modal-fullscreen .modal-content {
+  border: none;
+  border-radius: 0;
+}
+
+/* DatePicker custom styles */
+.react-datepicker-wrapper {
+  width: 100%;
+}
+
+.react-datepicker__input-container input {
+  height: 40px !important;
+}
+
+/* Section minimum height for navigation */
+section {
+  min-height: 400px;
+}
+
+/* Developer popup styles */
+.modal .modal-content {
+  border-radius: 10px;
+}
+
+.modal .modal-header {
+  border-bottom: 1px solid #dee2e6;
+}
+
+.modal .modal-footer {
+  border-top: 1px solid #dee2e6;
+}
+/* Header component specific styles */
+.navbar-toggler {
+  border: none;
+  padding: 4px 8px;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+.navbar-nav .nav-link {
+  font-weight: 500;
+  color: #333 !important;
+  transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #0d6efd !important;
+}
+
+.dropdown-menu {
+  border: none;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  border-radius: 0.375rem;
+}
+
+.dropdown-item {
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #f8f9fa;
+  color: #0d6efd;
+}
+
+/* Search modal specific styles */
+.search-modal .modal-content {
+  background: rgba(9, 30, 62, 0.7) !important;
+  border: none;
+}
+
+.search-modal .form-control {
+  background: transparent !important;
+  border: 2px solid #0d6efd;
+  color: white;
+  font-size: 1.1rem;
+  padding: 12px 20px;
+}
+
+.search-modal .form-control::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.search-modal .form-control:focus {
+  background: transparent !important;
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+  color: white;
+}
+
+.search-modal .btn-close {
+  background: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  opacity: 1;
+}
+
+.search-modal .btn-close:hover {
+  transform: scale(1.1);
+}
+/* Mobile navigation improvements */
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    background: white;
+    padding: 1rem;
+    margin-top: 1rem;
+    border-radius: 0.375rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  }
+  
+  .navbar-nav .nav-link {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #f8f9fa;
+  }
+  
+  .navbar-nav .nav-link:last-child {
+    border-bottom: none;
+  }
+  
+  .dropdown-menu {
+    position: static !important;
+    transform: none !important;
+    box-shadow: none;
+    border: none;
+    background: #f8f9fa;
+    margin-left: 1rem;
+  }
+  
+  .btn.btn-primary {
+    margin-top: 1rem;
+    margin-left: 0 !important;
+  }
+}
+
+/* Logo responsive sizing */
+@media (max-width: 576px) {
+  .navbar-brand img {
+    height: 80px !important;
+  }
+}
+
+/* Appointment Section Styles */
+.appointment-form {
+  background: rgba(6, 163, 218, .7);
+  border-radius: 10px;
+}
+
+.appointment-form .form-control,
+.appointment-form .form-select {
+  height: 55px !important;
+  border: none;
+  background-color: #f8f9fa !important;
+}
+
+.appointment-form .form-control:focus,
+.appointment-form .form-select:focus {
+  background-color: #f8f9fa !important;
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+.appointment-form .btn-dark {
+  background-color: #212529;
+  border-color: #212529;
+  padding: 12px 0;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.appointment-form .btn-dark:hover {
+  background-color: #1c1f23;
+  border-color: #1c1f23;
+  transform: translateY(-2px);
+}
+/* Additional Interactive Elements and Hover Effects - Exact Replica */
+
+/* Enhanced button hover effects */
+.btn {
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+/* Enhanced service item hover effects */
+.service-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+}
+
+/* Enhanced price item hover effects */
+.price-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+}
+
+/* Team member hover effects with member details */
+.member-details {
+  display: none;
+  background-color: #f5f5f5;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+}
+
+.team-member:hover .member-details {
+  display: block;
+  animation: fadeInUp 0.3s ease;
+}
+
+/* Enhanced navigation hover effects */
+.navbar-nav .nav-link:hover {
+  color: var(--bs-primary) !important;
+  transform: translateY(-2px);
+}
+
+/* Form input focus effects */
+.form-control:focus {
+  transform: translateY(-2px);
+}
+
+/* Card hover effects */
+.card {
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+}
+
+/* Image hover effects */
+img {
+  transition: all 0.3s ease;
+}
+
+img:hover {
+  transform: scale(1.02);
+}
+
+/* Footer link hover effects */
+.footer a:hover {
+  transform: translateX(5px);
+}
+
+/* Social media button hover effects */
+.btn-lg-square:hover {
+  transform: rotate(360deg) scale(1.1);
+}
+
+/* Smooth scrolling for the entire page */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom animations for interactive elements */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 40px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Focus styles for accessibility */
+*:focus {
+  outline: 2px solid var(--bs-primary);
+  outline-offset: 2px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bs-primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--bs-dark);
+}
+
+/* Responsive hover effects - disable on touch devices */
+@media (hover: none) {
+  .btn:hover,
+  .service-item:hover,
+  .price-item:hover,
+  .team-member:hover,
+  .card:hover,
+  img:hover {
+    transform: none;
+  }
+}
+
+/* Team notification styles */
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  display: none;
+  z-index: 999;
+  animation: slideInRight 0.3s ease;
+}
+
+.notification .close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+/* Enhanced popup styles to match original exactly */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 999;
+}
+
+.popup-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+.popup .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+/* Image styling for proper container filling */
+img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+/* Carousel images - full viewport coverage */
+.carousel-item img {
+  height: 100vh;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* Service images - consistent aspect ratio */
+.service-item img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 0.375rem 0.375rem 0 0;
+}
+
+/* Pricing images - consistent card image sizing */
+.price-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 0.375rem 0.375rem 0 0;
+}
+
+/* Team member images - circular profile pictures */
+.team-member img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* Testimonial images - circular profile pictures */
+.testimonial-item img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* About section image */
+.about-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.375rem;
+}
+
+/* Twenty-twenty before/after images */
+.twentytwenty-container img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+/* Logo image - maintain aspect ratio */
+.navbar-brand img {
+  height: 100px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* SVG placeholder images styling */
+img[src^="data:image/svg+xml"] {
+  background-color: transparent;
+  border: none;
+  display: block;
+}
+
+/* Ensure SVG images scale properly */
+.service-item img[src^="data:image/svg+xml"],
+.price-item img[src^="data:image/svg+xml"] {
+  object-fit: fill; /* Fill the container completely for SVG */
+}
+
+/* Team and testimonial SVG images */
+.team-member img[src^="data:image/svg+xml"],
+.testimonial-item img[src^="data:image/svg+xml"] {
+  object-fit: fill;
+  border-radius: 50%;
+}
+
+/* Carousel SVG images */
+.carousel-item img[src^="data:image/svg+xml"] {
+  object-fit: fill;
+}
+
+/* About section SVG image */
+.about-image img[src^="data:image/svg+xml"] {
+  object-fit: fill;
+}
+
+/* Responsive image adjustments */
+@media (max-width: 768px) {
+  .carousel-item img {
+    height: 60vh;
+  }
+  
+  .service-item img {
+    height: 200px;
+  }
+  
+  .team-member img {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .twentytwenty-container img {
+    height: 300px;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar-brand img {
+    height: 80px;
+  }
+  
+  .carousel-item img {
+    height: 50vh;
+  }
+  
+  .service-item img {
+    height: 180px;
+  }
+}

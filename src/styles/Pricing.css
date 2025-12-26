@@ -1,0 +1,134 @@
+/* Pricing Component Styles - Exact Replica with Owl Carousel */
+
+/* Owl Carousel Custom Styles for Pricing */
+.price-carousel.owl-carousel {
+  position: relative;
+}
+
+.price-carousel .owl-nav {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.price-carousel .owl-nav button {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: var(--bs-primary) !important;
+  color: white !important;
+  border: none;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: all;
+  transition: all 0.3s ease;
+}
+
+.price-carousel .owl-nav button:hover {
+  background: var(--bs-dark) !important;
+  transform: scale(1.1);
+}
+
+.price-carousel .owl-nav .owl-prev {
+  margin-left: -22px;
+}
+
+.price-carousel .owl-nav .owl-next {
+  margin-right: -22px;
+}
+
+.price-carousel .owl-dots {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.price-carousel .owl-dots .owl-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.2);
+  margin: 0 5px;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.price-carousel .owl-dots .owl-dot.active,
+.price-carousel .owl-dots .owl-dot:hover {
+  background: var(--bs-primary);
+}
+
+/* Price Item Styles */
+.price-item {
+  margin-bottom: 30px;
+}
+
+.price-item .position-relative img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.price-item .bg-light {
+  background-color: #f8f9fa !important;
+}
+
+.price-item .border-primary {
+  border-color: var(--bs-primary) !important;
+}
+
+.price-item h4 {
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.price-item hr {
+  border-color: var(--bs-primary);
+  border-width: 2px;
+  opacity: 1;
+}
+
+.price-item .d-flex span {
+  font-size: 14px;
+  color: #666;
+}
+
+.price-item .fa-check {
+  color: var(--bs-primary);
+  font-size: 14px;
+}
+
+/* Price badge styling */
+.price-item .position-absolute.top-100 {
+  margin-top: -15px;
+}
+
+.price-item .position-absolute h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+/* Appointment button */
+.price-item .btn {
+  margin-top: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .price-carousel .owl-nav {
+    display: none;
+  }
+  
+  .price-carousel .owl-dots {
+    margin-top: 20px;
+  }
+}

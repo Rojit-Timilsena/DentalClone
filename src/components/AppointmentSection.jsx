@@ -1,0 +1,205 @@
+import { useState, useEffect } from 'react'
+import { initializeTempusDominus } from '../utils/externalLibraries'
+import carouselBg from '../assets/images/carousel/carousel-1bg.jpg'
+
+const AppointmentSection = () => {
+  const [formData, setFormData] = useState({
+    service: '',
+    doctor: '',
+    name: '',
+    email: '',
+    date: '',
+    time: ''
+  })
+
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  // Initialize Tempus Dominus after component mounts
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      initializeTempusDominus()
+    }, 100) // Small delay to ensure DOM is ready
+
+    return () => clearTimeout(timer)
+  }, [])
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }))
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    
+    // Simulate form submission
+    try {
+      console.log('Appointment form submitted:', formData)
+      alert('Appointment booked successfully!')
+      
+      // Reset form
+      setFormData({
+        service: '',
+        doctor: '',
+        name: '',
+        email: '',
+        date: '',
+        time: ''
+      })
+    } catch (error) {
+      console.error('Error submitting appointment:', error)
+      alert('Failed to book appointment. Please try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
+  return (
+    <div 
+      className="container-fluid bg-primary my-5 wow fadeInUp" 
+      data-wow-delay="0.1s"
+      style={{
+        background: `linear-gradient(rgba(9, 30, 62, .85), rgba(9, 30, 62, .85)), url(${carouselBg}) center center no-repeat`,
+        backgroundSize: 'cover'
+      }}
+    >
+      <div className="container">
+        <div className="row gx-5">
+          {/* Left Column - Title and Description */}
+          <div className="col-lg-6 py-5">
+            <div className="py-5">
+              <h1 className="display-5 text-white mb-4">Your Teeth Are Our Priority</h1>
+              <p className="text-white mb-0">
+                We are committed to lifetime care of your oral health. Our focus on prevention and education will serve our patients well into the future giving them the knowledge to properly care for their teeth and gums. Patients will find modern technology throughout the office that allows us to deliver optimum care in a pain-free manner.
+              </p>
+            </div>
+          </div>
+
+          {/* Right Column - Appointment Form */}
+          <div className="col-lg-6">
+            <div className="appointment-form h-100 d-flex flex-column justify-content-center text-center p-5 wow zoomIn" data-wow-delay="0.6s">
+              <h1 className="text-white mb-4">Make Appointment</h1>
+              <form onSubmit={handleSubmit}>
+                <div className="row g-3">
+                  {/* Service Selection */}
+                  <div className="col-12 col-sm-6">
+                    <select 
+                      name="service"
+                      value={formData.service}
+                      onChange={handleInputChange}
+                      className="form-select bg-light border-0" 
+                      style={{ height: '55px' }}
+                      required
+                    >
+                      <option value="" disabled>Select A Service</option>
+                      <option value="Teeth cleaning">Teeth cleaning</option>
+                      <option value="Consultation">Consultation</option>
+                    </select>
+                  </div>
+
+                  {/* Doctor Selection */}
+                  <div className="col-12 col-sm-6">
+                    <select 
+                      name="doctor"
+                      value={formData.doctor}
+                      onChange={handleInputChange}
+                      className="form-select bg-light border-0" 
+                      style={{ height: '55px' }}
+                      required
+                    >
+                      <option value="" disabled>Select Doctor</option>
+                      <option value="Dr. Lok Raj Dhakal">Dr. Lok Raj Dhakal</option>
+                      <option value="Dr. Bhuwan Sharma">Dr. Bhuwan Sharma</option>
+                      <option value="DH. Rashmi Khadka">DH. Rashmi Khadka</option>
+                      <option value="DH. Anjana Parajuli">DH. Anjana Parajuli</option>
+                    </select>
+                  </div>
+
+                  {/* Name Input */}
+                  <div className="col-12 col-sm-6">
+                    <input 
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      className="form-control bg-light border-0" 
+                      placeholder="Your Name" 
+                      style={{ height: '55px' }}
+                      required
+                    />
+                  </div>
+
+                  {/* Email Input */}
+                  <div className="col-12 col-sm-6">
+                    <input 
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      className="form-control bg-light border-0" 
+                      placeholder="Your Email" 
+                      style={{ height: '55px' }}
+                      required
+                    />
+                  </div>
+
+                  {/* Date Input */}
+                  <div className="col-12 col-sm-6">
+                    <div className="date" id="date1" data-target-input="nearest">
+                      <input 
+                        type="text"
+                        name="date"
+                        value={formData.date}
+                        onChange={handleInputChange}
+                        className="form-control bg-light border-0 datetimepicker-input"
+                        placeholder="Appointment Date" 
+                        data-target="#date1" 
+                        data-toggle="datetimepicker" 
+                        style={{ height: '55px' }}
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  {/* Time Input */}
+                  <div className="col-12 col-sm-6">
+                    <div className="time" id="time1" data-target-input="nearest">
+                      <input 
+                        type="text"
+                        name="time"
+                        value={formData.time}
+                        onChange={handleInputChange}
+                        className="form-control bg-light border-0 datetimepicker-input"
+                        placeholder="Appointment Time" 
+                        data-target="#time1" 
+                        data-toggle="datetimepicker" 
+                        style={{ height: '55px' }}
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  {/* Submit Button */}
+                  <div className="col-12">
+                    <button 
+                      className="btn btn-dark w-100 py-3" 
+                      type="submit"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? 'Booking...' : 'Make Appointment'}
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default AppointmentSection
