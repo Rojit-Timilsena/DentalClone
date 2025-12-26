@@ -79,11 +79,25 @@ const Services = () => {
 
         {/* Second Row - Remaining Services and "And so forth" Card */}
         <div className="row g-5 wow fadeInUp" data-wow-delay="0.1s">
-          {/* Left Side - Last Two Service Cards */}
+          {/* Left Side - Four Service Cards in 2x2 Grid */}
           <div className="col-lg-7">
-            <div className="row g-5">
-              {/* Service Card 3 - Teeth Whitening */}
+            <div className="row g-4">
+              {/* Service Card 3 - Dental Filling */}
               <div className="col-md-6 service-item wow zoomIn" data-wow-delay="0.3s">
+                <div className="rounded-top overflow-hidden">
+                  <img 
+                    className="img-fluid" 
+                    src={ASSET_PATHS.services.service3} 
+                    alt="Dental Filling"
+                  />
+                </div>
+                <div className="position-relative bg-light rounded-bottom text-center p-4">
+                  <h5 className="m-0"><strong>Dental Filling</strong></h5>
+                </div>
+              </div>
+
+              {/* Service Card 4 - Teeth Whitening */}
+              <div className="col-md-6 service-item wow zoomIn" data-wow-delay="0.6s">
                 <div className="rounded-top overflow-hidden">
                   <img 
                     className="img-fluid" 
@@ -96,27 +110,41 @@ const Services = () => {
                 </div>
               </div>
 
-              {/* Service Card 4 - Dental Filling */}
-              <div className="col-md-6 service-item wow zoomIn" data-wow-delay="0.6s">
+              {/* Service Card 5 - Teeth Cleaning */}
+              <div className="col-md-6 service-item wow zoomIn" data-wow-delay="0.9s">
                 <div className="rounded-top overflow-hidden">
                   <img 
                     className="img-fluid" 
-                    src={ASSET_PATHS.services.service3} 
-                    alt="Dental Filling"
+                    src={ASSET_PATHS.services.service5} 
+                    alt="Teeth Cleaning"
                   />
                 </div>
                 <div className="position-relative bg-light rounded-bottom text-center p-4">
-                  <h5 className="m-0"><strong>Dental filling</strong></h5>
+                  <h5 className="m-0"><strong>Teeth Cleaning</strong></h5>
+                </div>
+              </div>
+
+              {/* Service Card 6 - Orthodontics */}
+              <div className="col-md-6 service-item wow zoomIn" data-wow-delay="1.2s">
+                <div className="rounded-top overflow-hidden">
+                  <img 
+                    className="img-fluid" 
+                    src={ASSET_PATHS.services.service6} 
+                    alt="Orthodontics"
+                  />
+                </div>
+                <div className="position-relative bg-light rounded-bottom text-center p-4">
+                  <h5 className="m-0"><strong>Orthodontics</strong></h5>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Right Side - "And so forth" Card */}
-          <div className="col-lg-5 service-item wow zoomIn" data-wow-delay="0.9s">
+          <div className="col-lg-5 service-item wow zoomIn" data-wow-delay="1.5s">
             <div className="position-relative bg-primary rounded h-100 d-flex flex-column align-items-center justify-content-center text-center p-4">
               <h3 className="text-white mb-3">And so forth</h3>
-              <p className="text-white mb-3">These are some basic services we provide, We provide countless services at resonable price.</p>
+              <p className="text-white mb-3">These are some basic services we provide, We provide countless services at reasonable price.</p>
               <a 
                 href="https://underconstruction-digitalaide.netlify.app/" 
                 target="_blank" 

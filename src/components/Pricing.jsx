@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { initializePricingCarousel } from '../utils/externalLibraries'
 import '../styles/Pricing.css'
 import { pricingPlans } from '../data/siteData'
+import { ASSET_PATHS } from '../utils/assetPaths'
 
 const Pricing = () => {
   // Initialize Owl Carousel after component mounts
@@ -42,8 +43,8 @@ const Pricing = () => {
             </h1>
           </div>
 
-          {/* Right Column - Price Carousel */}
-          <div className="col-lg-7">
+          {/* Middle Column - Price Carousel */}
+          <div className="col-lg-4">
             <div className="owl-carousel price-carousel wow zoomIn" data-wow-delay="0.9s">
               {pricingPlans.map((plan) => (
                 <div key={plan.id} className="price-item pb-4">
@@ -78,6 +79,28 @@ const Pricing = () => {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+
+          {/* Right Column - Two Images Side by Side */}
+          <div className="col-lg-3">
+            <div className="row g-3 h-100 align-items-center">
+              <div className="col-6 wow fadeInUp" data-wow-delay="0.3s">
+                <img 
+                  src={ASSET_PATHS.services.service5} 
+                  alt="Dental Equipment" 
+                  className="img-fluid rounded shadow w-100"
+                  style={{ height: '300px', objectFit: 'cover' }}
+                />
+              </div>
+              <div className="col-6 wow fadeInUp" data-wow-delay="0.6s">
+                <img 
+                  src={ASSET_PATHS.services.service6} 
+                  alt="Modern Clinic" 
+                  className="img-fluid rounded shadow w-100"
+                  style={{ height: '300px', objectFit: 'cover' }}
+                />
+              </div>
             </div>
           </div>
         </div>

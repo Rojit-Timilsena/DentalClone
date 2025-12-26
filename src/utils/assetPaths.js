@@ -45,8 +45,10 @@ const carousel2 = createSolidColorSVG(1920, 1080, '#198754')
 // Service placeholder images
 const service1 = createSVGDataURL(500, 400, '#0d6efd', 'Oral Examination', 'white', '20')
 const service2 = createSVGDataURL(500, 400, '#198754', 'Dental X-Ray', 'white', '20')
-const service3 = createSVGDataURL(500, 400, '#dc3545', 'Teeth Whitening', 'white', '20')
-const service4 = createSVGDataURL(500, 400, '#fd7e14', 'Dental Filling', 'white', '20')
+const service3 = createSVGDataURL(500, 400, '#dc3545', 'Dental Filling', 'white', '20')
+const service4 = createSVGDataURL(500, 400, '#fd7e14', 'Teeth Whitening', 'white', '20')
+const service5 = createSVGDataURL(500, 400, '#6f42c1', 'Teeth Cleaning', 'white', '20')
+const service6 = createSVGDataURL(500, 400, '#e83e8c', 'Orthodontics', 'white', '20')
 const before = createSVGDataURL(600, 600, '#6c757d', 'Before Treatment', 'white', '24')
 const after = createSVGDataURL(600, 600, '#198754', 'After Treatment', 'white', '24')
 
@@ -88,6 +90,8 @@ export const ASSET_PATHS = {
     service2,
     service3,
     service4,
+    service5,
+    service6,
     before,
     after
   },

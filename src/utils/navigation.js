@@ -1,4 +1,4 @@
-// Smooth scroll to section utility - simplified and more reliable
+// Fast scroll to section utility - Instant navigation
 export const scrollToSection = (sectionId) => {
   console.log('Scrolling to section:', sectionId);
   
@@ -13,20 +13,11 @@ export const scrollToSection = (sectionId) => {
   const elementPosition = element.offsetTop;
   const offsetPosition = elementPosition - headerOffset;
 
-  // Try jQuery first, then fallback to native
-  const $ = window.$ || window.jQuery;
-  if ($ && typeof $.fn.animate === 'function' && typeof $.easing !== 'undefined') {
-    console.log('Using jQuery smooth scroll');
-    $('html, body').animate({
-      scrollTop: offsetPosition
-    }, 1500, 'easeInOutExpo');
-  } else {
-    console.log('Using native smooth scroll');
-    window.scrollTo({
-      top: offsetPosition,
-      behavior: 'smooth'
-    });
-  }
+  // Use instant scroll for fast navigation
+  window.scrollTo({
+    top: offsetPosition,
+    behavior: 'auto' // Changed from 'smooth' to 'auto' for instant scrolling
+  });
 };
 
 // Get active section based on scroll position

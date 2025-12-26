@@ -18,6 +18,9 @@ import { initializeAllLibraries, cleanupLibraries } from './utils/externalLibrar
 // Import library test for development
 import './utils/libraryTest'
 
+// Import ASSET_PATHS for decorative images
+import { ASSET_PATHS } from './utils/assetPaths'
+
 // Import integration tests for development (only in development)
 // TEMPORARILY DISABLED - These tests may interfere with normal operation
 // if (import.meta.env.DEV) {
