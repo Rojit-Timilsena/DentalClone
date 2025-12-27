@@ -17,12 +17,12 @@ export default defineConfig({
           carousel: ['swiper'],
           animations: ['framer-motion', 'wowjs'],
           forms: ['react-hook-form', 'react-datepicker'],
-          utils: ['moment', 'moment-timezone', 'jquery']
+          utils: ['moment', 'moment-timezone', 'jquery', 'jquery.easing']
         }
       }
     },
-    // Optimize chunk size
-    chunkSizeWarningLimit: 1000,
+    // Keep reasonable chunk size limit
+    chunkSizeWarningLimit: 500,
     // Asset optimization
     assetsInlineLimit: 4096,
     // CSS code splitting

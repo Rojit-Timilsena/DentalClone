@@ -12,9 +12,18 @@ import 'wowjs/css/libs/animate.css'
 import moment from 'moment'
 import 'moment-timezone'
 
-// Import Waypoints and Easing
-import 'waypoints/lib/jquery.waypoints.min.js'
+// Import jQuery Easing
 import 'jquery.easing'
+
+// Load Waypoints from CDN (package has import issues)
+const loadWaypoints = () => {
+  const waypointsScript = document.createElement('script')
+  waypointsScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js'
+  waypointsScript.onload = () => {
+    console.log('✅ Waypoints loaded from CDN')
+  }
+  document.head.appendChild(waypointsScript)
+}
 
 // Load Tempus Dominus CSS and JS exactly as original
 const loadTempusDominus = () => {
@@ -191,6 +200,9 @@ export const initializeAllLibraries = () => {
   // Wait for DOM to be ready
   $(document).ready(() => {
     console.log('🚀 Initializing all external libraries exactly as original HTML...')
+    
+    // Load Waypoints from CDN
+    loadWaypoints()
     
     // Initialize WOW.js animations
     initializeWOW()

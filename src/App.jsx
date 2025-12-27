@@ -12,25 +12,13 @@ import HeroCarousel from './components/HeroCarousel'
 // Navigation utilities
 import { scrollToSection, getActiveSection, updateActiveNav, initializeSmoothScrolling } from './utils/navigation'
 
-// External libraries integration - Exact Replica
+// External libraries integration - Keep all animations
 import { initializeAllLibraries, cleanupLibraries } from './utils/externalLibraries'
 
 // Import library test for development
 import './utils/libraryTest'
 
-// Import ASSET_PATHS for decorative images
-import { ASSET_PATHS } from './utils/assetPaths'
-
-// Import integration tests for development (only in development)
-// TEMPORARILY DISABLED - These tests may interfere with normal operation
-// if (import.meta.env.DEV) {
-//   import('./test-integration')
-//   import('./visual-comparison-test')
-//   import('./user-interaction-test')
-//   import('./final-test-report')
-// }
-
-// Component imports will be added as we create them
+// Component imports
 import Banner from './components/Banner'
 import About from './components/About'
 import AppointmentSection from './components/AppointmentSection'
@@ -47,7 +35,7 @@ function App() {
   const [showDeveloperPopup, setShowDeveloperPopup] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
 
-  // Loading simulation
+  // Loading simulation - keep original timing
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false)
@@ -56,16 +44,16 @@ function App() {
     return () => clearTimeout(timer)
   }, [])
 
-  // Developer popup timer (exactly 50 seconds as original)
+  // Developer popup timer - keep original timing
   useEffect(() => {
     const popupTimer = setTimeout(() => {
       setShowDeveloperPopup(true)
-    }, 50000) // Exactly 50 seconds as original
+    }, 50000) // Keep original 50 seconds
 
     return () => clearTimeout(popupTimer)
   }, [])
 
-  // Initialize external libraries exactly as original HTML
+  // Initialize external libraries - keep all animations
   useEffect(() => {
     if (!isLoading) {
       console.log('Initializing libraries and scrolling...');
@@ -76,7 +64,7 @@ function App() {
       // Initialize smooth scrolling after a delay to ensure DOM is ready
       setTimeout(() => {
         initializeSmoothScrolling()
-      }, 500) // Shorter delay
+      }, 500)
     }
 
     // Cleanup on unmount
