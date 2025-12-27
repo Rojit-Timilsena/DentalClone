@@ -256,13 +256,8 @@ export const initializeMainTemplateJS = () => {
 
 // Cleanup function for component unmounting
 export const cleanupLibraries = () => {
-  // Destroy Owl Carousel instances
-  if ($('.price-carousel').length && $('.price-carousel').data('owl.carousel')) {
-    $('.price-carousel').trigger('destroy.owl.carousel')
-  }
-  if ($('.testimonial-carousel').length && $('.testimonial-carousel').data('owl.carousel')) {
-    $('.testimonial-carousel').trigger('destroy.owl.carousel')
-  }
+  // Cleanup is now handled by React component lifecycle
+  // No Owl Carousel instances to destroy since we're using Swiper
   
   // Destroy Tempus Dominus instances
   try {

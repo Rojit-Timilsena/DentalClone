@@ -14,7 +14,7 @@ export default defineConfig({
           // Separate vendor chunks for better caching
           vendor: ['react', 'react-dom'],
           bootstrap: ['bootstrap', 'react-bootstrap'],
-          carousel: ['swiper', 'owl.carousel'],
+          carousel: ['swiper'],
           animations: ['framer-motion', 'wowjs'],
           forms: ['react-hook-form', 'react-datepicker'],
           utils: ['moment', 'moment-timezone', 'jquery']
