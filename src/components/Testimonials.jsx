@@ -44,7 +44,7 @@ const Testimonials = () => {
             <div 
               className="testimonial-box text-white text-center p-5 rounded position-relative"
               style={{
-                background: '#06A3DA', // Using exact primary color from palette
+                background: 'var(--primary)', // Using CSS variable instead of hardcoded color
                 boxShadow: '0 10px 30px rgba(0, 0, 0, 0.3)'
               }}
             >
@@ -90,7 +90,14 @@ const Testimonials = () => {
                       height: '12px', 
                       borderRadius: '50%', 
                       padding: '0',
-                      border: '2px solid white'
+                      border: '2px solid white',
+                      minWidth: '12px',
+                      minHeight: '12px',
+                      maxWidth: '12px',
+                      maxHeight: '12px',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      justifyContent: 'center'
                     }}
                     onClick={() => setCurrentTestimonial(index)}
                   />

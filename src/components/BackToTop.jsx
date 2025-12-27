@@ -46,6 +46,9 @@ const BackToTop = () => {
     return false;
   };
 
+  // Check if mobile
+  const isMobile = window.innerWidth <= 767;
+
   return (
     <>
       <a 
@@ -54,15 +57,21 @@ const BackToTop = () => {
         onClick={scrollToTop}
         style={{
           position: 'fixed',
-          bottom: '30px',
-          right: '30px',
+          bottom: isMobile ? '20px' : '30px',
+          right: isMobile ? '20px' : '30px',
           zIndex: 1000,
-          display: isVisible ? 'block' : 'none',
-          transition: 'opacity 0.3s ease' // Smooth fade transition
+          display: isVisible ? 'flex' : 'none',
+          alignItems: 'center',
+          justifyContent: 'center',
+          transition: 'opacity 0.3s ease',
+          width: isMobile ? '50px' : '46px',
+          height: isMobile ? '50px' : '46px',
+          padding: '0',
+          borderRadius: isMobile ? '8px' : undefined
         }}
         aria-label="Back to top"
       >
-        <i className="bi bi-arrow-up"></i>
+        <i className="bi bi-arrow-up" style={{ fontSize: isMobile ? '18px' : '16px' }}></i>
       </a>
     </>
   );

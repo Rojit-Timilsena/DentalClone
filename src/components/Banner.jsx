@@ -50,7 +50,7 @@ const Banner = () => {
                 <h6 className="text-white mb-0 small">Saturday</h6>
                 <p className="mb-0 small">09:00 – 17:30</p>
               </div>
-              <a className="btn btn-light mt-auto py-2" href="#appointment" onClick={handleAppointmentClick}>
+              <a className="btn btn-light mt-auto" style={{ padding: '8px 16px', minHeight: '44px', fontSize: '14px' }} href="#appointment" onClick={handleAppointmentClick}>
                 Appointment
               </a>
             </div>
@@ -87,7 +87,7 @@ const Banner = () => {
                 <option value="2">Consultation</option>
               </select>
 
-              <a className="btn btn-light mt-auto py-2" href="#search" onClick={handleSearchDoctor}>
+              <a className="btn btn-light mt-auto" style={{ padding: '8px 16px', minHeight: '44px', fontSize: '14px' }} href="#search" onClick={handleSearchDoctor}>
                 Search Doctor
               </a>
             </div>
@@ -100,7 +100,7 @@ const Banner = () => {
               <p className="text-white mb-4 small">
                 Say goodbye to long wait times! Book your dental appointment online in just a few clicks and enjoy the convenience of a healthier smile on your schedule.
               </p>
-              <a className="btn btn-primary py-2 px-4 mt-auto" href="#appointment" onClick={handleAppointmentClick}>
+              <a className="btn btn-primary mt-auto" style={{ padding: '8px 16px', minHeight: '44px', fontSize: '14px' }} href="#appointment" onClick={handleAppointmentClick}>
                 Appointment
               </a>
             </div>

@@ -117,6 +117,30 @@ h6,
     z-index: 99;
 }
 
+/* Mobile-specific styling for back-to-top button - high specificity */
+@media (max-width: 767.98px) {
+    .btn.btn-lg.btn-primary.btn-lg-square.back-to-top {
+        width: 50px !important;
+        height: 50px !important;
+        right: 20px !important;
+        bottom: 20px !important;
+        padding: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        border-radius: 8px !important;
+        min-width: 50px !important;
+        min-height: 50px !important;
+        max-width: 50px !important;
+        max-height: 50px !important;
+    }
+    
+    .back-to-top i {
+        font-size: 18px !important;
+        line-height: 1 !important;
+    }
+}
+
 .top-shape::before {
     position: absolute;
     content: "";
@@ -188,6 +212,30 @@ h6,
         position: relative;
         margin-top: -90px;
         z-index: 1;
+    }
+}
+
+/* Banner button consistency */
+.banner .btn {
+    min-height: 44px !important;
+    font-weight: 600 !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    font-size: 14px !important;
+    padding: 8px 16px !important;
+    line-height: 1.5 !important;
+    display: inline-block !important;
+    width: auto !important;
+}
+
+@media (max-width: 767.98px) {
+    .banner .btn {
+        min-height: 40px !important;
+        font-size: 13px !important;
+        padding: 8px 16px !important;
+        width: 100% !important;
+        max-width: 200px !important;
+        margin: 0 auto !important;
     }
 }
 
@@ -265,7 +313,7 @@ h6,
 }
 
 .offer-text {
-    background: rgba(6, 163, 218, .85);
+    background: rgba(245, 126, 87, .85); /* Using orange color with transparency */
 }
 /* Removed old Owl Carousel styles - now using Swiper */
 
@@ -274,13 +322,4 @@ h6,
     background-size: cover;
 }
 
-.testimonial-carousel {
-    background: rgba(6, 163, 218, .85);
-}
-
-/* Removed old Owl Carousel testimonial styles - now using Swiper */
-
-.testimonial-carousel .owl-item img {
-    width: 120px;
-    height: 120px;
-}
+/* Removed old testimonial carousel styles - now using custom React component */

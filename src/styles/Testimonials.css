@@ -58,10 +58,17 @@
 /* Dots Navigation */
 .testimonial-dots .btn {
   transition: all 0.3s ease;
+  line-height: 1 !important;
+  font-size: 0 !important;
+  vertical-align: middle !important;
 }
 
 .testimonial-dots .btn:hover {
   transform: scale(1.2);
+}
+
+.testimonial-dots .btn:focus {
+  box-shadow: none !important;
 }
 
 /* Responsive adjustments */
