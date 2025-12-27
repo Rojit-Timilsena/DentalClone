@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { initializeTempusDominus } from '../utils/externalLibraries'
 import { serviceOptions, doctorOptions } from '../data/siteData'
-import carouselBg from '../assets/images/carousel/carousel-1bg.jpg'
+import { ASSET_PATHS } from '../utils/assetPaths'
 
 const AppointmentSection = () => {
   const [formData, setFormData] = useState({
@@ -63,7 +63,7 @@ const AppointmentSection = () => {
       className="container-fluid bg-primary my-5 wow fadeInUp" 
       data-wow-delay="0.1s"
       style={{
-        background: `linear-gradient(rgba(9, 30, 62, .85), rgba(9, 30, 62, .85)), url(${carouselBg}) center center no-repeat`,
+        background: `linear-gradient(rgba(9, 30, 62, .85), rgba(9, 30, 62, .85)), url(${ASSET_PATHS.carousel.carousel1bg}) center center no-repeat`,
         backgroundSize: 'cover'
       }}
     >
