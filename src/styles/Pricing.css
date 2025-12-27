@@ -1,81 +1,94 @@
-/* Pricing Component Styles - Exact Replica with Owl Carousel */
+/* Pricing Component Styles - Mobile-First Responsive Design */
 
-/* Owl Carousel Custom Styles for Pricing */
-.price-carousel.owl-carousel {
+/* Swiper Custom Styles for Pricing */
+.pricing-carousel-container {
   position: relative;
-}
-
-.price-carousel .owl-nav {
-  position: absolute;
-  top: 50%;
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  transform: translateY(-50%);
-  pointer-events: none;
+  overflow: hidden;
 }
 
-.price-carousel .owl-nav button {
+.pricing-swiper {
+  padding-bottom: 50px; /* Space for pagination */
+  width: 100%;
+  height: auto;
+}
+
+.pricing-swiper .swiper-wrapper {
+  display: flex;
+  align-items: stretch;
+}
+
+.pricing-swiper .swiper-slide {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.pricing-swiper .swiper-button-next,
+.pricing-swiper .swiper-button-prev {
   width: 45px;
   height: 45px;
   border-radius: 50%;
   background: var(--bs-primary) !important;
   color: white !important;
-  border: none;
   font-size: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: all;
+  margin-top: -22px;
   transition: all 0.3s ease;
+  z-index: 10;
 }
 
-.price-carousel .owl-nav button:hover {
+.pricing-swiper .swiper-button-next:hover,
+.pricing-swiper .swiper-button-prev:hover {
   background: var(--bs-dark) !important;
   transform: scale(1.1);
 }
 
-.price-carousel .owl-nav .owl-prev {
-  margin-left: -22px;
+.pricing-swiper .swiper-button-next::after,
+.pricing-swiper .swiper-button-prev::after {
+  font-size: 16px;
+  font-weight: bold;
 }
 
-.price-carousel .owl-nav .owl-next {
-  margin-right: -22px;
-}
-
-.price-carousel .owl-dots {
+.pricing-swiper .swiper-pagination {
+  bottom: 10px;
   text-align: center;
-  margin-top: 30px;
 }
 
-.price-carousel .owl-dots .owl-dot {
+.pricing-swiper .swiper-pagination-bullet {
   width: 12px;
   height: 12px;
-  border-radius: 50%;
   background: rgba(0, 0, 0, 0.2);
-  margin: 0 5px;
-  display: inline-block;
+  opacity: 1;
   transition: all 0.3s ease;
+  margin: 0 5px;
 }
 
-.price-carousel .owl-dots .owl-dot.active,
-.price-carousel .owl-dots .owl-dot:hover {
+.pricing-swiper .swiper-pagination-bullet-active {
   background: var(--bs-primary);
 }
 
 /* Price Item Styles */
 .price-item {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .price-item .position-relative img {
   width: 100%;
-  height: 250px;
+  height: 180px;
   object-fit: cover;
 }
 
 .price-item .bg-light {
   background-color: #f8f9fa !important;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: auto; /* Remove fixed height to let content determine size */
 }
 
 .price-item .border-primary {
@@ -85,7 +98,14 @@
 .price-item h4 {
   color: #333;
   font-weight: 600;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.1rem;
+  min-height: 2.5rem; /* Ensure consistent title height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.2;
 }
 
 .price-item hr {
@@ -95,13 +115,21 @@
 }
 
 .price-item .d-flex span {
-  font-size: 14px;
+  font-size: 13px;
   color: #666;
 }
 
 .price-item .fa-check {
   color: var(--bs-primary);
-  font-size: 14px;
+  font-size: 12px;
+}
+
+/* Features container to push button to bottom */
+.price-item .features-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 /* Price badge styling */
@@ -110,7 +138,7 @@
 }
 
 .price-item .position-absolute h2 {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 700;
 }
 
@@ -120,15 +148,180 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  font-size: 0.875rem;
+  padding: 8px 16px;
+  align-self: center;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .price-carousel .owl-nav {
+/* Mobile-First Responsive Design */
+
+/* Extra Small devices (phones, less than 576px) */
+@media (max-width: 575.98px) {
+  .pricing-swiper .swiper-button-next,
+  .pricing-swiper .swiper-button-prev {
     display: none;
   }
   
-  .price-carousel .owl-dots {
-    margin-top: 20px;
+  .pricing-swiper {
+    padding-bottom: 40px;
+  }
+  
+  .price-item {
+    margin-bottom: 15px;
+  }
+  
+  .price-item .position-relative img {
+    height: 150px;
+  }
+  
+  .price-item .bg-light {
+    min-height: auto; /* Let content determine height */
+  }
+  
+  .price-item h4 {
+    font-size: 1rem;
+    min-height: 2.2rem; /* Slightly smaller for mobile */
+  }
+  
+  .price-item .position-absolute h2 {
+    font-size: 1.1rem;
+  }
+  
+  .price-item .d-flex span {
+    font-size: 12px;
+  }
+  
+  .price-item .btn {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
+  
+  /* Section title adjustments */
+  .section-title .display-5 {
+    font-size: 1.75rem !important;
+    line-height: 1.2;
+  }
+  
+  .section-title h5 {
+    font-size: 0.9rem;
+  }
+  
+  /* Phone number styling */
+  .section-title + p + h5 + h1 {
+    font-size: 1.5rem !important;
+  }
+  
+  /* Image adjustments for mobile */
+  .col-6 img {
+    height: 120px !important;
+    margin-bottom: 10px;
+  }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .pricing-swiper .swiper-button-next,
+  .pricing-swiper .swiper-button-prev {
+    display: none;
+  }
+  
+  .price-item .position-relative img {
+    height: 160px;
+  }
+  
+  .price-item .bg-light {
+    min-height: auto;
+  }
+  
+  .section-title .display-5 {
+    font-size: 2rem !important;
+  }
+  
+  /* Images side by side on small screens */
+  .col-sm-12 img {
+    height: 180px !important;
+    margin-bottom: 15px;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .price-item .position-relative img {
+    height: 170px;
+  }
+  
+  .price-item .bg-light {
+    min-height: auto;
+  }
+  
+  .section-title .display-5 {
+    font-size: 2.25rem !important;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .pricing-swiper .swiper-button-next,
+  .pricing-swiper .swiper-button-prev {
+    display: flex;
+  }
+  
+  .price-item .position-relative img {
+    height: 180px;
+  }
+  
+  .price-item .bg-light {
+    min-height: auto;
+  }
+  
+  .price-item h4 {
+    font-size: 1.2rem;
+    min-height: 2.5rem;
+  }
+  
+  .price-item .position-absolute h2 {
+    font-size: 1.5rem;
+  }
+  
+  /* Desktop image styling */
+  .col-lg-3 img {
+    height: 200px !important;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .price-item .position-relative img {
+    height: 200px;
+  }
+  
+  .price-item .bg-light {
+    min-height: auto;
+  }
+  
+  .col-lg-3 img {
+    height: 220px !important;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .price-item .btn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  .owl-dots .owl-dot {
+    width: 16px;
+    height: 16px;
+    margin: 0 8px;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .price-item img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
   }
 }

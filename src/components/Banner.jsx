@@ -35,31 +35,31 @@ const Banner = () => {
   }
 
   return (
-    <div className="container-fluid banner mb-5">
+    <div className="container-fluid banner mb-3 mb-lg-5">
       <div className="container">
-        <div className="row gx-0">
+        <div className="row g-3 g-lg-0">
           {/* Opening Hours Card */}
-          <div className="col-lg-4 wow zoomIn" data-wow-delay="0.1s">
-            <div className="bg-primary d-flex flex-column p-5" style={{ height: '300px' }}>
-              <h3 className="text-white mb-3">Opening Hours</h3>
-              <div className="d-flex justify-content-between text-white mb-3">
-                <h6 className="text-white mb-0">Sunday-Friday</h6>
-                <p className="mb-0">09:00 – 18:30</p>
+          <div className="col-12 col-md-4 wow zoomIn" data-wow-delay="0.1s">
+            <div className="bg-primary d-flex flex-column p-4 p-lg-5 h-100" style={{ minHeight: '250px' }}>
+              <h3 className="text-white mb-3 fs-5 fs-lg-4">Opening Hours</h3>
+              <div className="d-flex justify-content-between text-white mb-2 mb-lg-3">
+                <h6 className="text-white mb-0 small">Sunday-Friday</h6>
+                <p className="mb-0 small">09:00 – 18:30</p>
               </div>
-              <div className="d-flex justify-content-between text-white mb-3">
-                <h6 className="text-white mb-0">Saturday</h6>
-                <p className="mb-0">09:00 – 17:30</p>
+              <div className="d-flex justify-content-between text-white mb-3 mb-lg-4">
+                <h6 className="text-white mb-0 small">Saturday</h6>
+                <p className="mb-0 small">09:00 – 17:30</p>
               </div>
-              <a className="btn btn-light" href="#appointment" onClick={handleAppointmentClick}>
+              <a className="btn btn-light mt-auto py-2" href="#appointment" onClick={handleAppointmentClick}>
                 Appointment
               </a>
             </div>
           </div>
 
           {/* Search A Doctor Card */}
-          <div className="col-lg-4 wow zoomIn" data-wow-delay="0.3s">
-            <div className="bg-dark d-flex flex-column p-5" style={{ height: '300px' }}>
-              <h3 className="text-white mb-3">Search A Doctor</h3>
+          <div className="col-12 col-md-4 wow zoomIn" data-wow-delay="0.3s">
+            <div className="bg-dark d-flex flex-column p-4 p-lg-5 h-100" style={{ minHeight: '250px' }}>
+              <h3 className="text-white mb-3 fs-5 fs-lg-4">Search A Doctor</h3>
               
               {/* Date Picker */}
               <div className="date mb-3" id="date" data-target-input="nearest">
@@ -87,21 +87,20 @@ const Banner = () => {
                 <option value="2">Consultation</option>
               </select>
 
-              <a className="btn btn-light" href="#search" onClick={handleSearchDoctor}>
+              <a className="btn btn-light mt-auto py-2" href="#search" onClick={handleSearchDoctor}>
                 Search Doctor
               </a>
             </div>
           </div>
 
           {/* Make Appointment Card */}
-          <div className="col-lg-4 wow zoomIn" data-wow-delay="0.6s">
-            <div className="bg-secondary d-flex flex-column p-5" style={{ height: '300px' }}>
-              <h3 className="text-white mb-3">Make Appointment</h3>
-              <p className="text-white">
+          <div className="col-12 col-md-4 wow zoomIn" data-wow-delay="0.6s">
+            <div className="bg-secondary d-flex flex-column p-4 p-lg-5 h-100" style={{ minHeight: '250px' }}>
+              <h3 className="text-white mb-3 fs-5 fs-lg-4">Make Appointment</h3>
+              <p className="text-white mb-4 small">
                 Say goodbye to long wait times! Book your dental appointment online in just a few clicks and enjoy the convenience of a healthier smile on your schedule.
               </p>
-              <h2 className="text-white mb-0"></h2>
-              <a className="btn btn-primary py-2 px-4 ms-3" href="#appointment" onClick={handleAppointmentClick}>
+              <a className="btn btn-primary py-2 px-4 mt-auto" href="#appointment" onClick={handleAppointmentClick}>
                 Appointment
               </a>
             </div>

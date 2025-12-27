@@ -1,20 +1,10 @@
 import { useEffect, useState } from 'react'
-import { initializeTestimonialCarousel } from '../utils/externalLibraries'
 import '../styles/Testimonials.css'
 import { testimonials } from '../data/siteData'
 import { ASSET_PATHS } from '../utils/assetPaths'
 
 const Testimonials = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
-
-  // Initialize Owl Carousel after component mounts
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      initializeTestimonialCarousel()
-    }, 100)
-
-    return () => clearTimeout(timer)
-  }, [])
 
   // Auto-rotate testimonials
   useEffect(() => {

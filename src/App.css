@@ -3,13 +3,189 @@
   min-height: 100vh;
 }
 
-/* Navbar styles */
+/* Global Mobile-First Responsive Design */
+
+/* Base styles for all devices */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Container adjustments for mobile */
+.container-fluid {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+@media (min-width: 576px) {
+  .container-fluid {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container-fluid {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+/* Navbar styles - Mobile First */
 .navbar {
   transition: all 0.3s;
+  min-height: 70px;
 }
 
 .navbar-brand img {
-  max-height: 100px;
+  height: 60px;
+  max-height: 80px;
+  width: auto;
+  transition: all 0.3s ease;
+}
+
+/* Mobile navbar improvements */
+@media (max-width: 991.98px) {
+  .navbar {
+    padding: 0.75rem 1rem;
+  }
+  
+  .navbar-brand img {
+    height: 50px;
+    max-height: 60px;
+  }
+  
+  .navbar-collapse {
+    background: white;
+    padding: 1rem;
+    margin-top: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    border: 1px solid #e9ecef;
+  }
+  
+  .navbar-nav .nav-link {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #f8f9fa;
+    font-weight: 500;
+    color: #333 !important;
+  }
+  
+  .navbar-nav .nav-link:last-child {
+    border-bottom: none;
+  }
+  
+  .navbar-nav .nav-link:hover {
+    background-color: #f8f9fa;
+    color: #06A3DA !important;
+  }
+  
+  .dropdown-menu {
+    position: static !important;
+    transform: none !important;
+    box-shadow: none;
+    border: none;
+    background: #f8f9fa;
+    margin-left: 1rem;
+    border-radius: 0.375rem;
+  }
+  
+  .dropdown-item {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .btn.btn-primary {
+    margin-top: 1rem;
+    width: 100%;
+    padding: 0.75rem;
+    font-weight: 600;
+  }
+}
+
+/* Desktop navbar */
+@media (min-width: 992px) {
+  .navbar {
+    padding: 1rem 2rem;
+  }
+  
+  .navbar-brand img {
+    height: 80px;
+    max-height: 100px;
+  }
+}
+
+/* Section spacing - Mobile First */
+section {
+  padding: 2rem 0;
+}
+
+@media (min-width: 576px) {
+  section {
+    padding: 3rem 0;
+  }
+}
+
+@media (min-width: 992px) {
+  section {
+    padding: 5rem 0;
+  }
+}
+
+/* Typography - Mobile First */
+.display-1 {
+  font-size: 2.5rem;
+  line-height: 1.2;
+}
+
+.display-5 {
+  font-size: 1.75rem;
+  line-height: 1.3;
+}
+
+h1 {
+  font-size: 1.75rem;
+  line-height: 1.3;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+@media (min-width: 576px) {
+  .display-1 {
+    font-size: 3.5rem;
+  }
+  
+  .display-5 {
+    font-size: 2.25rem;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .display-1 {
+    font-size: 5.5rem;
+  }
+  
+  .display-5 {
+    font-size: 3rem;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+  }
 }
 
 /* Modal styles */
@@ -680,4 +856,433 @@ section {
 
 #contact {
   padding: 5rem 0; /* Keep original spacing for contact */
+}
+/* Additional Mobile Responsiveness for All Components */
+
+/* About Section Mobile Responsiveness */
+@media (max-width: 991.98px) {
+  .about-image-container {
+    margin-top: 2rem;
+  }
+  
+  .about-image-container img {
+    min-height: 250px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .about-image-container img {
+    min-height: 200px !important;
+  }
+  
+  .section-title h1 {
+    font-size: 1.5rem !important;
+  }
+  
+  .section-title h5 {
+    font-size: 0.9rem !important;
+  }
+}
+
+/* Contact Section Mobile Responsiveness */
+@media (max-width: 991.98px) {
+  .contact-form {
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .contact-info .d-flex {
+    flex-direction: column;
+    align-items: flex-start !important;
+  }
+  
+  .contact-info .fs-1 {
+    font-size: 1.5rem !important;
+    margin-bottom: 0.5rem;
+  }
+  
+  .contact-info h5 {
+    font-size: 1rem;
+  }
+  
+  .contact-info span {
+    font-size: 0.9rem;
+    word-break: break-word;
+  }
+}
+
+/* Footer Mobile Responsiveness */
+@media (max-width: 767.98px) {
+  .footer .col-sm-6:nth-child(1),
+  .footer .col-sm-6:nth-child(2) {
+    margin-bottom: 2rem;
+  }
+  
+  .footer .col-sm-12:nth-child(3),
+  .footer .col-sm-12:nth-child(4) {
+    margin-bottom: 2rem;
+  }
+  
+  .footer h3 {
+    font-size: 1.25rem;
+  }
+  
+  .footer .d-flex.flex-wrap {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .footer .container-fluid {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .footer .text-center.text-md-start,
+  .footer .text-center.text-md-end {
+    text-align: center !important;
+  }
+  
+  .footer p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+}
+
+/* Team Section Additional Mobile Styles */
+@media (max-width: 576px) {
+  .team-members-container {
+    padding: 0;
+  }
+  
+  .member-info h3 {
+    font-size: 1.1rem !important;
+  }
+  
+  .post-text {
+    font-size: 0.85rem !important;
+  }
+  
+  .member-details {
+    font-size: 0.85rem;
+    padding: 8px;
+  }
+}
+
+/* General Mobile Improvements */
+@media (max-width: 576px) {
+  .container-fluid {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .btn {
+    font-size: 0.9rem;
+    padding: 0.6rem 1.2rem;
+  }
+  
+  .btn-lg {
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+  }
+  
+  /* Reduce section padding on mobile */
+  section {
+    padding: 2rem 0 !important;
+  }
+  
+  .py-5 {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+  
+  /* Typography adjustments */
+  .display-6 {
+    font-size: 1.5rem !important;
+  }
+  
+  h3 {
+    font-size: 1.1rem !important;
+  }
+  
+  h4 {
+    font-size: 1rem !important;
+  }
+  
+  h5 {
+    font-size: 0.9rem !important;
+  }
+  
+  p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+}
+
+/* Tablet Responsiveness (768px - 991px) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .container {
+    max-width: 720px;
+  }
+  
+  .section-title h1 {
+    font-size: 2rem;
+  }
+  
+  .display-5 {
+    font-size: 2.5rem;
+  }
+  
+  .display-6 {
+    font-size: 2rem;
+  }
+}
+
+/* Large Mobile Responsiveness (576px - 767px) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .container {
+    max-width: 540px;
+  }
+  
+  .section-title h1 {
+    font-size: 1.75rem;
+  }
+  
+  .display-5 {
+    font-size: 2rem;
+  }
+  
+  .display-6 {
+    font-size: 1.75rem;
+  }
+}
+
+/* Ensure proper spacing and alignment */
+.row {
+  margin-left: -0.75rem;
+  margin-right: -0.75rem;
+}
+
+.row > * {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+@media (max-width: 576px) {
+  .row {
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
+  }
+  
+  .row > * {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}
+
+/* Fix any overflow issues */
+body {
+  overflow-x: hidden;
+}
+
+.container-fluid {
+  overflow-x: hidden;
+}
+
+/* Ensure images don't break layout */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Form improvements for mobile */
+@media (max-width: 576px) {
+  .form-control {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+  
+  .form-control,
+  .form-select {
+    height: 50px !important;
+  }
+  
+  textarea.form-control {
+    height: auto !important;
+    min-height: 120px;
+  }
+}
+/* Final Mobile Polish and Visual Hierarchy */
+
+/* Enhanced mobile navigation */
+@media (max-width: 991.98px) {
+  .navbar-toggler {
+    padding: 0.5rem;
+    font-size: 1.1rem;
+  }
+  
+  .navbar-toggler-icon {
+    width: 1.2em;
+    height: 1.2em;
+  }
+}
+
+/* Mobile-first button improvements */
+@media (max-width: 576px) {
+  .btn-primary {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border-radius: 0.5rem;
+  }
+  
+  .btn-lg-square {
+    width: 45px;
+    height: 45px;
+    font-size: 1.1rem;
+  }
+}
+
+/* Enhanced mobile typography hierarchy */
+@media (max-width: 576px) {
+  .section-title {
+    margin-bottom: 1.5rem !important;
+  }
+  
+  .section-title h5 {
+    font-size: 0.85rem !important;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  
+  .section-title h1 {
+    font-size: 1.4rem !important;
+    line-height: 1.3;
+    font-weight: 700;
+  }
+  
+  .fst-italic {
+    font-size: 0.95rem !important;
+    line-height: 1.4;
+  }
+}
+
+/* Mobile card and content spacing */
+@media (max-width: 576px) {
+  .card {
+    border-radius: 0.75rem;
+    overflow: hidden;
+  }
+  
+  .card-body {
+    padding: 1.25rem;
+  }
+  
+  .bg-light {
+    border-radius: 0.75rem !important;
+  }
+  
+  .rounded {
+    border-radius: 0.75rem !important;
+  }
+}
+
+/* Mobile icon improvements */
+@media (max-width: 576px) {
+  .fa-check-circle {
+    font-size: 1rem;
+  }
+  
+  .bi {
+    font-size: 1.2rem;
+  }
+  
+  .fs-1 {
+    font-size: 1.5rem !important;
+  }
+}
+
+/* Mobile spacing consistency */
+@media (max-width: 576px) {
+  .mb-4 {
+    margin-bottom: 1.25rem !important;
+  }
+  
+  .mb-3 {
+    margin-bottom: 1rem !important;
+  }
+  
+  .mb-2 {
+    margin-bottom: 0.75rem !important;
+  }
+  
+  .mt-4 {
+    margin-top: 1.25rem !important;
+  }
+  
+  .py-3 {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+  
+  .px-4 {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+}
+
+/* Ensure smooth transitions on all devices */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Mobile touch improvements */
+@media (max-width: 991.98px) {
+  .btn,
+  .nav-link,
+  .dropdown-item,
+  a {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .nav-link {
+    justify-content: flex-start;
+  }
+}
+
+/* Final responsive image fixes */
+@media (max-width: 576px) {
+  .carousel-item img {
+    height: 50vh;
+    min-height: 300px;
+  }
+  
+  .about-image-container img {
+    border-radius: 0.75rem;
+  }
+}
+
+/* Mobile performance optimizations */
+@media (max-width: 991.98px) {
+  .wow {
+    animation-duration: 0.6s;
+  }
+  
+  .animated {
+    animation-duration: 0.6s;
+  }
+}
+
+/* Accessibility improvements for mobile */
+@media (max-width: 576px) {
+  :focus {
+    outline: 3px solid #06A3DA;
+    outline-offset: 2px;
+  }
+  
+  .btn:focus {
+    box-shadow: 0 0 0 0.25rem rgba(6, 163, 218, 0.25);
+  }
 }

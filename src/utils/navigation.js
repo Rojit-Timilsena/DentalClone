@@ -1,7 +1,5 @@
 // Fast scroll to section utility - Instant navigation
 export const scrollToSection = (sectionId) => {
-  console.log('Scrolling to section:', sectionId);
-  
   const element = document.getElementById(sectionId);
   if (!element) {
     console.warn('Section not found:', sectionId);
@@ -49,8 +47,15 @@ export const updateActiveNav = (activeSection) => {
   }
 };
 
+// Track if already initialized to prevent duplicate setup
+let isInitialized = false;
+
 // Initialize smooth scrolling for all anchor links - simplified
 export const initializeSmoothScrolling = () => {
+  if (isInitialized) {
+    return; // Already initialized, skip
+  }
+  
   console.log('Initializing smooth scrolling...');
   
   // Simple approach - just handle clicks on navigation links
@@ -70,5 +75,6 @@ export const initializeSmoothScrolling = () => {
   });
 
   console.log('Smooth scrolling initialized for', document.querySelectorAll('a[href^="#"]').length, 'links');
+  isInitialized = true;
 };
 

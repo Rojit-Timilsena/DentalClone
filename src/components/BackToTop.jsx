@@ -13,19 +13,31 @@ const BackToTop = () => {
       }
     };
 
-    window.addEventListener('scroll', toggleVisibility);
+    // Use passive listener for better performance
+    window.addEventListener('scroll', toggleVisibility, { passive: true });
     return () => window.removeEventListener('scroll', toggleVisibility);
   }, []);
 
   // Smooth scroll with easing exactly as original
   const scrollToTop = (e) => {
     e.preventDefault();
+    e.stopPropagation();
     
     // Use jQuery easing if available, otherwise fallback to smooth scroll
     const $ = window.$ || window.jQuery;
-    if ($ && typeof $.fn.animate === 'function') {
-      $('html, body').animate({scrollTop: 0}, 1500, 'easeInOutExpo');
+    if ($ && typeof $.fn.animate === 'function' && typeof $.easing !== 'undefined') {
+      try {
+        $('html, body').animate({scrollTop: 0}, 1500, 'easeInOutExpo');
+      } catch (error) {
+        // Fallback if jQuery easing fails
+        console.warn('jQuery easing failed, using native smooth scroll:', error);
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }
     } else {
+      // Native smooth scroll fallback
       window.scrollTo({
         top: 0,
         behavior: 'smooth'
@@ -45,7 +57,8 @@ const BackToTop = () => {
           bottom: '30px',
           right: '30px',
           zIndex: 1000,
-          display: isVisible ? 'block' : 'none'
+          display: isVisible ? 'block' : 'none',
+          transition: 'opacity 0.3s ease' // Smooth fade transition
         }}
         aria-label="Back to top"
       >

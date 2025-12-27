@@ -1,17 +1,11 @@
 // External Libraries Integration - Exact Replica
 // This file integrates all external JavaScript libraries exactly as in the original HTML
 
-// Import jQuery and make it available globally
+// Import jQuery and make it available globally FIRST
 import $ from 'jquery'
 window.$ = window.jQuery = $
 
-// Import Owl Carousel
-import 'owl.carousel/dist/assets/owl.carousel.css'
-import 'owl.carousel/dist/assets/owl.theme.default.css'
-import 'owl.carousel'
-
 // Import WOW.js - Load from CDN for compatibility
-// import { WOW } from 'wowjs/dist/wow.js'
 import 'wowjs/css/libs/animate.css'
 
 // Import Moment.js
@@ -74,90 +68,19 @@ export const initializeWOW = () => {
 
 // Initialize back to top functionality exactly as original
 export const initializeBackToTop = () => {
-  // Back to top button
-  $(window).scroll(function () {
-    if ($(this).scrollTop() > 300) {
-      $('.back-to-top').fadeIn('slow')
-    } else {
-      $('.back-to-top').fadeOut('slow')
-    }
-  })
-  
-  $('.back-to-top').click(function () {
-    $('html, body').animate({scrollTop: 0}, 1500, 'easeInOutExpo')
-    return false
-  })
+  // Back to top functionality is now handled by React BackToTop component
+  // This prevents conflicts between jQuery and React event handlers
+  console.log('ℹ️ Back to top functionality handled by React component')
 }
 
-// Initialize Owl Carousel for pricing section exactly as original
+// Note: Pricing carousel now uses Swiper instead of Owl Carousel
 export const initializePricingCarousel = () => {
-  if ($('.price-carousel').length) {
-    $('.price-carousel').owlCarousel({
-      autoplay: true,
-      smartSpeed: 1000,
-      center: false,
-      dots: true,
-      loop: true,
-      margin: 25,
-      nav: true,
-      navText: [
-        '<i class="bi bi-arrow-left"></i>',
-        '<i class="bi bi-arrow-right"></i>'
-      ],
-      responsiveClass: true,
-      responsive: {
-        0: {
-          items: 1
-        },
-        576: {
-          items: 1
-        },
-        768: {
-          items: 2
-        },
-        992: {
-          items: 2
-        },
-        1200: {
-          items: 3
-        }
-      }
-    })
-  }
+  console.log('ℹ️ Pricing carousel now uses Swiper (React component) instead of Owl Carousel')
 }
 
-// Initialize Owl Carousel for testimonials section exactly as original
+// Note: Testimonial carousel is handled by React component, not Owl Carousel
 export const initializeTestimonialCarousel = () => {
-  if ($('.testimonial-carousel').length) {
-    $('.testimonial-carousel').owlCarousel({
-      autoplay: true,
-      smartSpeed: 1000,
-      center: true,
-      dots: true,
-      loop: true,
-      margin: 25,
-      nav: true,
-      navText: [
-        '<i class="bi bi-arrow-left"></i>',
-        '<i class="bi bi-arrow-right"></i>'
-      ],
-      responsiveClass: true,
-      responsive: {
-        0: {
-          items: 1
-        },
-        576: {
-          items: 1
-        },
-        768: {
-          items: 1
-        },
-        992: {
-          items: 1
-        }
-      }
-    })
-  }
+  console.log('ℹ️ Testimonials use React-based carousel, no Owl Carousel needed')
 }
 
 // Initialize Tempus Dominus date/time pickers exactly as original
@@ -274,12 +197,11 @@ export const initializeAllLibraries = () => {
     
     // NOTE: Smooth scrolling is now handled by navigation.js to avoid conflicts
     
-    // Initialize back to top functionality
+    // Initialize back to top functionality (handled by React component)
     initializeBackToTop()
     
-    // Initialize carousels
-    initializePricingCarousel()
-    initializeTestimonialCarousel()
+    // NOTE: Pricing carousel now uses Swiper (React component) instead of Owl Carousel
+    console.log('ℹ️ Pricing carousel now uses Swiper instead of Owl Carousel')
     
     // Initialize Tempus Dominus
     initializeTempusDominus()

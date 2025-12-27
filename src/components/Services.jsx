@@ -1,15 +1,15 @@
-import React from 'react'
 import { ASSET_PATHS } from '../utils/assetPaths'
+import { services } from '../data/siteData'
 
 const Services = () => {
 
   return (
-    <div className="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div className="container-fluid py-3 py-lg-5 wow fadeInUp" data-wow-delay="0.1s">
       <div className="container">
         {/* First Row - Before/After and First Two Services */}
-        <div className="row g-5 mb-5">
+        <div className="row g-3 g-lg-5 mb-4 mb-lg-5">
           {/* Left Side - Simple Before/After Comparison */}
-          <div className="col-lg-5 wow zoomIn" data-wow-delay="0.3s" style={{ minHeight: '400px' }}>
+          <div className="col-12 col-lg-5 wow zoomIn" data-wow-delay="0.3s" style={{ minHeight: '300px' }}>
             <div className="position-relative h-100 rounded overflow-hidden">
               {/* Before/After Images Side by Side */}
               <div className="row g-0 h-100">
@@ -18,9 +18,9 @@ const Services = () => {
                     className="w-100 h-100" 
                     src={ASSET_PATHS.services.before} 
                     alt="Before Treatment"
-                    style={{ objectFit: 'cover' }}
+                    style={{ objectFit: 'cover', minHeight: '200px' }}
                   />
-                  <div className="position-absolute bottom-0 start-0 bg-dark text-white px-2 py-1 small">
+                  <div className="position-absolute bottom-0 start-1 bg-dark text-white px-4 py-1 small">
                     Before
                   </div>
                 </div>
@@ -29,9 +29,9 @@ const Services = () => {
                     className="w-100 h-100" 
                     src={ASSET_PATHS.services.after} 
                     alt="After Treatment"
-                    style={{ objectFit: 'cover' }}
+                    style={{ objectFit: 'cover', minHeight: '200px' }}
                   />
-                  <div className="position-absolute bottom-0 end-0 bg-primary text-white px-2 py-1 small">
+                  <div className="position-absolute bottom-0 end-0 bg-primary text-white px-5 py-1 small">
                     After
                   </div>
                 </div>
@@ -40,116 +40,99 @@ const Services = () => {
           </div>
 
           {/* Right Side - Section Title and First Two Service Cards */}
-          <div className="col-lg-7">
-            <div className="section-title mb-5">
+          <div className="col-12 col-lg-7">
+            <div className="section-title mb-4 mb-lg-5">
               <h5 className="position-relative d-inline-block text-primary text-uppercase">Our Services</h5>
               <h1 className="display-5 mb-0">We Offer The Best Quality Dental Services</h1>
             </div>
-            <div className="row g-5">
-              {/* Service Card 1 - Oral Examination */}
-              <div className="col-md-6 service-item wow zoomIn" data-wow-delay="0.6s">
-                <div className="rounded-top overflow-hidden">
-                  <img 
-                    className="img-fluid" 
-                    src={ASSET_PATHS.services.service1} 
-                    alt="Oral Examination"
-                  />
+            <div className="row g-3 g-lg-5">
+              {/* First Two Services from siteData */}
+              {services.slice(0, 2).map((service, index) => (
+                <div key={service.id} className="col-6 col-md-6 service-item wow zoomIn" data-wow-delay={`${0.6 + index * 0.3}s`}>
+                  <div className="rounded-top overflow-hidden">
+                    <img 
+                      className="img-fluid" 
+                      src={service.image} 
+                      alt={service.title}
+                      style={{ height: '150px', width: '100%', objectFit: 'cover' }}
+                    />
+                  </div>
+                  <div className="position-relative bg-light rounded-bottom text-center p-3 p-lg-4">
+                    <h5 className="m-0 small"><strong>{service.title}</strong></h5>
+                    <p className="small text-muted mt-1 mb-0">{service.description}</p>
+                  </div>
                 </div>
-                <div className="position-relative bg-light rounded-bottom text-center p-4">
-                  <h5 className="m-0"><strong>Oral Examination</strong></h5>
-                </div>
-              </div>
-
-              {/* Service Card 2 - Dental X-ray */}
-              <div className="col-md-6 service-item wow zoomIn" data-wow-delay="0.9s">
-                <div className="rounded-top overflow-hidden">
-                  <img 
-                    className="img-fluid" 
-                    src={ASSET_PATHS.services.service2} 
-                    alt="Dental X-ray"
-                  />
-                </div>
-                <div className="position-relative bg-light rounded-bottom text-center p-4">
-                  <h5 className="m-0"><strong>Dental x-ray</strong></h5>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
 
         {/* Second Row - Remaining Services and "And so forth" Card */}
-        <div className="row g-5 wow fadeInUp" data-wow-delay="0.1s">
-          {/* Left Side - Four Service Cards in 2x2 Grid */}
-          <div className="col-lg-7">
-            <div className="row g-4">
-              {/* Service Card 3 - Dental Filling */}
-              <div className="col-md-6 service-item wow zoomIn" data-wow-delay="0.3s">
-                <div className="rounded-top overflow-hidden">
-                  <img 
-                    className="img-fluid" 
-                    src={ASSET_PATHS.services.service3} 
-                    alt="Dental Filling"
-                  />
+        <div className="row g-3 g-lg-5 wow fadeInUp" data-wow-delay="0.1s">
+          {/* Left Side - Remaining Service Cards */}
+          <div className="col-12 col-lg-7">
+            <div className="row g-3 g-lg-4">
+              {/* Remaining Services from siteData */}
+              {services.slice(2).map((service, index) => (
+                <div key={service.id} className="col-6 col-md-6 service-item wow zoomIn" data-wow-delay={`${0.3 + index * 0.3}s`}>
+                  <div className="rounded-top overflow-hidden">
+                    <img 
+                      className="img-fluid" 
+                      src={service.image} 
+                      alt={service.title}
+                      style={{ height: '150px', width: '100%', objectFit: 'cover' }}
+                    />
+                  </div>
+                  <div className="position-relative bg-light rounded-bottom text-center p-3 p-lg-4">
+                    <h5 className="m-0 small"><strong>{service.title}</strong></h5>
+                    <p className="small text-muted mt-1 mb-0">{service.description}</p>
+                  </div>
                 </div>
-                <div className="position-relative bg-light rounded-bottom text-center p-4">
-                  <h5 className="m-0"><strong>Dental Filling</strong></h5>
-                </div>
-              </div>
+              ))}
 
-              {/* Service Card 4 - Teeth Whitening */}
-              <div className="col-md-6 service-item wow zoomIn" data-wow-delay="0.6s">
-                <div className="rounded-top overflow-hidden">
-                  <img 
-                    className="img-fluid" 
-                    src={ASSET_PATHS.services.service4} 
-                    alt="Teeth Whitening"
-                  />
-                </div>
-                <div className="position-relative bg-light rounded-bottom text-center p-4">
-                  <h5 className="m-0"><strong>Teeth Whitening</strong></h5>
-                </div>
-              </div>
-
-              {/* Service Card 5 - Teeth Cleaning */}
-              <div className="col-md-6 service-item wow zoomIn" data-wow-delay="0.9s">
+              {/* Additional Static Services to fill the grid */}
+              <div className="col-6 col-md-6 service-item wow zoomIn" data-wow-delay="1.2s">
                 <div className="rounded-top overflow-hidden">
                   <img 
                     className="img-fluid" 
                     src={ASSET_PATHS.services.service5} 
                     alt="Teeth Cleaning"
+                    style={{ height: '150px', width: '100%', objectFit: 'cover' }}
                   />
                 </div>
-                <div className="position-relative bg-light rounded-bottom text-center p-4">
-                  <h5 className="m-0"><strong>Teeth Cleaning</strong></h5>
+                <div className="position-relative bg-light rounded-bottom text-center p-3 p-lg-4">
+                  <h5 className="m-0 small"><strong>Teeth Cleaning</strong></h5>
+                  <p className="small text-muted mt-1 mb-0">Professional dental cleaning services</p>
                 </div>
               </div>
 
-              {/* Service Card 6 - Orthodontics */}
-              <div className="col-md-6 service-item wow zoomIn" data-wow-delay="1.2s">
+              <div className="col-6 col-md-6 service-item wow zoomIn" data-wow-delay="1.5s">
                 <div className="rounded-top overflow-hidden">
                   <img 
                     className="img-fluid" 
                     src={ASSET_PATHS.services.service6} 
                     alt="Orthodontics"
+                    style={{ height: '150px', width: '100%', objectFit: 'cover' }}
                   />
                 </div>
-                <div className="position-relative bg-light rounded-bottom text-center p-4">
-                  <h5 className="m-0"><strong>Orthodontics</strong></h5>
+                <div className="position-relative bg-light rounded-bottom text-center p-3 p-lg-4">
+                  <h5 className="m-0 small"><strong>Orthodontics</strong></h5>
+                  <p className="small text-muted mt-1 mb-0">Teeth alignment and braces</p>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Right Side - "And so forth" Card */}
-          <div className="col-lg-5 service-item wow zoomIn" data-wow-delay="1.5s">
-            <div className="position-relative bg-primary rounded h-100 d-flex flex-column align-items-center justify-content-center text-center p-4">
-              <h3 className="text-white mb-3">And so forth</h3>
-              <p className="text-white mb-3">These are some basic services we provide, We provide countless services at reasonable price.</p>
+          <div className="col-12 col-lg-5 service-item wow zoomIn" data-wow-delay="1.8s">
+            <div className="position-relative bg-primary rounded h-100 d-flex flex-column align-items-center justify-content-center text-center p-4" style={{ minHeight: '250px' }}>
+              <h3 className="text-white mb-3 fs-4">And so forth</h3>
+              <p className="text-white mb-3 small">These are some basic services we provide, We provide countless services at reasonable price.</p>
               <a 
                 href="https://underconstruction-digitalaide.netlify.app/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="btn btn-dark py-3 px-5 me-3"
+                className="btn btn-dark py-2 px-4"
               >
                 Learn More
               </a>

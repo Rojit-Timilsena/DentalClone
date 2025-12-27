@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { initializeTempusDominus } from '../utils/externalLibraries'
+import { serviceOptions, doctorOptions } from '../data/siteData'
 import carouselBg from '../assets/images/carousel/carousel-1bg.jpg'
 
 const AppointmentSection = () => {
@@ -95,8 +96,11 @@ const AppointmentSection = () => {
                       required
                     >
                       <option value="" disabled>Select A Service</option>
-                      <option value="Teeth cleaning">Teeth cleaning</option>
-                      <option value="Consultation">Consultation</option>
+                      {serviceOptions.map((option) => (
+                        <option key={option.value} value={option.value}>
+                          {option.label}
+                        </option>
+                      ))}
                     </select>
                   </div>
 
@@ -111,10 +115,11 @@ const AppointmentSection = () => {
                       required
                     >
                       <option value="" disabled>Select Doctor</option>
-                      <option value="Dr. Lok Raj Dhakal">Dr. Lok Raj Dhakal</option>
-                      <option value="Dr. Bhuwan Sharma">Dr. Bhuwan Sharma</option>
-                      <option value="DH. Rashmi Khadka">DH. Rashmi Khadka</option>
-                      <option value="DH. Anjana Parajuli">DH. Anjana Parajuli</option>
+                      {doctorOptions.map((option) => (
+                        <option key={option.value} value={option.value}>
+                          {option.label}
+                        </option>
+                      ))}
                     </select>
                   </div>
 

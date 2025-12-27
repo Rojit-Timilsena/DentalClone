@@ -69,7 +69,7 @@ export const services = [
 export const pricingPlans = [
   {
     id: 1,
-    title: 'Registration and Examination',
+    title: 'Registration & Examination',
     price: 'रु 100',
     image: ASSET_PATHS.pricing.price1,
     features: ['Modern Equipment', 'Professional Dentist', '24/7 Call Support'],
@@ -77,7 +77,7 @@ export const pricingPlans = [
   },
   {
     id: 2,
-    title: 'Restoration',
+    title: 'Dental Restoration',
     price: 'रु 1,000',
     image: ASSET_PATHS.pricing.restoration,
     features: ['Modern Equipment', 'Professional Dentist', '24/7 Call Support'],
@@ -93,7 +93,7 @@ export const pricingPlans = [
   },
   {
     id: 4,
-    title: 'Full mouth Denture',
+    title: 'Full Mouth Denture',
     price: 'रु 22,000',
     image: ASSET_PATHS.pricing.fullmouth,
     features: ['Modern Equipment', 'Professional Dentist', '24/7 Call Support'],
@@ -109,7 +109,7 @@ export const pricingPlans = [
   },
   {
     id: 6,
-    title: 'Diamond placement',
+    title: 'Diamond Placement',
     price: 'रु 2,000',
     image: ASSET_PATHS.pricing.diamond,
     features: ['Modern Equipment', 'Professional Dentist', '24/7 Call Support'],
