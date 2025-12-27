@@ -1,0 +1,132 @@
+/* Carousel Button Alignment Fix - Ultimate Override */
+/* This file contains the most specific CSS rules to ensure perfect button alignment */
+
+.hero-carousel .carousel-buttons,
+#header-carousel .carousel-buttons,
+.swiper .carousel-buttons {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  gap: 0.5rem !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  text-align: center !important;
+}
+
+.hero-carousel .carousel-buttons button,
+#header-carousel .carousel-buttons button,
+.swiper .carousel-buttons button,
+.hero-carousel .btn,
+#header-carousel .btn,
+.swiper .btn {
+  display: block !important;
+  width: 100% !important;
+  max-width: 200px !important;
+  text-align: center !important;
+  margin: 0 auto !important;
+  position: relative !important;
+  left: 0 !important;
+  right: 0 !important;
+  float: none !important;
+  clear: both !important;
+  box-sizing: border-box !important;
+}
+
+/* Responsive behavior */
+@media (min-width: 576px) {
+  .hero-carousel .carousel-buttons,
+  #header-carousel .carousel-buttons,
+  .swiper .carousel-buttons {
+    flex-direction: row !important;
+    width: auto !important;
+    gap: 1rem !important;
+    justify-content: center !important;
+  }
+  
+  .hero-carousel .carousel-buttons button,
+  #header-carousel .carousel-buttons button,
+  .swiper .carousel-buttons button,
+  .hero-carousel .btn,
+  #header-carousel .btn,
+  .swiper .btn {
+    width: auto !important;
+    max-width: none !important;
+    margin: 0 !important;
+  }
+}
+
+/* Override any Bootstrap or framework conflicts */
+.carousel-buttons .btn-primary,
+.carousel-buttons .btn-secondary {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  float: none !important;
+}
+
+/* Override Bootstrap margin utilities */
+.carousel-buttons .me-1,
+.carousel-buttons .me-2,
+.carousel-buttons .me-3,
+.carousel-buttons .me-4,
+.carousel-buttons .me-5,
+.carousel-buttons .ms-1,
+.carousel-buttons .ms-2,
+.carousel-buttons .ms-3,
+.carousel-buttons .ms-4,
+.carousel-buttons .ms-5 {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* Animation classes should not affect final positioning */
+.carousel-buttons .animated {
+  position: relative !important;
+  /* Allow animations to work during animation phase */
+}
+
+.carousel-buttons .slideInLeft {
+  animation-name: slideInLeft !important;
+  animation-duration: 1s !important;
+  animation-fill-mode: both !important;
+}
+
+.carousel-buttons .slideInRight {
+  animation-name: slideInRight !important;
+  animation-duration: 1s !important;
+  animation-fill-mode: both !important;
+}
+
+/* Ensure buttons return to centered position after animation */
+.carousel-buttons .animated.slideInLeft,
+.carousel-buttons .animated.slideInRight {
+  animation-fill-mode: forwards !important;
+}
+
+/* Custom keyframes that end in centered position */
+@keyframes slideInLeft {
+  from {
+    transform: translate3d(-100%, 0, 0);
+    visibility: visible;
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translate3d(100%, 0, 0);
+    visibility: visible;
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
+}

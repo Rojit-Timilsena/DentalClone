@@ -11,7 +11,7 @@ export const carouselSlides = [
     primaryButton: {
       text: 'Appointment',
       link: '#appointment',
-      className: 'btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft'
+      className: 'btn btn-primary py-md-3 px-md-5 animated slideInLeft'
     },
     secondaryButton: {
       text: 'Contact Us',
@@ -27,7 +27,7 @@ export const carouselSlides = [
     primaryButton: {
       text: 'Appointment',
       link: '#appointment',
-      className: 'btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft'
+      className: 'btn btn-primary py-md-3 px-md-5 animated slideInLeft'
     },
     secondaryButton: {
       text: 'Contact Us',

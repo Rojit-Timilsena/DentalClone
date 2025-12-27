@@ -67,11 +67,26 @@ const BackToTop = () => {
           width: isMobile ? '50px' : '46px',
           height: isMobile ? '50px' : '46px',
           padding: '0',
-          borderRadius: isMobile ? '8px' : undefined
+          borderRadius: isMobile ? '8px' : '50%',
+          textAlign: 'center',
+          lineHeight: '1'
         }}
         aria-label="Back to top"
       >
-        <i className="bi bi-arrow-up" style={{ fontSize: isMobile ? '18px' : '16px' }}></i>
+        <i 
+          className="bi bi-arrow-up" 
+          style={{ 
+            fontSize: isMobile ? '18px' : '16px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '100%',
+            height: '100%',
+            margin: '0',
+            padding: '0',
+            lineHeight: '1'
+          }}
+        ></i>
       </a>
     </>
   );

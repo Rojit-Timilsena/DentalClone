@@ -50,9 +50,25 @@ const Banner = () => {
                 <h6 className="text-white mb-0 small">Saturday</h6>
                 <p className="mb-0 small">09:00 – 17:30</p>
               </div>
-              <a className="btn btn-light mt-auto" style={{ padding: '8px 16px', minHeight: '44px', fontSize: '14px' }} href="#appointment" onClick={handleAppointmentClick}>
-                Appointment
-              </a>
+              <div className="mt-auto" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
+                <a 
+                  className="btn btn-light" 
+                  style={{ 
+                    padding: '8px 16px', 
+                    minHeight: '44px', 
+                    fontSize: '14px', 
+                    width: '100%', 
+                    maxWidth: '200px',
+                    textAlign: 'center',
+                    display: 'block',
+                    margin: '0 auto'
+                  }} 
+                  href="#appointment" 
+                  onClick={handleAppointmentClick}
+                >
+                  Appointment
+                </a>
+              </div>
             </div>
           </div>
 
@@ -87,9 +103,25 @@ const Banner = () => {
                 <option value="2">Consultation</option>
               </select>
 
-              <a className="btn btn-light mt-auto" style={{ padding: '8px 16px', minHeight: '44px', fontSize: '14px' }} href="#search" onClick={handleSearchDoctor}>
-                Search Doctor
-              </a>
+              <div className="mt-auto" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
+                <a 
+                  className="btn btn-light" 
+                  style={{ 
+                    padding: '8px 16px', 
+                    minHeight: '44px', 
+                    fontSize: '14px', 
+                    width: '100%', 
+                    maxWidth: '200px',
+                    textAlign: 'center',
+                    display: 'block',
+                    margin: '0 auto'
+                  }} 
+                  href="#search" 
+                  onClick={handleSearchDoctor}
+                >
+                  Search Doctor
+                </a>
+              </div>
             </div>
           </div>
 
@@ -100,9 +132,25 @@ const Banner = () => {
               <p className="text-white mb-4 small">
                 Say goodbye to long wait times! Book your dental appointment online in just a few clicks and enjoy the convenience of a healthier smile on your schedule.
               </p>
-              <a className="btn btn-primary mt-auto" style={{ padding: '8px 16px', minHeight: '44px', fontSize: '14px' }} href="#appointment" onClick={handleAppointmentClick}>
-                Appointment
-              </a>
+              <div className="mt-auto" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
+                <a 
+                  className="btn btn-primary" 
+                  style={{ 
+                    padding: '8px 16px', 
+                    minHeight: '44px', 
+                    fontSize: '14px', 
+                    width: '100%', 
+                    maxWidth: '200px',
+                    textAlign: 'center',
+                    display: 'block',
+                    margin: '0 auto'
+                  }} 
+                  href="#appointment" 
+                  onClick={handleAppointmentClick}
+                >
+                  Appointment
+                </a>
+              </div>
             </div>
           </div>
         </div>

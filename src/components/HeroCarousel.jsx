@@ -8,6 +8,9 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import 'swiper/css/effect-fade'
 
+// Import component styles
+import '../styles/carousel-button-fix.css'
+
 // Import carousel data
 import { carouselSlides } from '../data/siteData'
 
@@ -74,16 +77,45 @@ const HeroCarousel = ({ autoPlay = true, interval = 5000 }) => {
                   <h1 className="display-1 text-white mb-md-4 animated zoomIn">
                     {slide.subtitle}
                   </h1>
-                  <div className="carousel-buttons">
+                  <div className="carousel-buttons" style={{ 
+                    display: 'flex', 
+                    flexDirection: 'column', 
+                    alignItems: 'center', 
+                    justifyContent: 'center', 
+                    width: '100%', 
+                    gap: '0.5rem',
+                    margin: '0 auto',
+                    position: 'relative'
+                  }}>
                     <button
                       className={slide.primaryButton.className}
                       onClick={() => handleButtonClick(slide.primaryButton.link)}
+                      style={{ 
+                        width: '100%', 
+                        maxWidth: '200px', 
+                        textAlign: 'center', 
+                        margin: '0 auto',
+                        display: 'block',
+                        position: 'relative',
+                        left: '0',
+                        right: '0'
+                      }}
                     >
                       {slide.primaryButton.text}
                     </button>
                     <button
                       className={slide.secondaryButton.className}
                       onClick={() => handleButtonClick(slide.secondaryButton.link)}
+                      style={{ 
+                        width: '100%', 
+                        maxWidth: '200px', 
+                        textAlign: 'center', 
+                        margin: '0 auto',
+                        display: 'block',
+                        position: 'relative',
+                        left: '0',
+                        right: '0'
+                      }}
                     >
                       {slide.secondaryButton.text}
                     </button>
