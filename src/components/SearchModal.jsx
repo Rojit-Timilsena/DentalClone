@@ -51,6 +51,7 @@ const SearchModal = ({ isOpen, onClose }) => {
       aria-labelledby="searchModalLabel"
       aria-hidden={!isOpen}
       onClick={(e) => e.target === e.currentTarget && onClose()}
+      style={{ zIndex: 1050 }} // Higher than navbar z-index (1030)
     >
       <div className="modal-dialog modal-fullscreen">
         <div className="modal-content" style={{ background: 'rgba(9, 30, 62, .7)' }}>
@@ -61,20 +62,42 @@ const SearchModal = ({ isOpen, onClose }) => {
               className="btn bg-white btn-close" 
               onClick={onClose}
               aria-label="Close"
+              style={{
+                backgroundColor: 'white',
+                borderRadius: '50%',
+                width: '40px',
+                height: '40px',
+                boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
+                border: '2px solid #06A3DA'
+              }}
             ></button>
           </div>
           <div className="modal-body d-flex align-items-center justify-content-center">
             <form onSubmit={handleSearch} className="input-group" style={{ maxWidth: '600px' }}>
               <input 
                 type="text" 
-                className="form-control bg-transparent border-primary p-3" 
+                className="form-control bg-white border-primary p-3 text-dark" 
                 placeholder="Type search keyword"
                 value={searchQuery}
                 onChange={handleInputChange}
                 autoFocus
                 aria-label="Search input"
+                style={{ 
+                  fontSize: '1.1rem',
+                  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                  border: '2px solid #06A3DA'
+                }}
               />
-              <button className="btn btn-primary px-4" type="submit" aria-label="Search">
+              <button 
+                className="btn btn-primary px-4" 
+                type="submit" 
+                aria-label="Search"
+                style={{ 
+                  backgroundColor: '#06A3DA',
+                  borderColor: '#06A3DA',
+                  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
+                }}
+              >
                 <i className="bi bi-search"></i>
               </button>
             </form>

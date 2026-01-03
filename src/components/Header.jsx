@@ -6,6 +6,9 @@ const Header = ({ activeSection, onNavigate }) => {
   const [searchModalOpen, setSearchModalOpen] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
+  // Debug log to verify component is rendering
+  console.log('Header component rendered with activeSection:', activeSection)
+
   const toggleSearchModal = () => {
     setSearchModalOpen(!searchModalOpen)
   }
@@ -22,7 +25,20 @@ const Header = ({ activeSection, onNavigate }) => {
   return (
     <>
       <header>
-        <nav className="navbar navbar-expand-lg bg-white navbar-light shadow-sm px-3 px-lg-5 py-2 py-lg-3" role="navigation">
+        <nav 
+          className="navbar navbar-expand-lg bg-white navbar-light shadow-sm px-3 px-lg-5 py-2 py-lg-3 fixed-top" 
+          role="navigation"
+          style={{ 
+            position: 'fixed', 
+            top: 0, 
+            left: 0, 
+            right: 0, 
+            zIndex: 1030,
+            backgroundColor: 'red', // Temporary red background to test visibility
+            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+            width: '100%'
+          }}
+        >
           <a href="#home" className="navbar-brand" onClick={(e) => { e.preventDefault(); handleNavigateAndCloseMobile('home'); }}>
             <img 
               src={ASSET_PATHS.logo} 

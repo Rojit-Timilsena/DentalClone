@@ -1,230 +1,420 @@
-/* Testimonials Component Styles - Enhanced Modern Design */
+/* Testimonials Section - Matching Website Design System */
 
-/* Background styling with parallax effect */
-.bg-testimonial {
-  position: relative;
-  background-attachment: fixed;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-/* Section Title Styling */
-.section-title-testimonial h5::before {
+/* Section Title Styling - Consistent with other sections */
+.section-title h5::before {
   content: '';
   position: absolute;
   width: 50px;
   height: 2px;
-  background: white;
+  background: var(--primary);
   bottom: -8px;
   left: 50%;
   transform: translateX(-50%);
 }
 
 /* Main Testimonial Card */
-.testimonial-card-wrapper {
+.testimonial-main-card {
   position: relative;
-  max-width: 900px;
-  margin: 0 auto;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  transition: all 0.3s ease;
+  border: 1px solid var(--gray-200);
 }
 
-.testimonial-card {
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  transition: all 0.4s ease;
-  animation: fadeInUp 0.8s ease-out;
-}
-
-.testimonial-card:hover {
+.testimonial-main-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4), 0 12px 35px rgba(245, 126, 87, 0.3) !important;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 
-/* Navigation Buttons */
-.btn-navigation {
+/* Quote Icon */
+.quote-icon-wrapper {
+  text-align: center;
+}
+
+.quote-icon-wrapper i {
+  font-size: 3rem;
+  opacity: 0.3;
+}
+
+/* Navigation Buttons - Matching website style */
+.testimonial-nav-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
   transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  padding: 0 !important;
-  line-height: 1 !important;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
 }
 
-.btn-navigation i {
-  margin: 0 !important;
-  padding: 0 !important;
-  line-height: 1 !important;
+.testimonial-nav-btn:hover {
+  background: var(--secondary);
+  transform: translateY(-50%) scale(1.1);
 }
 
-.btn-navigation:hover {
-  transform: scale(1.1) translateY(-2px);
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25) !important;
+.prev-btn {
+  left: -25px;
 }
 
-.btn-navigation:active {
-  transform: scale(0.95);
+.next-btn {
+  right: -25px;
 }
 
-/* Avatar Styling */
-.testimonial-avatar {
-  position: relative;
+.testimonial-nav-btn i {
+  font-size: 1.2rem;
 }
 
-.testimonial-image {
-  transition: all 0.3s ease;
-  filter: brightness(1.1);
-}
-
-.testimonial-image:hover {
-  transform: scale(1.05);
-  filter: brightness(1.2);
-}
-
-/* Rating Stars Animation */
-.rating-stars i {
-  animation: starGlow 2s ease-in-out infinite alternate;
-  animation-delay: calc(var(--i) * 0.1s);
-}
-
-@keyframes starGlow {
-  0% { opacity: 0.8; transform: scale(1); }
-  100% { opacity: 1; transform: scale(1.1); }
-}
-
-/* Testimonial Text Styling */
+/* Testimonial Content */
 .testimonial-text {
-  position: relative;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: var(--dark);
+  font-style: italic;
+  text-align: center;
+  font-weight: 300;
 }
 
-.testimonial-text::before,
-.testimonial-text::after {
-  content: '';
-  position: absolute;
-  width: 30px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
-  left: 50%;
-  transform: translateX(-50%);
+/* Author Info */
+.author-image img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border: 3px solid var(--primary);
 }
 
-.testimonial-text::before {
-  top: -10px;
+.author-name {
+  color: var(--dark);
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
 }
 
-.testimonial-text::after {
-  bottom: -10px;
-}
-
-/* Customer Info */
-.customer-info h4 {
-  font-family: 'Jost', sans-serif;
+.author-label {
+  font-size: 0.9rem;
+  text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
-.tracking-wide {
-  letter-spacing: 1.5px;
+.rating i {
+  font-size: 0.9rem;
 }
 
-/* Enhanced Dots Navigation */
-.testimonial-dots {
-  gap: 8px;
+/* Testimonial Indicators */
+.testimonial-indicators {
+  gap: 0.5rem;
 }
 
-.testimonial-dot {
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.testimonial-dot:hover {
-  background: rgba(255, 255, 255, 0.8) !important;
-  transform: scale(1.2);
-}
-
-.testimonial-dot.active {
-  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.4);
-}
-
-/* Side Previews */
-.testimonial-preview {
+.indicator-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  background: var(--gray-300);
+  cursor: pointer;
   transition: all 0.3s ease;
 }
 
-.testimonial-preview:hover {
-  opacity: 1 !important;
-  transform: translateY(-50%) scale(1.1) !important;
+.indicator-dot.active {
+  background: var(--primary);
+  transform: scale(1.3);
 }
 
-.testimonial-preview img {
+.indicator-dot:hover {
+  background: var(--secondary);
+}
+
+/* Stats Cards */
+.stat-card {
   transition: all 0.3s ease;
+  border: none;
 }
 
-.testimonial-preview:hover img {
-  border-color: white !important;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important;
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 
-/* Animations */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.stat-icon {
+  font-size: 2.5rem;
+  opacity: 0.9;
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Preview Cards */
+.preview-card {
+  background: var(--gray-100);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.preview-card:hover {
+  background: var(--light);
+  transform: translateX(5px);
+}
+
+.preview-image {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border: 2px solid var(--primary);
+}
+
+.preview-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.preview-rating i {
+  font-size: 0.7rem;
+  margin-right: 0.1rem;
 }
 
 /* Responsive Design */
-@media (max-width: 1200px) {
-  .testimonial-preview {
-    display: none !important;
+@media (max-width: 991.98px) {
+  .testimonial-nav-btn {
+    position: relative;
+    left: auto !important;
+    right: auto !important;
+    transform: none;
+    margin: 0 0.5rem;
+    display: inline-flex;
+  }
+  
+  .testimonial-indicators {
+    margin-top: 2rem;
+    justify-content: center;
+  }
+  
+  .testimonial-stats {
+    margin-top: 2rem;
   }
 }
 
-@media (max-width: 768px) {
-  .testimonial-card {
-    margin: 0 15px;
+@media (max-width: 767.98px) {
+  .testimonial-main-card {
     padding: 2rem !important;
   }
   
-  .btn-navigation {
-    width: 40px !important;
-    height: 40px !important;
-    left: -20px !important;
-    right: -20px !important;
+  .testimonial-text {
+    font-size: 1.1rem;
   }
   
-  .testimonial-image {
-    width: 80px !important;
-    height: 80px !important;
+  .author-image img {
+    width: 60px;
+    height: 60px;
   }
   
-  .testimonial-text p {
-    font-size: 1rem !important;
-  }
-  
-  .testimonial-decoration i {
-    font-size: 80px !important;
-  }
-}
-
-@media (max-width: 576px) {
-  .btn-navigation {
-    position: relative !important;
-    left: auto !important;
-    right: auto !important;
-    transform: none !important;
-    margin: 10px 5px;
-    display: inline-block;
-  }
-  
-  .testimonial-card {
+  .stat-card {
     padding: 1.5rem !important;
   }
   
-  .testimonial-decoration i {
-    display: none;
+  .stat-icon {
+    font-size: 2rem;
+  }
+  
+  .stat-number {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .testimonial-main-card {
+    padding: 1.5rem !important;
+  }
+  
+  .quote-icon-wrapper i {
+    font-size: 2rem;
+  }
+  
+  .testimonial-text {
+    font-size: 1rem;
+  }
+  
+  .testimonial-author-info {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .author-image {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Animation Classes */
+.testimonial-content {
+  transition: all 0.15s ease-in-out; /* Reduced from 0.3s */
+}
+
+/* Slide Out Animations */
+.slide-left {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.slide-right {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+/* Slide In Animations */
+.slide-in-left {
+  transform: translateX(-100%);
+  opacity: 0;
+  animation: slideInLeft 0.15s ease-out forwards; /* Reduced from 0.3s */
+}
+
+.slide-in-right {
+  transform: translateX(100%);
+  opacity: 0;
+  animation: slideInRight 0.15s ease-out forwards; /* Reduced from 0.3s */
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Button Animation States */
+.testimonial-nav-btn.animating {
+  transform: translateY(-50%) scale(0.9);
+  background: var(--secondary);
+}
+
+.testimonial-nav-btn.animating i {
+  animation: buttonPulse 0.3s ease-in-out; /* Reduced from 0.6s */
+}
+
+@keyframes buttonPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+/* Disabled States During Animation */
+.indicator-dot.disabled,
+.preview-card.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* Enhanced Button Hover Effects */
+.testimonial-nav-btn:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+/* Smooth transitions for all interactive elements */
+.indicator-dot,
+.preview-card,
+.testimonial-nav-btn {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); /* Faster transition */
+}
+
+/* Add a subtle bounce effect to the active indicator */
+.indicator-dot.active {
+  animation: indicatorBounce 0.3s ease-out; /* Reduced from 0.5s */
+}
+
+@keyframes indicatorBounce {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1.3);
+  }
+}
+
+/* Fade effect for author image during transition */
+.author-image img {
+  transition: all 0.15s ease; /* Reduced from 0.3s */
+}
+
+.slide-left .author-image img,
+.slide-right .author-image img {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+/* Simplified star animation - removed stagger for faster feel */
+.rating i {
+  animation: starFadeIn 0.2s ease-out; /* Reduced from 0.5s */
+  animation-fill-mode: both;
+}
+
+@keyframes starFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Mobile Animation Adjustments */
+@media (max-width: 767.98px) {
+  .slide-left,
+  .slide-right,
+  .slide-in-left,
+  .slide-in-right {
+    transform: translateY(-20px);
+  }
+  
+  .slide-in-left,
+  .slide-in-right {
+    animation: slideInMobile 0.15s ease-out forwards; /* Reduced from 0.3s */
+  }
+  
+  @keyframes slideInMobile {
+    from {
+      transform: translateY(-20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
   }
 }

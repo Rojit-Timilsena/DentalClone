@@ -1,5 +1,6 @@
 import { ASSET_PATHS } from '../utils/assetPaths'
 import { services } from '../data/siteData'
+import BeforeAfterSlider from './BeforeAfterSlider'
 
 const Services = () => {
 
@@ -8,35 +9,14 @@ const Services = () => {
       <div className="container">
         {/* First Row - Before/After and First Two Services */}
         <div className="row g-3 g-lg-5 mb-4 mb-lg-5">
-          {/* Left Side - Simple Before/After Comparison */}
+          {/* Left Side - Interactive Before/After Comparison */}
           <div className="col-12 col-lg-5 wow zoomIn" data-wow-delay="0.3s" style={{ minHeight: '300px' }}>
-            <div className="position-relative h-100 rounded overflow-hidden">
-              {/* Before/After Images Side by Side */}
-              <div className="row g-0 h-100">
-                <div className="col-6 position-relative">
-                  <img 
-                    className="w-100 h-100" 
-                    src={ASSET_PATHS.services.before} 
-                    alt="Before Treatment"
-                    style={{ objectFit: 'cover', minHeight: '200px' }}
-                  />
-                  <div className="position-absolute bottom-0 start-1 bg-dark text-white px-4 py-1 small">
-                    Before
-                  </div>
-                </div>
-                <div className="col-6 position-relative">
-                  <img 
-                    className="w-100 h-100" 
-                    src={ASSET_PATHS.services.after} 
-                    alt="After Treatment"
-                    style={{ objectFit: 'cover', minHeight: '200px' }}
-                  />
-                  <div className="position-absolute bottom-0 end-0 bg-primary text-white px-5 py-1 small">
-                    After
-                  </div>
-                </div>
-              </div>
-            </div>
+            <BeforeAfterSlider
+              beforeImage={ASSET_PATHS.services.before}
+              afterImage={ASSET_PATHS.services.after}
+              beforeLabel="Before"
+              afterLabel="After"
+            />
           </div>
 
           {/* Right Side - Section Title and First Two Service Cards */}
@@ -48,13 +28,20 @@ const Services = () => {
             <div className="row g-3 g-lg-5">
               {/* First Two Services from siteData */}
               {services.slice(0, 2).map((service, index) => (
-                <div key={service.id} className="col-6 col-md-6 service-item wow zoomIn" data-wow-delay={`${0.6 + index * 0.3}s`}>
+                <div 
+                  key={service.id} 
+                  className="col-6 col-md-6 service-item wow zoomIn" 
+                  data-wow-delay={`${0.6 + index * 0.3}s`}
+                  tabIndex="-1" // Prevent focus
+                  style={{ userSelect: 'none' }} // Prevent text selection
+                >
                   <div className="rounded-top overflow-hidden">
                     <img 
                       className="img-fluid" 
                       src={service.image} 
                       alt={service.title}
                       style={{ height: '150px', width: '100%', objectFit: 'cover' }}
+                      draggable="false" // Prevent dragging
                     />
                   </div>
                   <div className="position-relative bg-light rounded-bottom text-center p-3 p-lg-4">
@@ -74,13 +61,20 @@ const Services = () => {
             <div className="row g-3 g-lg-4">
               {/* Remaining Services from siteData */}
               {services.slice(2).map((service, index) => (
-                <div key={service.id} className="col-6 col-md-6 service-item wow zoomIn" data-wow-delay={`${0.3 + index * 0.3}s`}>
+                <div 
+                  key={service.id} 
+                  className="col-6 col-md-6 service-item wow zoomIn" 
+                  data-wow-delay={`${0.3 + index * 0.3}s`}
+                  tabIndex="-1" // Prevent focus
+                  style={{ userSelect: 'none' }} // Prevent text selection
+                >
                   <div className="rounded-top overflow-hidden">
                     <img 
                       className="img-fluid" 
                       src={service.image} 
                       alt={service.title}
                       style={{ height: '150px', width: '100%', objectFit: 'cover' }}
+                      draggable="false" // Prevent dragging
                     />
                   </div>
                   <div className="position-relative bg-light rounded-bottom text-center p-3 p-lg-4">
@@ -91,13 +85,19 @@ const Services = () => {
               ))}
 
               {/* Additional Static Services to fill the grid */}
-              <div className="col-6 col-md-6 service-item wow zoomIn" data-wow-delay="1.2s">
+              <div 
+                className="col-6 col-md-6 service-item wow zoomIn" 
+                data-wow-delay="1.2s"
+                tabIndex="-1" // Prevent focus
+                style={{ userSelect: 'none' }} // Prevent text selection
+              >
                 <div className="rounded-top overflow-hidden">
                   <img 
                     className="img-fluid" 
                     src={ASSET_PATHS.services.service5} 
                     alt="Teeth Cleaning"
                     style={{ height: '150px', width: '100%', objectFit: 'cover' }}
+                    draggable="false" // Prevent dragging
                   />
                 </div>
                 <div className="position-relative bg-light rounded-bottom text-center p-3 p-lg-4">
@@ -106,13 +106,19 @@ const Services = () => {
                 </div>
               </div>
 
-              <div className="col-6 col-md-6 service-item wow zoomIn" data-wow-delay="1.5s">
+              <div 
+                className="col-6 col-md-6 service-item wow zoomIn" 
+                data-wow-delay="1.5s"
+                tabIndex="-1" // Prevent focus
+                style={{ userSelect: 'none' }} // Prevent text selection
+              >
                 <div className="rounded-top overflow-hidden">
                   <img 
                     className="img-fluid" 
                     src={ASSET_PATHS.services.service6} 
                     alt="Orthodontics"
                     style={{ height: '150px', width: '100%', objectFit: 'cover' }}
+                    draggable="false" // Prevent dragging
                   />
                 </div>
                 <div className="position-relative bg-light rounded-bottom text-center p-3 p-lg-4">
@@ -124,7 +130,12 @@ const Services = () => {
           </div>
 
           {/* Right Side - "And so forth" Card */}
-          <div className="col-12 col-lg-5 service-item wow zoomIn" data-wow-delay="1.8s">
+          <div 
+            className="col-12 col-lg-5 service-item wow zoomIn" 
+            data-wow-delay="1.8s"
+            tabIndex="-1" // Prevent focus
+            style={{ userSelect: 'none' }} // Prevent text selection
+          >
             <div className="position-relative bg-primary rounded h-100 d-flex flex-column align-items-center justify-content-center text-center p-4" style={{ minHeight: '250px' }}>
               <h3 className="text-white mb-3 fs-4">And so forth</h3>
               <p className="text-white mb-3 small">These are some basic services we provide, We provide countless services at reasonable price.</p>

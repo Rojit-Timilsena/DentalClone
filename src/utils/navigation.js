@@ -6,8 +6,9 @@ export const scrollToSection = (sectionId) => {
     return;
   }
 
-  // Calculate position with header offset
-  const headerOffset = 80;
+  // Calculate position with header offset - responsive to screen size
+  const isMobile = window.innerWidth < 992;
+  const headerOffset = isMobile ? 70 : 100; // Match body padding-top values
   const elementPosition = element.offsetTop;
   const offsetPosition = elementPosition - headerOffset;
 
@@ -21,7 +22,9 @@ export const scrollToSection = (sectionId) => {
 // Get active section based on scroll position
 export const getActiveSection = () => {
   const sections = ['home', 'about', 'services', 'pricing', 'team', 'testimonials', 'appointment', 'contact'];
-  const scrollPosition = window.scrollY + 100; // Offset for header
+  const isMobile = window.innerWidth < 992;
+  const headerOffset = isMobile ? 70 : 100; // Match body padding-top values
+  const scrollPosition = window.scrollY + headerOffset;
 
   for (let i = sections.length - 1; i >= 0; i--) {
     const section = document.getElementById(sections[i]);

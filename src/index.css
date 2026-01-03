@@ -37,6 +37,18 @@
     --transition: all 0.3s ease;
 }
 
+/* Body padding for fixed navbar */
+body {
+    padding-top: 80px; /* Adjust based on navbar height */
+}
+
+/* Desktop body padding adjustment */
+@media (min-width: 992px) {
+  body {
+    padding-top: 100px; /* Larger padding for desktop navbar */
+  }
+}
+
 /* Typography optimizations */
 h1, h2, .font-weight-bold {
     font-weight: 700 !important;
@@ -316,6 +328,11 @@ h5, h6, .font-weight-medium {
 }
 
 /* Service item hover effects */
+.service-item {
+  outline: none; /* Remove default focus outline */
+  cursor: default; /* Remove pointer cursor since cards aren't clickable */
+}
+
 .service-item img,
 .service-item .bg-light,
 .service-item .bg-light h5,
@@ -328,6 +345,13 @@ h5, h6, .font-weight-medium {
     transform: scale(1.05); /* Reduced from 1.15 for better performance */
 }
 
+/* Remove the problematic pseudo-element shadow effect */
+.team-item .team-text::after,
+.service-item .bg-light::after {
+    display: none; /* Disable the weird shadow effect */
+}
+
+/* Alternative: If you want to keep the shadow but fix the issue, use this instead:
 .team-item .team-text::after,
 .service-item .bg-light::after {
     position: absolute;
@@ -342,11 +366,21 @@ h5, h6, .font-weight-medium {
     transition: var(--transition);
     z-index: -1;
     will-change: opacity;
+    pointer-events: none;
 }
 
 .team-item:hover .team-text::after,
 .service-item:hover .bg-light::after {
     opacity: 1;
+}
+*/
+
+/* Prevent focus states on service items */
+.service-item:focus,
+.service-item:focus-visible,
+.service-item:active {
+    outline: none !important;
+    box-shadow: none !important;
 }
 
 /* Background utilities */

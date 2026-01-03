@@ -142,7 +142,11 @@ img {
 
 /* Navbar critical styles */
 .navbar {
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1030;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -150,6 +154,7 @@ img {
   padding: 0.5rem 1rem;
   background-color: var(--white);
   transition: var(--transition);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-brand {
@@ -322,6 +327,11 @@ img {
   
   .nav-link:last-child {
     border-bottom: none;
+  }
+  
+  /* Adjust body padding for mobile navbar */
+  body {
+    padding-top: 70px !important;
   }
   
   .hero-carousel {

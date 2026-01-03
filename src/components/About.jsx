@@ -1,4 +1,4 @@
-import React from 'react'
+ import React from 'react'
 import { ASSET_PATHS } from '../utils/assetPaths'
 
 const About = () => {
