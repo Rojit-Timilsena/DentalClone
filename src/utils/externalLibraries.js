@@ -1,54 +1,36 @@
-// External Libraries Integration - Exact Replica
-// This file integrates all external JavaScript libraries exactly as in the original HTML
-
-// Import jQuery and make it available globally FIRST
+// External Libraries Integration
 import $ from 'jquery'
 window.$ = window.jQuery = $
 
-// Import WOW.js - Load from CDN for compatibility
 import 'wowjs/css/libs/animate.css'
-
-// Import Moment.js
 import moment from 'moment'
 import 'moment-timezone'
-
-// Import jQuery Easing
 import 'jquery.easing'
 
-// Load Waypoints from CDN (package has import issues)
+// Load Waypoints from CDN
 const loadWaypoints = () => {
   const waypointsScript = document.createElement('script')
   waypointsScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js'
-  waypointsScript.onload = () => {
-    console.log('✅ Waypoints loaded from CDN')
-  }
   document.head.appendChild(waypointsScript)
 }
 
-// Load Tempus Dominus CSS and JS exactly as original
+// Load Tempus Dominus
 const loadTempusDominus = () => {
-  // Create and append CSS link
   const tempusCss = document.createElement('link')
   tempusCss.rel = 'stylesheet'
   tempusCss.href = 'https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css'
   document.head.appendChild(tempusCss)
 
-  // Load Tempus Dominus JS
   const tempusScript = document.createElement('script')
   tempusScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js'
-  tempusScript.onload = () => {
-    console.log('✅ Tempus Dominus loaded from CDN')
-  }
   document.head.appendChild(tempusScript)
 }
 
-// Load WOW.js from CDN exactly as original
+// Load WOW.js from CDN
 const loadWOWjs = () => {
   const wowScript = document.createElement('script')
   wowScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js'
   wowScript.onload = () => {
-    console.log('✅ WOW.js loaded from CDN')
-    // Initialize WOW after loading
     if (window.WOW) {
       const wow = new window.WOW({
         boxClass: 'wow',
@@ -56,71 +38,47 @@ const loadWOWjs = () => {
         offset: 0,
         mobile: true,
         live: true,
-        callback: function(box) {
-          // Callback after animation
-        },
+        callback: function(box) {},
         scrollContainer: null,
         resetAnimation: true
       })
       wow.init()
-      console.log('✅ WOW.js initialized with exact settings')
     }
   }
   document.head.appendChild(wowScript)
 }
 
-// Initialize WOW.js animations with exact delay timings
+// Initialize WOW.js animations
 export const initializeWOW = () => {
-  // Load WOW.js from CDN for exact replica
   loadWOWjs()
 }
 
-// Initialize back to top functionality exactly as original
+// Initialize back to top functionality
 export const initializeBackToTop = () => {
-  // Back to top functionality is now handled by React BackToTop component
-  // This prevents conflicts between jQuery and React event handlers
-  console.log('ℹ️ Back to top functionality handled by React component')
+  // Handled by React BackToTop component
 }
 
-// Note: Pricing carousel now uses Swiper instead of Owl Carousel
+// Initialize pricing carousel
 export const initializePricingCarousel = () => {
-  console.log('ℹ️ Pricing carousel now uses Swiper (React component) instead of Owl Carousel')
+  // Uses Swiper React component
 }
 
-// Note: Testimonial carousel is handled by React component, not Owl Carousel
+// Initialize testimonial carousel
 export const initializeTestimonialCarousel = () => {
-  console.log('ℹ️ Testimonials use React-based carousel, no Owl Carousel needed')
+  // Uses React-based carousel
 }
 
-// Initialize Tempus Dominus date/time pickers exactly as original
+// Initialize Tempus Dominus date/time pickers
 export const initializeTempusDominus = () => {
-  // Load Tempus Dominus from CDN for exact replica
   loadTempusDominus()
   
-  // Initialize after a delay to ensure library is loaded
   setTimeout(() => {
     try {
-      // Check if Tempus Dominus is available
       if (typeof $.fn.datetimepicker !== 'undefined') {
-        // Initialize date pickers exactly as original
         if ($('#date').length) {
           $('#date').datetimepicker({
             format: 'L',
             defaultDate: false,
-            disabledDates: false,
-            daysOfWeekDisabled: false,
-            calendarWeeks: false,
-            viewMode: 'days',
-            toolbarPlacement: 'default',
-            buttons: {
-              showToday: true,
-              showClear: true,
-              showClose: true
-            },
-            widgetPositioning: {
-              horizontal: 'auto',
-              vertical: 'auto'
-            },
             useCurrent: false,
             collapse: true,
             locale: moment.locale(),
@@ -132,20 +90,6 @@ export const initializeTempusDominus = () => {
           $('#date1').datetimepicker({
             format: 'L',
             defaultDate: false,
-            disabledDates: false,
-            daysOfWeekDisabled: false,
-            calendarWeeks: false,
-            viewMode: 'days',
-            toolbarPlacement: 'default',
-            buttons: {
-              showToday: true,
-              showClear: true,
-              showClose: true
-            },
-            widgetPositioning: {
-              horizontal: 'auto',
-              vertical: 'auto'
-            },
             useCurrent: false,
             collapse: true,
             locale: moment.locale(),
@@ -153,79 +97,40 @@ export const initializeTempusDominus = () => {
           })
         }
 
-        // Initialize time pickers exactly as original
         if ($('#time1').length) {
           $('#time1').datetimepicker({
             format: 'LT',
             defaultDate: false,
-            disabledDates: false,
-            daysOfWeekDisabled: false,
-            calendarWeeks: false,
             viewMode: 'times',
-            toolbarPlacement: 'default',
-            buttons: {
-              showToday: false,
-              showClear: true,
-              showClose: true
-            },
-            widgetPositioning: {
-              horizontal: 'auto',
-              vertical: 'auto'
-            },
             useCurrent: false,
             collapse: true,
             locale: moment.locale(),
             debug: false
           })
         }
-        
-        console.log('✅ Tempus Dominus initialized for date/time pickers')
       } else {
-        console.warn('⚠️ Tempus Dominus not available, using native HTML5 inputs')
-        // Fallback to native HTML5 date/time inputs
         $('#date input, #date1 input').attr('type', 'date')
         $('#time1 input').attr('type', 'time')
       }
     } catch (error) {
-      console.warn('⚠️ Tempus Dominus initialization failed, using native HTML5 inputs:', error)
-      // Fallback to native HTML5 date/time inputs
       $('#date input, #date1 input').attr('type', 'date')
       $('#time1 input').attr('type', 'time')
     }
-  }, 1000) // Wait 1 second for CDN to load
+  }, 1000)
 }
 
-// Initialize all external libraries exactly as in original HTML
+// Initialize all external libraries
 export const initializeAllLibraries = () => {
-  // Wait for DOM to be ready
   $(document).ready(() => {
-    console.log('🚀 Initializing all external libraries exactly as original HTML...')
-    
-    // Load Waypoints from CDN
     loadWaypoints()
-    
-    // Initialize WOW.js animations
     initializeWOW()
-    
-    // NOTE: Smooth scrolling is now handled by navigation.js to avoid conflicts
-    
-    // Initialize back to top functionality (handled by React component)
     initializeBackToTop()
-    
-    // NOTE: Pricing carousel now uses Swiper (React component) instead of Owl Carousel
-    console.log('ℹ️ Pricing carousel now uses Swiper instead of Owl Carousel')
-    
-    // Initialize Tempus Dominus
     initializeTempusDominus()
-    
-    // Initialize main template functionality
     initializeMainTemplateJS()
-    
-    console.log('✅ All external libraries initialized exactly as original')
   })
 }
 
-// Initialize main template JavaScript functionality exactly as original
+// Initialize main template JavaScript functionality
 export const initializeMainTemplateJS = () => {
   // Sticky Navbar
   $(window).scroll(function () {
@@ -262,16 +167,10 @@ export const initializeMainTemplateJS = () => {
       $dropdown.off('mouseenter mouseleave')
     }
   })
-  
-  console.log('✅ Main template JavaScript functionality initialized')
 }
 
 // Cleanup function for component unmounting
 export const cleanupLibraries = () => {
-  // Cleanup is now handled by React component lifecycle
-  // No Owl Carousel instances to destroy since we're using Swiper
-  
-  // Destroy Tempus Dominus instances
   try {
     if ($('#date').length && $('#date').data('DateTimePicker')) {
       $('#date').datetimepicker('destroy')
@@ -283,6 +182,6 @@ export const cleanupLibraries = () => {
       $('#time1').datetimepicker('destroy')
     }
   } catch (error) {
-    console.warn('Tempus Dominus cleanup failed:', error)
+    // Silent cleanup failure
   }
 }

@@ -30,9 +30,6 @@ const SearchModal = ({ isOpen, onClose }) => {
 
   const handleSearch = (e) => {
     e.preventDefault()
-    // TODO: Implement search functionality
-    console.log('Searching for:', searchQuery)
-    // For now, just close the modal after search
     onClose()
   }
 

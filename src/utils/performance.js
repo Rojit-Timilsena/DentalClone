@@ -28,7 +28,7 @@ class PerformanceMonitor {
         timestamp: Date.now()
       })
     } catch (error) {
-      console.warn(`Failed to mark ${name}:`, error)
+      // Failed to mark performance
     }
   }
 
@@ -47,11 +47,11 @@ class PerformanceMonitor {
           name: measure.name
         })
         
-        console.log(`⏱️ ${name}: ${measure.duration.toFixed(2)}ms`)
+        // Performance measurement completed
         return measure.duration
       }
     } catch (error) {
-      console.warn(`Failed to measure ${name}:`, error)
+      // Failed to measure performance
     }
     
     return null
@@ -195,7 +195,7 @@ class PerformanceMonitor {
         })
         lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] })
       } catch (error) {
-        console.warn('LCP observation failed:', error)
+        // LCP observation failed
       }
     }
 
@@ -219,13 +219,13 @@ class PerformanceMonitor {
       try {
         const longTaskObserver = new PerformanceObserver((list) => {
           list.getEntries().forEach((entry) => {
-            console.warn(`⚠️ Long task detected: ${entry.duration.toFixed(2)}ms`)
+            // Long task detected
           })
         })
         longTaskObserver.observe({ entryTypes: ['longtask'] })
         this.observers.set('longtask', longTaskObserver)
       } catch (error) {
-        console.warn('Long task observation failed:', error)
+        // Long task observation failed
       }
     }
 
@@ -235,14 +235,14 @@ class PerformanceMonitor {
         const clsObserver = new PerformanceObserver((list) => {
           list.getEntries().forEach((entry) => {
             if (!entry.hadRecentInput) {
-              console.warn(`⚠️ Layout shift detected: ${entry.value}`)
+              // Layout shift detected
             }
           })
         })
         clsObserver.observe({ entryTypes: ['layout-shift'] })
         this.observers.set('layout-shift', clsObserver)
       } catch (error) {
-        console.warn('Layout shift observation failed:', error)
+        // Layout shift observation failed
       }
     }
   }
@@ -261,35 +261,7 @@ class PerformanceMonitor {
   logSummary() {
     const report = this.getPerformanceReport()
     
-    console.group('📊 Performance Summary')
-    
-    if (report.navigation) {
-      console.log('🚀 Navigation Timing:')
-      console.table(report.navigation)
-    }
-    
-    if (report.paint) {
-      console.log('🎨 Paint Timing:')
-      console.table(report.paint)
-    }
-    
-    if (report.memory) {
-      console.log('💾 Memory Usage:')
-      console.table(report.memory)
-    }
-    
-    if (report.connection) {
-      console.log('🌐 Connection:')
-      console.table(report.connection)
-    }
-
-    // Resource summary
-    const resourceSummary = this.getResourceSummary(report.resources)
-    console.log('📦 Resource Summary:')
-    console.table(resourceSummary)
-    
-    console.groupEnd()
-    
+    // Performance summary available in report object
     return report
   }
 
@@ -426,23 +398,7 @@ export class BundleAnalyzer {
   logAnalysis() {
     const report = this.getReport()
     
-    console.group('📦 Bundle Analysis')
-    console.log(`Total Size: ${report.totalSizeMB}MB (${report.totalSizeKB}KB)`)
-    console.log(`Chunks: ${report.chunkCount}`)
-    console.table(report.chunks)
-    
-    if (report.recommendations.length > 0) {
-      console.group('💡 Recommendations')
-      report.recommendations.forEach(rec => {
-        const icon = rec.type === 'error' ? '❌' : rec.type === 'warning' ? '⚠️' : 'ℹ️'
-        console.log(`${icon} ${rec.message}`)
-        console.log(`   ${rec.suggestion}`)
-      })
-      console.groupEnd()
-    }
-    
-    console.groupEnd()
-    
+    // Bundle analysis available in report object
     return report
   }
 }

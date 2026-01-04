@@ -7,12 +7,12 @@ export const initializeMainJS = () => {
   const $ = window.$ || window.jQuery
   
   if (!$) {
-    console.warn('jQuery not available for main.js functionality')
+    // jQuery not available for main.js functionality
     return
   }
 
   $(document).ready(function() {
-    console.log('🚀 Initializing main.js functionality...')
+    // Initializing main.js functionality...
 
     // Spinner functionality
     const spinner = () => {
@@ -248,7 +248,7 @@ export const initializeMainJS = () => {
       $(this).parent().removeClass('focused')
     })
 
-    console.log('✅ Main.js functionality initialized')
+    // Main.js functionality initialized
   })
 }
 

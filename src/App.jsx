@@ -15,9 +15,6 @@ import { scrollToSection, getActiveSection, updateActiveNav, initializeSmoothScr
 // External libraries integration - Keep all animations
 import { initializeAllLibraries, cleanupLibraries } from './utils/externalLibraries'
 
-// Import library test for development
-import './utils/libraryTest'
-
 // Component imports
 import Banner from './components/Banner'
 import About from './components/About'
@@ -56,8 +53,6 @@ function App() {
   // Initialize external libraries - keep all animations
   useEffect(() => {
     if (!isLoading) {
-      console.log('Initializing libraries and scrolling...');
-      
       // Initialize all external libraries after loading is complete
       initializeAllLibraries()
       

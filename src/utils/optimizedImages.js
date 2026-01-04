@@ -330,9 +330,9 @@ export const preloadCriticalImages = async () => {
 
   try {
     await imagePreloader.preloadMultiple(criticalImages, 'high')
-    console.log('✅ Critical images preloaded')
+    // Critical images preloaded successfully
   } catch (error) {
-    console.warn('⚠️ Some critical images failed to preload:', error)
+    // Some critical images failed to preload
   }
 }
 
@@ -348,9 +348,9 @@ export const preloadNonCriticalImages = async () => {
 
   try {
     await imagePreloader.preloadMultiple(nonCriticalImages, 'low')
-    console.log('✅ Non-critical images preloaded')
+    // Non-critical images preloaded successfully
   } catch (error) {
-    console.warn('⚠️ Some non-critical images failed to preload:', error)
+    // Some non-critical images failed to preload
   }
 }
 

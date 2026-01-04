@@ -1,32 +1,29 @@
-// Real images - Using actual image files
-// Import all real images
-import logoImg from '../assets/images/logo.svg' // Changed from .jpg to .svg
+// Asset imports
+import logoImg from '../assets/images/logo.svg'
 import aboutImg from '../assets/images/about-real.jpg'
-
-// Import favicon as SVG
-import faviconImg from '../assets/images/favicon.svg' // Added SVG favicon
+import faviconImg from '../assets/images/favicon.svg'
 
 // Carousel images
 import carousel1bgImg from '../assets/images/carousel/carousel-1bg.jpg'
 import carousel1Img from '../assets/images/carousel/carousel-1.jpg'
 import carousel2Img from '../assets/images/carousel/carousel-2.jpg'
 
-// Service images - Using SVG for service icons, JPG for before/after photos
-import service1Img from '../assets/images/services/service-1.svg' // Change to SVG for icon
-import service2Img from '../assets/images/services/service-2.svg' // Change to SVG for icon
-import service3Img from '../assets/images/services/service-3.svg' // Change to SVG for icon
-import service4Img from '../assets/images/services/service-4.svg' // Change to SVG for icon
-import beforeImg from '../assets/images/services/before.jpg' // Keep JPG for photo
-import afterImg from '../assets/images/services/after.jpg' // Keep JPG for photo
+// Service images
+import service1Img from '../assets/images/services/service-1.svg'
+import service2Img from '../assets/images/services/service-2.svg'
+import service3Img from '../assets/images/services/service-3.svg'
+import service4Img from '../assets/images/services/service-4.svg'
+import beforeImg from '../assets/images/services/before.jpg'
+import afterImg from '../assets/images/services/after.jpg'
 
-// Pricing images - Using SVG for icons/graphics, JPG for photos
-import price1Img from '../assets/images/pricing/price-1.jpg' // Keep JPG for photo
-import restorationImg from '../assets/images/pricing/restoration.svg' // Change to SVG for icon
-import rootcanaltreatmentImg from '../assets/images/pricing/rootcanaltreatment.svg' // Change to SVG for icon
-import fullmouthImg from '../assets/images/pricing/fullmouth.svg' // Change to SVG for icon
-import dentalimplantImg from '../assets/images/pricing/dentalimplant.svg' // Change to SVG for icon
-import diamondImg from '../assets/images/pricing/diamond.svg' // Change to SVG for icon
-import zirconiaImg from '../assets/images/pricing/zirconia.svg' // Change to SVG for icon
+// Pricing images
+import price1Img from '../assets/images/pricing/price-1.jpg'
+import restorationImg from '../assets/images/pricing/restoration.svg'
+import rootcanaltreatmentImg from '../assets/images/pricing/rootcanaltreatment.svg'
+import fullmouthImg from '../assets/images/pricing/fullmouth.svg'
+import dentalimplantImg from '../assets/images/pricing/dentalimplant.svg'
+import diamondImg from '../assets/images/pricing/diamond.svg'
+import zirconiaImg from '../assets/images/pricing/zirconia.svg'
 
 // Team images
 import team1Img from '../assets/images/team/team-1.jpg'

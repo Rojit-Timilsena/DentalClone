@@ -30,7 +30,6 @@ const BackToTop = () => {
         $('html, body').animate({scrollTop: 0}, 1500, 'easeInOutExpo');
       } catch (error) {
         // Fallback if jQuery easing fails
-        console.warn('jQuery easing failed, using native smooth scroll:', error);
         window.scrollTo({
           top: 0,
           behavior: 'smooth'

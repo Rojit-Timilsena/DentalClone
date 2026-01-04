@@ -6,7 +6,6 @@ const Newsletter = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     // Handle newsletter signup logic here
-    console.log('Newsletter signup:', email)
     // Reset form
     setEmail('')
   }

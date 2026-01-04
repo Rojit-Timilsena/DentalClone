@@ -1,21 +1,18 @@
-// Fast scroll to section utility - Instant navigation
+// Scroll to section utility
 export const scrollToSection = (sectionId) => {
   const element = document.getElementById(sectionId);
   if (!element) {
-    console.warn('Section not found:', sectionId);
     return;
   }
 
-  // Calculate position with header offset - responsive to screen size
   const isMobile = window.innerWidth < 992;
-  const headerOffset = isMobile ? 70 : 100; // Match body padding-top values
+  const headerOffset = isMobile ? 70 : 100;
   const elementPosition = element.offsetTop;
   const offsetPosition = elementPosition - headerOffset;
 
-  // Use instant scroll for fast navigation
   window.scrollTo({
     top: offsetPosition,
-    behavior: 'auto' // Changed from 'smooth' to 'auto' for instant scrolling
+    behavior: 'auto'
   });
 };
 
@@ -23,7 +20,7 @@ export const scrollToSection = (sectionId) => {
 export const getActiveSection = () => {
   const sections = ['home', 'about', 'services', 'pricing', 'team', 'testimonials', 'appointment', 'contact'];
   const isMobile = window.innerWidth < 992;
-  const headerOffset = isMobile ? 70 : 100; // Match body padding-top values
+  const headerOffset = isMobile ? 70 : 100;
   const scrollPosition = window.scrollY + headerOffset;
 
   for (let i = sections.length - 1; i >= 0; i--) {
@@ -38,30 +35,24 @@ export const getActiveSection = () => {
 
 // Update active navigation item
 export const updateActiveNav = (activeSection) => {
-  // Remove active class from all nav items
   document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
     link.classList.remove('active');
   });
 
-  // Add active class to current section
   const activeLink = document.querySelector(`[href="#${activeSection}"]`);
   if (activeLink) {
     activeLink.classList.add('active');
   }
 };
 
-// Track if already initialized to prevent duplicate setup
 let isInitialized = false;
 
-// Initialize smooth scrolling for all anchor links - simplified
+// Initialize smooth scrolling for all anchor links
 export const initializeSmoothScrolling = () => {
   if (isInitialized) {
-    return; // Already initialized, skip
+    return;
   }
   
-  console.log('Initializing smooth scrolling...');
-  
-  // Simple approach - just handle clicks on navigation links
   const handleNavClick = (e) => {
     const href = e.target.getAttribute('href');
     if (href && href.startsWith('#') && href !== '#') {
@@ -71,13 +62,11 @@ export const initializeSmoothScrolling = () => {
     }
   };
 
-  // Add click listeners to all navigation links
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.removeEventListener('click', handleNavClick);
     link.addEventListener('click', handleNavClick);
   });
 
-  console.log('Smooth scrolling initialized for', document.querySelectorAll('a[href^="#"]').length, 'links');
   isInitialized = true;
 };
 

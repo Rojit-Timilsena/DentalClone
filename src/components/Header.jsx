@@ -6,9 +6,6 @@ const Header = ({ activeSection, onNavigate }) => {
   const [searchModalOpen, setSearchModalOpen] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
-  // Debug log to verify component is rendering
-  console.log('Header component rendered with activeSection:', activeSection)
-
   const toggleSearchModal = () => {
     setSearchModalOpen(!searchModalOpen)
   }
@@ -34,7 +31,7 @@ const Header = ({ activeSection, onNavigate }) => {
             left: 0, 
             right: 0, 
             zIndex: 1030,
-            backgroundColor: 'red', // Temporary red background to test visibility
+            backgroundColor: 'white',
             boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
             width: '100%'
           }}

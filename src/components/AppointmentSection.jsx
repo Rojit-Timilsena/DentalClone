@@ -38,7 +38,7 @@ const AppointmentSection = () => {
     
     // Simulate form submission
     try {
-      console.log('Appointment form submitted:', formData)
+      // Form submitted successfully
       alert('Appointment booked successfully!')
       
       // Reset form
@@ -51,7 +51,6 @@ const AppointmentSection = () => {
         time: ''
       })
     } catch (error) {
-      console.error('Error submitting appointment:', error)
       alert('Failed to book appointment. Please try again.')
     } finally {
       setIsSubmitting(false)

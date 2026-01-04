@@ -1,20 +1,11 @@
-/* Import External Libraries CSS - Optimized but keeping all functionality */
-/* Bootstrap 5.0.0 - Keep full version for now, will tree-shake in build */
+/* External Libraries CSS */
 @import 'bootstrap/dist/css/bootstrap.min.css';
-
-/* Google Fonts - Optimized loading with font-display */
 @import url('https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap');
-
-/* Font Awesome 6.0.0 - Updated version but keep all icons */
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
-
-/* Bootstrap Icons - Keep for compatibility */
 @import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css');
-
-/* WOW.js Animate CSS - Keep all animations */
 @import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css');
 
-/* CSS Variables - Optimized color system */
+/* CSS Variables */
 :root {
     --primary: #06A3DA;
     --secondary: #F57E57;
@@ -26,30 +17,24 @@
     --gray-300: #dee2e6;
     --gray-600: #6c757d;
     --gray-900: #212529;
-    
-    /* Typography */
     --font-primary: 'Jost', sans-serif;
     --font-secondary: 'Open Sans', sans-serif;
-    
-    /* Spacing */
     --border-radius: 0.375rem;
     --box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
     --transition: all 0.3s ease;
 }
 
-/* Body padding for fixed navbar */
 body {
-    padding-top: 80px; /* Adjust based on navbar height */
+    padding-top: 80px;
 }
 
-/* Desktop body padding adjustment */
 @media (min-width: 992px) {
   body {
-    padding-top: 100px; /* Larger padding for desktop navbar */
+    padding-top: 100px;
   }
 }
 
-/* Typography optimizations */
+/* Typography */
 h1, h2, .font-weight-bold {
     font-weight: 700 !important;
     font-family: var(--font-primary);
@@ -65,7 +50,7 @@ h5, h6, .font-weight-medium {
     font-family: var(--font-primary);
 }
 
-/* Optimized button styles */
+/* Button styles */
 .btn {
     font-family: var(--font-primary);
     font-weight: 600;
@@ -101,20 +86,7 @@ h5, h6, .font-weight-medium {
     transform: translateY(-1px);
 }
 
-/* Square button utilities */
-.btn-square { width: 36px; height: 36px; }
-.btn-sm-square { width: 28px; height: 28px; }
-.btn-lg-square { width: 46px; height: 46px; }
-
-.btn-square, .btn-sm-square, .btn-lg-square {
-    padding: 0;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Optimized back-to-top button */
+/* Back to top button */
 .back-to-top {
     position: fixed;
     display: none;
@@ -147,28 +119,7 @@ h5, h6, .font-weight-medium {
     animation: fadeInUp 0.3s ease-out;
 }
 
-/* Ensure perfect centering of the arrow icon */
-.back-to-top i {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    width: 100% !important;
-    height: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    line-height: 1 !important;
-}
-
-@media (max-width: 767.98px) {
-    .back-to-top {
-        width: 45px;
-        height: 45px;
-        right: 20px;
-        bottom: 20px;
-    }
-}
-
-/* Navbar optimizations */
+/* Navbar */
 .navbar-light .navbar-nav .nav-link {
     font-family: var(--font-primary);
     padding: 35px 15px;
@@ -195,7 +146,7 @@ h5, h6, .font-weight-medium {
     }
 }
 
-/* Carousel optimizations */
+/* Carousel */
 .carousel-caption {
     top: 0;
     left: 0;
@@ -227,7 +178,7 @@ h5, h6, .font-weight-medium {
     }
 }
 
-/* Banner optimizations */
+/* Banner */
 @media (min-width: 991.98px) {
     .banner {
         position: relative;
@@ -236,7 +187,7 @@ h5, h6, .font-weight-medium {
     }
 }
 
-/* Hero Carousel button alignment - Critical overrides */
+/* Hero Carousel button alignment */
 .hero-carousel .carousel-buttons {
   display: flex !important;
   flex-direction: column !important;
@@ -272,7 +223,7 @@ h5, h6, .font-weight-medium {
   }
 }
 
-/* Banner button styles - Simplified and consistent */
+/* Banner button styles */
 .banner .btn {
     display: block !important;
     width: 100% !important;
@@ -329,8 +280,8 @@ h5, h6, .font-weight-medium {
 
 /* Service item hover effects */
 .service-item {
-  outline: none; /* Remove default focus outline */
-  cursor: default; /* Remove pointer cursor since cards aren't clickable */
+  outline: none;
+  cursor: default;
 }
 
 .service-item img,
@@ -342,38 +293,13 @@ h5, h6, .font-weight-medium {
 }
 
 .service-item:hover img {
-    transform: scale(1.05); /* Reduced from 1.15 for better performance */
+    transform: scale(1.05);
 }
 
-/* Remove the problematic pseudo-element shadow effect */
 .team-item .team-text::after,
 .service-item .bg-light::after {
-    display: none; /* Disable the weird shadow effect */
+    display: none;
 }
-
-/* Alternative: If you want to keep the shadow but fix the issue, use this instead:
-.team-item .team-text::after,
-.service-item .bg-light::after {
-    position: absolute;
-    content: "";
-    top: 50%;
-    bottom: 0;
-    left: 15px;
-    right: 15px;
-    border-radius: 100px / 15px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, .7);
-    opacity: 0;
-    transition: var(--transition);
-    z-index: -1;
-    will-change: opacity;
-    pointer-events: none;
-}
-
-.team-item:hover .team-text::after,
-.service-item:hover .bg-light::after {
-    opacity: 1;
-}
-*/
 
 /* Prevent focus states on service items */
 .service-item:focus,
@@ -430,7 +356,7 @@ img {
     image-rendering: crisp-edges;
 }
 
-/* Reduce motion for accessibility */
+/* Accessibility */
 @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -442,7 +368,7 @@ img {
     }
 }
 
-/* High contrast mode support */
+/* High contrast mode */
 @media (prefers-contrast: high) {
     .btn {
         border-width: 2px;

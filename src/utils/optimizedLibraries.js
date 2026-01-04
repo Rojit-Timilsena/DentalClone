@@ -37,7 +37,7 @@ class ScrollAnimations {
 
   init() {
     if (!('IntersectionObserver' in window)) {
-      console.warn('IntersectionObserver not supported, animations disabled')
+      // IntersectionObserver not supported, animations disabled
       return
     }
 
@@ -320,7 +320,7 @@ class OptimizedLibraries {
 
   initializeAll() {
     try {
-      console.log('🚀 Initializing optimized libraries...')
+      // Initializing optimized libraries...
       
       // Initialize all components
       this.scrollAnimations.init()
@@ -330,9 +330,9 @@ class OptimizedLibraries {
       this.backToTop.init()
 
       this.initialized = true
-      console.log('✅ All optimized libraries initialized successfully')
+      // All optimized libraries initialized successfully
     } catch (error) {
-      console.error('❌ Error initializing libraries:', error)
+      // Error initializing libraries
     }
   }
 
@@ -347,9 +347,9 @@ class OptimizedLibraries {
       this.backToTop.destroy()
 
       this.initialized = false
-      console.log('🧹 Optimized libraries cleaned up')
+      // Optimized libraries cleaned up
     } catch (error) {
-      console.error('❌ Error cleaning up libraries:', error)
+      // Error cleaning up libraries
     }
   }
 
@@ -368,7 +368,7 @@ class OptimizedLibraries {
         this.datePicker.init()
         break
       default:
-        console.warn(`Unknown component: ${component}`)
+        // Unknown component
     }
   }
 }

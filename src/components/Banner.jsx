@@ -18,7 +18,6 @@ const Banner = () => {
     e.preventDefault()
     if (selectedDate && selectedService) {
       // Handle doctor search logic
-      console.log('Searching doctor for:', { date: selectedDate, service: selectedService })
       // In a real app, this would navigate to search results or show available doctors
     } else {
       alert('Please select both date and service')

@@ -226,10 +226,10 @@ export const performanceMonitor = {
       try {
         performance.measure(name, startMark, endMark)
         const measure = performance.getEntriesByName(name)[0]
-        console.log(`⏱️ ${name}: ${measure.duration.toFixed(2)}ms`)
+        // Performance measurement completed
         return measure.duration
       } catch (error) {
-        console.warn(`Could not measure ${name}:`, error)
+        // Could not measure performance
       }
     }
     return null
