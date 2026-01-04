@@ -1,5 +1,5 @@
-/* Before/After Slider Component */
-.before-after-slider {
+/* Simple and Fast Before/After Slider */
+.before-after-simple {
   position: relative;
   width: 100%;
   height: 100%;
@@ -13,8 +13,8 @@
   -ms-user-select: none;
 }
 
-/* Before Image (Background) */
-.before-image {
+/* Before Image (Background - always visible) */
+.before-image-simple {
   position: absolute;
   top: 0;
   left: 0;
@@ -23,25 +23,24 @@
   z-index: 1;
 }
 
-.before-image img {
+.before-image-simple img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-/* After Image (Clipped) */
-.after-image {
+/* After Image (Clipped - images stay in place) */
+.after-image-simple {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   z-index: 2;
-  transition: clip-path 0.1s ease-out;
 }
 
-.after-image img {
+.after-image-simple img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -49,7 +48,7 @@
 }
 
 /* Image Labels */
-.image-label {
+.image-label-simple {
   position: absolute;
   bottom: 15px;
   padding: 8px 16px;
@@ -59,23 +58,22 @@
   text-transform: uppercase;
   letter-spacing: 0.5px;
   z-index: 10;
-  transition: all 0.3s ease;
 }
 
-.before-label {
+.before-label-simple {
   left: 15px;
   background: rgba(9, 30, 62, 0.9);
   color: white;
 }
 
-.after-label {
+.after-label-simple {
   right: 15px;
   background: var(--primary);
   color: white;
 }
 
 /* Slider Line */
-.slider-line {
+.slider-line-simple {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -86,8 +84,8 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
-.slider-line::before,
-.slider-line::after {
+.slider-line-simple::before,
+.slider-line-simple::after {
   content: '';
   position: absolute;
   left: 50%;
@@ -98,16 +96,16 @@
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 
-.slider-line::before {
+.slider-line-simple::before {
   top: 0;
 }
 
-.slider-line::after {
+.slider-line-simple::after {
   bottom: 0;
 }
 
 /* Slider Handle */
-.slider-handle {
+.slider-handle-simple {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -121,32 +119,32 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   z-index: 6;
 }
 
-.slider-handle:hover {
+.slider-handle-simple:hover {
   transform: translate(-50%, -50%) scale(1.1);
   border-color: var(--secondary);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
-.slider-handle.dragging {
+.slider-handle-simple.dragging {
   cursor: grabbing;
   transform: translate(-50%, -50%) scale(1.2);
   border-color: var(--secondary);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
 }
 
-.slider-handle:focus {
+.slider-handle-simple:focus {
   outline: none;
   border-color: var(--secondary);
   box-shadow: 0 0 0 3px rgba(6, 163, 218, 0.3);
 }
 
 /* Slider Arrows */
-.slider-arrows {
+.slider-arrows-simple {
   display: flex;
   align-items: center;
   gap: 2px;
@@ -155,13 +153,13 @@
   font-weight: bold;
 }
 
-.slider-handle:hover .slider-arrows,
-.slider-handle.dragging .slider-arrows {
+.slider-handle-simple:hover .slider-arrows-simple,
+.slider-handle-simple.dragging .slider-arrows-simple {
   color: var(--secondary);
 }
 
 /* Instructions */
-.slider-instructions {
+.slider-instructions-simple {
   position: absolute;
   top: 15px;
   left: 50%;
@@ -174,74 +172,44 @@
   font-weight: 500;
   z-index: 10;
   opacity: 0;
-  transition: all 0.3s ease;
+  transition: opacity 0.3s ease;
   pointer-events: none;
 }
 
-.before-after-slider:hover .slider-instructions {
+.before-after-simple:hover .slider-instructions-simple {
   opacity: 1;
-}
-
-/* Animation for initial load */
-.before-after-slider {
-  animation: fadeInSlider 0.8s ease-out;
-}
-
-@keyframes fadeInSlider {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* Pulse animation for handle on first load */
-.slider-handle {
-  animation: handlePulse 2s ease-in-out 1s 3;
-}
-
-@keyframes handlePulse {
-  0%, 100% {
-    transform: translate(-50%, -50%) scale(1);
-  }
-  50% {
-    transform: translate(-50%, -50%) scale(1.1);
-  }
 }
 
 /* Mobile Optimizations */
 @media (max-width: 767.98px) {
-  .before-after-slider {
+  .before-after-simple {
     min-height: 250px;
   }
   
-  .slider-handle {
+  .slider-handle-simple {
     width: 45px;
     height: 45px;
   }
   
-  .slider-arrows {
+  .slider-arrows-simple {
     font-size: 0.7rem;
   }
   
-  .image-label {
+  .image-label-simple {
     bottom: 10px;
     padding: 6px 12px;
     font-size: 0.8rem;
   }
   
-  .before-label {
+  .before-label-simple {
     left: 10px;
   }
   
-  .after-label {
+  .after-label-simple {
     right: 10px;
   }
   
-  .slider-instructions {
+  .slider-instructions-simple {
     top: 10px;
     font-size: 0.75rem;
     padding: 6px 12px;
@@ -249,53 +217,48 @@
 }
 
 @media (max-width: 575.98px) {
-  .before-after-slider {
+  .before-after-simple {
     min-height: 200px;
   }
   
-  .slider-handle {
+  .slider-handle-simple {
     width: 40px;
     height: 40px;
   }
   
-  .slider-arrows {
+  .slider-arrows-simple {
     font-size: 0.6rem;
     gap: 1px;
   }
   
-  .image-label {
+  .image-label-simple {
     padding: 4px 8px;
     font-size: 0.7rem;
   }
 }
 
-/* Accessibility improvements */
+/* Performance optimizations for reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .after-image {
+  .slider-handle-simple {
     transition: none;
   }
   
-  .slider-handle {
-    animation: none;
+  .image-label-simple {
     transition: none;
-  }
-  
-  .before-after-slider {
-    animation: none;
   }
 }
 
 /* High contrast mode support */
 @media (prefers-contrast: high) {
-  .slider-handle {
+  .slider-handle-simple {
     border-width: 4px;
   }
   
-  .slider-line {
+  .slider-line-simple {
     width: 3px;
   }
   
-  .image-label {
+  .image-label-simple {
     background: black;
     color: white;
   }

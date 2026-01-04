@@ -1,0 +1,284 @@
+/* Ultra-Fast Before/After Reveal Component */
+.before-after-reveal {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+  overflow: hidden;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  /* Enable hardware acceleration */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Before Image (Background) - Always visible */
+.before-image-reveal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.before-image-reveal img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  /* Optimize image rendering */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* After Image (Overlay) - Fades in/out */
+.after-image-reveal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  opacity: 0;
+  /* Ultra-smooth transition with hardware acceleration */
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.after-image-reveal.revealed {
+  opacity: 1;
+}
+
+.after-image-reveal img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  /* Optimize image rendering */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* Image Labels - Optimized positioning */
+.image-label-reveal {
+  position: absolute;
+  bottom: 15px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  z-index: 10;
+  /* Smooth transitions */
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  /* Hardware acceleration */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.before-label-reveal {
+  left: 15px;
+  background: rgba(9, 30, 62, 0.9);
+  color: white;
+}
+
+.after-label-reveal {
+  right: 15px;
+  background: var(--primary);
+  color: white;
+}
+
+/* Toggle Button - Floating action button */
+.reveal-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateZ(0);
+  background: white;
+  border: 3px solid var(--primary);
+  border-radius: 50px;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--primary);
+  z-index: 5;
+  /* Smooth transitions */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  /* Hardware acceleration */
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+.reveal-button:hover {
+  transform: translate(-50%, -50%) scale(1.05) translateZ(0);
+  border-color: var(--secondary);
+  color: var(--secondary);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.reveal-button i {
+  font-size: 1.1rem;
+  transition: transform 0.2s ease;
+}
+
+.reveal-button:hover i {
+  transform: scale(1.1);
+}
+
+/* Instructions - Optimized */
+.reveal-instructions {
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%) translateZ(0);
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  /* Hardware acceleration */
+  backface-visibility: hidden;
+}
+
+.before-after-reveal:hover .reveal-instructions {
+  opacity: 1;
+}
+
+/* Hide button on hover for cleaner view */
+.before-after-reveal:hover .reveal-button {
+  opacity: 0.7;
+}
+
+/* Animation for initial load */
+.before-after-reveal {
+  animation: fadeInReveal 0.8s ease-out;
+}
+
+@keyframes fadeInReveal {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateZ(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateZ(0);
+  }
+}
+
+/* Pulse animation for button */
+.reveal-button {
+  animation: buttonPulse 2s ease-in-out 1s 2;
+}
+
+@keyframes buttonPulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1) translateZ(0);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.05) translateZ(0);
+  }
+}
+
+/* Mobile Optimizations */
+@media (max-width: 767.98px) {
+  .before-after-reveal {
+    min-height: 250px;
+  }
+  
+  .reveal-button {
+    padding: 10px 16px;
+    font-size: 0.8rem;
+  }
+  
+  .reveal-button i {
+    font-size: 1rem;
+  }
+  
+  .image-label-reveal {
+    bottom: 10px;
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+  
+  .before-label-reveal {
+    left: 10px;
+  }
+  
+  .after-label-reveal {
+    right: 10px;
+  }
+  
+  .reveal-instructions {
+    top: 10px;
+    font-size: 0.75rem;
+    padding: 6px 12px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .before-after-reveal {
+    min-height: 200px;
+  }
+  
+  .reveal-button {
+    padding: 8px 12px;
+    font-size: 0.75rem;
+  }
+  
+  .reveal-button i {
+    font-size: 0.9rem;
+  }
+  
+  .image-label-reveal {
+    padding: 4px 8px;
+    font-size: 0.7rem;
+  }
+}
+
+/* Performance optimizations for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .after-image-reveal {
+    transition: none;
+  }
+  
+  .reveal-button {
+    animation: none;
+    transition: none;
+  }
+  
+  .before-after-reveal {
+    animation: none;
+  }
+  
+  .image-label-reveal {
+    transition: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .reveal-button {
+    border-width: 4px;
+  }
+  
+  .image-label-reveal {
+    background: black;
+    color: white;
+  }
+}

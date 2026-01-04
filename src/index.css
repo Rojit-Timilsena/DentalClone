@@ -24,14 +24,47 @@
     --transition: all 0.3s ease;
 }
 
+/* Performance optimizations */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Optimize font rendering */
 body {
     padding-top: 80px;
+    font-display: swap;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 @media (min-width: 992px) {
   body {
     padding-top: 100px;
   }
+}
+
+/* Loading placeholder styles for lazy loading */
+.loading-placeholder {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    border-radius: var(--border-radius);
+}
+
+@keyframes loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* Optimize images */
+img {
+    max-width: 100%;
+    height: auto;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
 }
 
 /* Typography */

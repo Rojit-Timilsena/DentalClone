@@ -1,23 +1,28 @@
-import { useState } from 'react'
+import { useState, useCallback, memo } from 'react'
 import SearchModal from './SearchModal'
 import { ASSET_PATHS } from '../utils/assetPaths'
 
-const Header = ({ activeSection, onNavigate }) => {
+const Header = memo(({ activeSection, onNavigate }) => {
   const [searchModalOpen, setSearchModalOpen] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
-  const toggleSearchModal = () => {
-    setSearchModalOpen(!searchModalOpen)
-  }
+  const toggleSearchModal = useCallback(() => {
+    setSearchModalOpen(prev => !prev)
+  }, [])
 
-  const toggleMobileMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen)
-  }
+  const toggleMobileMenu = useCallback(() => {
+    setMobileMenuOpen(prev => !prev)
+  }, [])
 
-  const handleNavigateAndCloseMobile = (section) => {
+  const handleNavigateAndCloseMobile = useCallback((section) => {
     onNavigate(section)
-    setMobileMenuOpen(false) // Close mobile menu after navigation
-  }
+    setMobileMenuOpen(false)
+  }, [onNavigate])
+
+  const handleLogoClick = useCallback((e) => {
+    e.preventDefault()
+    handleNavigateAndCloseMobile('home')
+  }, [handleNavigateAndCloseMobile])
 
   return (
     <>
@@ -36,12 +41,13 @@ const Header = ({ activeSection, onNavigate }) => {
             width: '100%'
           }}
         >
-          <a href="#home" className="navbar-brand" onClick={(e) => { e.preventDefault(); handleNavigateAndCloseMobile('home'); }}>
+          <a href="#home" className="navbar-brand" onClick={handleLogoClick}>
             <img 
               src={ASSET_PATHS.logo} 
               alt="Suhaas Dental Care Logo" 
               className="img-fluid"
               style={{ height: '60px', maxHeight: '80px' }}
+              loading="eager"
             />
           </a>
           
@@ -50,6 +56,7 @@ const Header = ({ activeSection, onNavigate }) => {
               type="button" 
               className="btn text-dark me-2 d-lg-inline-block" 
               onClick={toggleSearchModal}
+              aria-label="Search"
             >
               <i className="fa fa-search"></i>
             </button>
@@ -67,27 +74,21 @@ const Header = ({ activeSection, onNavigate }) => {
           
           <div className={`collapse navbar-collapse ${mobileMenuOpen ? 'show' : ''}`} id="navbarCollapse">
             <div className="navbar-nav ms-auto py-2 py-lg-0">
-              <a 
-                className={`nav-item nav-link px-3 py-2 ${activeSection === 'home' ? 'active' : ''}`} 
-                href="#home"
-                onClick={(e) => { e.preventDefault(); handleNavigateAndCloseMobile('home'); }}
-              >
-                Home
-              </a>
-              <a 
-                className={`nav-item nav-link px-3 py-2 ${activeSection === 'about' ? 'active' : ''}`} 
-                href="#about"
-                onClick={(e) => { e.preventDefault(); handleNavigateAndCloseMobile('about'); }}
-              >
-                About
-              </a>
-              <a 
-                className={`nav-item nav-link px-3 py-2 ${activeSection === 'services' ? 'active' : ''}`} 
-                href="#services"
-                onClick={(e) => { e.preventDefault(); handleNavigateAndCloseMobile('services'); }}
-              >
-                Services
-              </a>
+              {[
+                { id: 'home', label: 'Home' },
+                { id: 'about', label: 'About' },
+                { id: 'services', label: 'Services' }
+              ].map(({ id, label }) => (
+                <a 
+                  key={id}
+                  className={`nav-item nav-link px-3 py-2 ${activeSection === id ? 'active' : ''}`} 
+                  href={`#${id}`}
+                  onClick={(e) => { e.preventDefault(); handleNavigateAndCloseMobile(id); }}
+                >
+                  {label}
+                </a>
+              ))}
+              
               <div className="nav-item dropdown">
                 <a 
                   href="#" 
@@ -99,40 +100,25 @@ const Header = ({ activeSection, onNavigate }) => {
                   Pages
                 </a>
                 <div className="dropdown-menu border-0 shadow-sm" role="menu">
-                  <a 
-                    className="dropdown-item py-2" 
-                    href="#pricing"
-                    onClick={(e) => { e.preventDefault(); handleNavigateAndCloseMobile('pricing'); }}
-                    role="menuitem"
-                  >
-                    Pricing Plan
-                  </a>
-                  <a 
-                    className="dropdown-item py-2" 
-                    href="#team"
-                    onClick={(e) => { e.preventDefault(); handleNavigateAndCloseMobile('team'); }}
-                    role="menuitem"
-                  >
-                    Our Dentist
-                  </a>
-                  <a 
-                    className="dropdown-item py-2" 
-                    href="#testimonials"
-                    onClick={(e) => { e.preventDefault(); handleNavigateAndCloseMobile('testimonials'); }}
-                    role="menuitem"
-                  >
-                    Testimonial
-                  </a>
-                  <a 
-                    className="dropdown-item py-2" 
-                    href="#appointment"
-                    onClick={(e) => { e.preventDefault(); handleNavigateAndCloseMobile('appointment'); }}
-                    role="menuitem"
-                  >
-                    Appointment
-                  </a>
+                  {[
+                    { id: 'pricing', label: 'Pricing Plan' },
+                    { id: 'team', label: 'Our Dentist' },
+                    { id: 'testimonials', label: 'Testimonial' },
+                    { id: 'appointment', label: 'Appointment' }
+                  ].map(({ id, label }) => (
+                    <a 
+                      key={id}
+                      className="dropdown-item py-2" 
+                      href={`#${id}`}
+                      onClick={(e) => { e.preventDefault(); handleNavigateAndCloseMobile(id); }}
+                      role="menuitem"
+                    >
+                      {label}
+                    </a>
+                  ))}
                 </div>
               </div>
+              
               <a 
                 className={`nav-item nav-link px-3 py-2 ${activeSection === 'contact' ? 'active' : ''}`} 
                 href="#contact"
@@ -155,13 +141,14 @@ const Header = ({ activeSection, onNavigate }) => {
         </nav>
       </header>
 
-      {/* Search Modal */}
       <SearchModal 
         isOpen={searchModalOpen} 
         onClose={toggleSearchModal} 
       />
     </>
   )
-}
+})
+
+Header.displayName = 'Header'
 
 export default Header

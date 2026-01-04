@@ -1,40 +1,95 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react({
+      // Enable React Fast Refresh
+      fastRefresh: true,
+      // Optimize JSX runtime
+      jsxRuntime: 'automatic'
+    })
+  ],
+  
+  // Development optimizations
+  server: {
+    hmr: {
+      overlay: false
+    }
+  },
+  
   build: {
-    // Optimize for production
+    // Production optimizations
     minify: 'terser',
     sourcemap: false,
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          // Separate vendor chunks for better caching
-          vendor: ['react', 'react-dom'],
-          bootstrap: ['bootstrap', 'react-bootstrap'],
-          carousel: ['swiper'],
-          animations: ['framer-motion', 'wowjs'],
-          forms: ['react-hook-form', 'react-datepicker'],
-          utils: ['moment', 'moment-timezone', 'jquery', 'jquery.easing']
-        }
+    target: 'es2015',
+    
+    // Terser options for better compression
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+        pure_funcs: ['console.log', 'console.info', 'console.debug', 'console.warn']
       }
     },
-    // Keep reasonable chunk size limit
-    chunkSizeWarningLimit: 500,
-    // Asset optimization
+    
+    rollupOptions: {
+      output: {
+        // Optimized chunk splitting for better caching
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          carousel: ['swiper'],
+          animations: ['wowjs'],
+          utils: ['moment', 'moment-timezone', 'jquery', 'jquery.easing'],
+          bootstrap: ['bootstrap']
+        },
+        // Optimize asset naming
+        chunkFileNames: 'assets/js/[name]-[hash].js',
+        entryFileNames: 'assets/js/[name]-[hash].js',
+        assetFileNames: 'assets/[ext]/[name]-[hash].[ext]'
+      }
+    },
+    
+    // Performance optimizations
+    chunkSizeWarningLimit: 1000,
     assetsInlineLimit: 4096,
-    // CSS code splitting
-    cssCodeSplit: true
+    cssCodeSplit: true,
+    
+    // Enable gzip compression hints
+    reportCompressedSize: true
   },
-  // Optimize assets
+  
+  // Asset optimization
   assetsInclude: ['**/*.jpg', '**/*.jpeg', '**/*.png', '**/*.svg', '**/*.gif', '**/*.webp'],
+  
   // Base path for deployment
   base: './',
+  
+  // CSS preprocessing optimizations
+  css: {
+    devSourcemap: false,
+    preprocessorOptions: {
+      scss: {
+        charset: false
+      }
+    }
+  },
+  
   // Preview server configuration
   preview: {
     port: 4173,
     host: true
+  },
+  
+  // Dependency optimization
+  optimizeDeps: {
+    include: [
+      'react',
+      'react-dom',
+      'swiper',
+      'jquery',
+      'bootstrap'
+    ],
+    exclude: ['wowjs']
   }
 })

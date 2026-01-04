@@ -1,38 +1,52 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback, useMemo, lazy, Suspense } from 'react'
 import './App.css'
 import './styles/HeroCarousel.css'
 
-// Core components
+// Core components (keep these for immediate render)
 import LoadingSpinner from './components/LoadingSpinner'
-import DeveloperPopup from './components/DeveloperPopup'
-import BackToTop from './components/BackToTop'
 import Header from './components/Header'
 import HeroCarousel from './components/HeroCarousel'
+
+// Lazy load components for better performance
+const DeveloperPopup = lazy(() => import('./components/DeveloperPopup'))
+const BackToTop = lazy(() => import('./components/BackToTop'))
+const Banner = lazy(() => import('./components/Banner'))
+const About = lazy(() => import('./components/About'))
+const Services = lazy(() => import('./components/Services'))
+const Pricing = lazy(() => import('./components/Pricing'))
+const Team = lazy(() => import('./components/Team'))
+const Testimonials = lazy(() => import('./components/Testimonials'))
+const AppointmentSection = lazy(() => import('./components/AppointmentSection'))
+const Contact = lazy(() => import('./components/Contact'))
+const Newsletter = lazy(() => import('./components/Newsletter'))
+const Footer = lazy(() => import('./components/Footer'))
 
 // Navigation utilities
 import { scrollToSection, getActiveSection, updateActiveNav, initializeSmoothScrolling } from './utils/navigation'
 
-// External libraries integration - Keep all animations
+// External libraries integration
 import { initializeAllLibraries, cleanupLibraries } from './utils/externalLibraries'
 
-// Component imports
-import Banner from './components/Banner'
-import About from './components/About'
-import AppointmentSection from './components/AppointmentSection'
-import Services from './components/Services'
-import Pricing from './components/Pricing'
-import Testimonials from './components/Testimonials'
-import Team from './components/Team'
-import Contact from './components/Contact'
-import Newsletter from './components/Newsletter'
-import Footer from './components/Footer'
+// Asset preloading
+import { preloadCriticalImages } from './utils/assetPaths'
 
 function App() {
   const [isLoading, setIsLoading] = useState(true)
   const [showDeveloperPopup, setShowDeveloperPopup] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
 
-  // Loading simulation - keep original timing
+  // Memoize navigation handler to prevent unnecessary re-renders
+  const handleNavigate = useCallback((section) => {
+    setActiveSection(section)
+    scrollToSection(section)
+  }, [])
+
+  // Memoize popup close handler
+  const closeDeveloperPopup = useCallback(() => {
+    setShowDeveloperPopup(false)
+  }, [])
+
+  // Loading simulation with cleanup
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false)
@@ -41,67 +55,61 @@ function App() {
     return () => clearTimeout(timer)
   }, [])
 
-  // Developer popup timer - keep original timing
+  // Developer popup timer with cleanup
   useEffect(() => {
     const popupTimer = setTimeout(() => {
       setShowDeveloperPopup(true)
-    }, 50000) // Keep original 50 seconds
+    }, 50000)
 
     return () => clearTimeout(popupTimer)
   }, [])
 
-  // Initialize external libraries - keep all animations
+  // Initialize external libraries with proper cleanup
   useEffect(() => {
     if (!isLoading) {
-      // Initialize all external libraries after loading is complete
+      // Preload critical images
+      preloadCriticalImages()
+      
       initializeAllLibraries()
       
-      // Initialize smooth scrolling after a delay to ensure DOM is ready
-      setTimeout(() => {
+      const scrollTimer = setTimeout(() => {
         initializeSmoothScrolling()
       }, 500)
-    }
-
-    // Cleanup on unmount
-    return () => {
-      cleanupLibraries()
+      
+      return () => {
+        clearTimeout(scrollTimer)
+        cleanupLibraries()
+      }
     }
   }, [isLoading])
 
-  // Reinitialize scrolling when components mount
+  // Optimized scroll handler with throttling
   useEffect(() => {
-    if (!isLoading) {
-      // Reinitialize scrolling after components are rendered
-      const timer = setTimeout(() => {
-        initializeSmoothScrolling()
-      }, 1000)
-      
-      return () => clearTimeout(timer)
-    }
-  }, [isLoading, activeSection])
-
-  // Track active section on scroll
-  useEffect(() => {
+    let ticking = false
+    
     const handleScroll = () => {
-      const currentSection = getActiveSection()
-      if (currentSection !== activeSection) {
-        setActiveSection(currentSection)
-        updateActiveNav(currentSection)
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const currentSection = getActiveSection()
+          if (currentSection !== activeSection) {
+            setActiveSection(currentSection)
+            updateActiveNav(currentSection)
+          }
+          ticking = false
+        })
+        ticking = true
       }
     }
 
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [activeSection])
 
-  const handleNavigate = (section) => {
-    setActiveSection(section)
-    scrollToSection(section)
-  }
-
-  const closeDeveloperPopup = () => {
-    setShowDeveloperPopup(false)
-  }
+  // Memoize hero carousel props
+  const heroCarouselProps = useMemo(() => ({
+    autoPlay: true,
+    interval: 5000
+  }), [])
 
   if (isLoading) {
     return <LoadingSpinner />
@@ -109,67 +117,79 @@ function App() {
 
   return (
     <div className="App">
-      {/* Header Component */}
       <Header 
         activeSection={activeSection}
         onNavigate={handleNavigate}
       />
 
-      {/* Main Content */}
       <main>
-        {/* Hero Carousel */}
-        <HeroCarousel 
-          autoPlay={true}
-          interval={5000}
-        />
+        <HeroCarousel {...heroCarouselProps} />
 
-        {/* Banner Section */}
-        <Banner />
+        <Suspense fallback={<div className="loading-placeholder" style={{ height: '200px' }} />}>
+          <Banner />
+        </Suspense>
 
-        {/* About Section */}
         <section id="about">
-          <About />
+          <Suspense fallback={<div className="loading-placeholder" style={{ height: '400px' }} />}>
+            <About />
+          </Suspense>
         </section>
 
         <section id="services">
-          <Services />
+          <Suspense fallback={<div className="loading-placeholder" style={{ height: '400px' }} />}>
+            <Services />
+          </Suspense>
         </section>
 
         <section id="pricing" className="py-5">
-          <Pricing />
+          <Suspense fallback={<div className="loading-placeholder" style={{ height: '400px' }} />}>
+            <Pricing />
+          </Suspense>
         </section>
 
         <section id="team">
-          <Team />
+          <Suspense fallback={<div className="loading-placeholder" style={{ height: '400px' }} />}>
+            <Team />
+          </Suspense>
         </section>
 
         <section id="testimonials">
-          <Testimonials />
+          <Suspense fallback={<div className="loading-placeholder" style={{ height: '400px' }} />}>
+            <Testimonials />
+          </Suspense>
         </section>
 
         <section id="appointment">
-          <AppointmentSection />
+          <Suspense fallback={<div className="loading-placeholder" style={{ height: '400px' }} />}>
+            <AppointmentSection />
+          </Suspense>
         </section>
 
         <section id="contact" className="py-5">
-          <Contact />
+          <Suspense fallback={<div className="loading-placeholder" style={{ height: '400px' }} />}>
+            <Contact />
+          </Suspense>
         </section>
 
-        {/* Newsletter Section */}
-        <Newsletter />
+        <Suspense fallback={<div className="loading-placeholder" style={{ height: '200px' }} />}>
+          <Newsletter />
+        </Suspense>
       </main>
 
-      {/* Footer */}
-      <Footer />
+      <Suspense fallback={<div className="loading-placeholder" style={{ height: '200px' }} />}>
+        <Footer />
+      </Suspense>
 
-      {/* Developer Popup */}
-      <DeveloperPopup 
-        show={showDeveloperPopup} 
-        onClose={closeDeveloperPopup} 
-      />
+      <Suspense fallback={null}>
+        <DeveloperPopup 
+          show={showDeveloperPopup} 
+          onClose={closeDeveloperPopup} 
+        />
+      </Suspense>
 
-      {/* Back to Top Button */}
-      <BackToTop />
+      <Suspense fallback={null}>
+        <BackToTop />
+      </Suspense>
     </div>
   )
 }

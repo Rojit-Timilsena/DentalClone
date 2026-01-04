@@ -1,119 +1,131 @@
-import { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useCallback, memo } from 'react'
 import '../styles/BeforeAfterSlider.css'
 
-const BeforeAfterSlider = ({ beforeImage, afterImage, beforeLabel = "Before", afterLabel = "After" }) => {
+const BeforeAfterSlider = memo(({ beforeImage, afterImage, beforeLabel = "Before", afterLabel = "After" }) => {
   const [sliderPosition, setSliderPosition] = useState(50)
   const [isDragging, setIsDragging] = useState(false)
   const containerRef = useRef(null)
-  const sliderRef = useRef(null)
 
-  // Handle mouse down on slider
-  const handleMouseDown = (e) => {
-    e.preventDefault()
-    setIsDragging(true)
-  }
-
-  // Handle touch start on slider
-  const handleTouchStart = (e) => {
-    e.preventDefault()
-    setIsDragging(true)
-  }
-
-  // Calculate slider position based on mouse/touch position
-  const updateSliderPosition = (clientX) => {
+  // Simple position update
+  const updateSliderPosition = useCallback((clientX) => {
     if (!containerRef.current) return
 
     const rect = containerRef.current.getBoundingClientRect()
     const x = clientX - rect.left
     const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100))
     setSliderPosition(percentage)
-  }
+  }, [])
 
-  // Handle mouse move
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      if (!isDragging) return
-      updateSliderPosition(e.clientX)
-    }
+  // Mouse handlers
+  const handleMouseDown = useCallback((e) => {
+    e.preventDefault()
+    setIsDragging(true)
+  }, [])
 
-    const handleMouseUp = () => {
-      setIsDragging(false)
-    }
+  const handleMouseMove = useCallback((e) => {
+    if (!isDragging) return
+    updateSliderPosition(e.clientX)
+  }, [isDragging, updateSliderPosition])
 
-    if (isDragging) {
-      document.addEventListener('mousemove', handleMouseMove)
-      document.addEventListener('mouseup', handleMouseUp)
+  const handleMouseUp = useCallback(() => {
+    setIsDragging(false)
+  }, [])
+
+  // Touch handlers
+  const handleTouchStart = useCallback((e) => {
+    e.preventDefault()
+    setIsDragging(true)
+  }, [])
+
+  const handleTouchMove = useCallback((e) => {
+    if (!isDragging) return
+    e.preventDefault()
+    const touch = e.touches[0]
+    updateSliderPosition(touch.clientX)
+  }, [isDragging, updateSliderPosition])
+
+  const handleTouchEnd = useCallback(() => {
+    setIsDragging(false)
+  }, [])
+
+  // Container click
+  const handleContainerClick = useCallback((e) => {
+    if (e.target.closest('.slider-handle-simple')) return
+    updateSliderPosition(e.clientX)
+  }, [updateSliderPosition])
+
+  // Keyboard navigation
+  const handleKeyDown = useCallback((e) => {
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault()
+      setSliderPosition(prev => Math.max(0, prev - 5))
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault()
+      setSliderPosition(prev => Math.min(100, prev + 5))
     }
+  }, [])
+
+  // Global event listeners
+  React.useEffect(() => {
+    if (!isDragging) return
+
+    document.addEventListener('mousemove', handleMouseMove)
+    document.addEventListener('mouseup', handleMouseUp)
+    document.addEventListener('touchmove', handleTouchMove, { passive: false })
+    document.addEventListener('touchend', handleTouchEnd)
 
     return () => {
       document.removeEventListener('mousemove', handleMouseMove)
       document.removeEventListener('mouseup', handleMouseUp)
-    }
-  }, [isDragging])
-
-  // Handle touch move
-  useEffect(() => {
-    const handleTouchMove = (e) => {
-      if (!isDragging) return
-      e.preventDefault()
-      const touch = e.touches[0]
-      updateSliderPosition(touch.clientX)
-    }
-
-    const handleTouchEnd = () => {
-      setIsDragging(false)
-    }
-
-    if (isDragging) {
-      document.addEventListener('touchmove', handleTouchMove, { passive: false })
-      document.addEventListener('touchend', handleTouchEnd)
-    }
-
-    return () => {
       document.removeEventListener('touchmove', handleTouchMove)
       document.removeEventListener('touchend', handleTouchEnd)
     }
-  }, [isDragging])
-
-  // Handle container click
-  const handleContainerClick = (e) => {
-    if (e.target === sliderRef.current || e.target.closest('.slider-handle')) return
-    updateSliderPosition(e.clientX)
-  }
+  }, [isDragging, handleMouseMove, handleMouseUp, handleTouchMove, handleTouchEnd])
 
   return (
     <div 
-      className="before-after-slider"
+      className="before-after-simple"
       ref={containerRef}
       onClick={handleContainerClick}
     >
-      {/* Before Image (Background) */}
-      <div className="before-image">
-        <img src={beforeImage} alt={beforeLabel} />
-        <div className="image-label before-label">
+      {/* Before Image (Background - always visible) */}
+      <div className="before-image-simple">
+        <img 
+          src={beforeImage} 
+          alt={beforeLabel}
+          loading="lazy"
+          decoding="async"
+        />
+        <div className="image-label-simple before-label-simple">
           {beforeLabel}
         </div>
       </div>
 
-      {/* After Image (Clipped) */}
+      {/* After Image (Clipped using clip-path - but simpler) */}
       <div 
-        className="after-image"
-        style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
+        className="after-image-simple"
+        style={{ 
+          clipPath: `polygon(0 0, ${sliderPosition}% 0, ${sliderPosition}% 100%, 0 100%)`
+        }}
       >
-        <img src={afterImage} alt={afterLabel} />
-        <div className="image-label after-label">
+        <img 
+          src={afterImage} 
+          alt={afterLabel}
+          loading="lazy"
+          decoding="async"
+        />
+        <div className="image-label-simple after-label-simple">
           {afterLabel}
         </div>
       </div>
 
       {/* Slider Line and Handle */}
       <div 
-        className="slider-line"
+        className="slider-line-simple"
         style={{ left: `${sliderPosition}%` }}
       >
         <div 
-          className={`slider-handle ${isDragging ? 'dragging' : ''}`}
-          ref={sliderRef}
+          className={`slider-handle-simple ${isDragging ? 'dragging' : ''}`}
           onMouseDown={handleMouseDown}
           onTouchStart={handleTouchStart}
           role="slider"
@@ -122,17 +134,9 @@ const BeforeAfterSlider = ({ beforeImage, afterImage, beforeLabel = "Before", af
           aria-valuemax="100"
           aria-label="Drag to compare before and after images"
           tabIndex="0"
-          onKeyDown={(e) => {
-            if (e.key === 'ArrowLeft') {
-              e.preventDefault()
-              setSliderPosition(Math.max(0, sliderPosition - 5))
-            } else if (e.key === 'ArrowRight') {
-              e.preventDefault()
-              setSliderPosition(Math.min(100, sliderPosition + 5))
-            }
-          }}
+          onKeyDown={handleKeyDown}
         >
-          <div className="slider-arrows">
+          <div className="slider-arrows-simple">
             <i className="bi bi-chevron-left"></i>
             <i className="bi bi-chevron-right"></i>
           </div>
@@ -140,11 +144,13 @@ const BeforeAfterSlider = ({ beforeImage, afterImage, beforeLabel = "Before", af
       </div>
 
       {/* Instructions */}
-      <div className="slider-instructions">
+      <div className="slider-instructions-simple">
         <span>Drag to compare</span>
       </div>
     </div>
   )
-}
+})
+
+BeforeAfterSlider.displayName = 'BeforeAfterSlider'
 
 export default BeforeAfterSlider

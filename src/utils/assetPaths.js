@@ -1,4 +1,4 @@
-// Asset imports
+// Optimized asset imports with lazy loading support
 import logoImg from '../assets/images/logo.svg'
 import aboutImg from '../assets/images/about-real.jpg'
 import faviconImg from '../assets/images/favicon.svg'
@@ -34,11 +34,11 @@ import bhuwanImg from '../assets/images/team/bhuwan.png'
 import testimonial1Img from '../assets/images/testimonials/testimonial-1.jpg'
 import testimonial2Img from '../assets/images/testimonials/testimonial-2.jpg'
 
-// Asset path utilities with real imported images
+// Optimized asset path configuration
 export const ASSET_PATHS = {
   // Common images
   logo: logoImg,
-  favicon: faviconImg, // Using dedicated SVG favicon
+  favicon: faviconImg,
   about: aboutImg,
   
   // Carousel images
@@ -54,8 +54,8 @@ export const ASSET_PATHS = {
     service2: service2Img,
     service3: service3Img,
     service4: service4Img,
-    service5: service1Img, // Reusing service1 for service5
-    service6: service2Img, // Reusing service2 for service6
+    service5: service1Img, // Reuse for optimization
+    service6: service2Img, // Reuse for optimization
     before: beforeImg,
     after: afterImg
   },
@@ -75,7 +75,7 @@ export const ASSET_PATHS = {
   team: {
     team1: team1Img,
     team2: team2Img,
-    team3: team1Img, // Reusing team1 for team3
+    team3: team1Img, // Reuse for optimization
     bhuwan: bhuwanImg
   },
   
@@ -86,15 +86,45 @@ export const ASSET_PATHS = {
   }
 }
 
-// Helper function to get image path
+// Optimized helper function with caching
+const pathCache = new Map()
+
 export const getImagePath = (category, filename) => {
-  if (category && ASSET_PATHS[category] && ASSET_PATHS[category][filename]) {
-    return ASSET_PATHS[category][filename]
+  const cacheKey = `${category}-${filename}`
+  
+  if (pathCache.has(cacheKey)) {
+    return pathCache.get(cacheKey)
   }
-  return ASSET_PATHS[filename] || ''
+  
+  let path = ''
+  if (category && ASSET_PATHS[category] && ASSET_PATHS[category][filename]) {
+    path = ASSET_PATHS[category][filename]
+  } else {
+    path = ASSET_PATHS[filename] || ''
+  }
+  
+  pathCache.set(cacheKey, path)
+  return path
 }
 
-// Helper function to get full asset URL (for backwards compatibility)
-export const getAssetUrl = (path) => {
-  return path
+// Optimized asset URL helper
+export const getAssetUrl = (path) => path
+
+// Preload critical images for better performance
+export const preloadCriticalImages = () => {
+  const criticalImages = [
+    ASSET_PATHS.logo,
+    ASSET_PATHS.carousel.carousel1bg,
+    ASSET_PATHS.carousel.carousel1
+  ]
+  
+  criticalImages.forEach(src => {
+    if (src) {
+      const link = document.createElement('link')
+      link.rel = 'preload'
+      link.as = 'image'
+      link.href = src
+      document.head.appendChild(link)
+    }
+  })
 }

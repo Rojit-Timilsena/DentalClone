@@ -1,6 +1,7 @@
 import { ASSET_PATHS } from '../utils/assetPaths'
 import { services } from '../data/siteData'
 import BeforeAfterSlider from './BeforeAfterSlider'
+// import BeforeAfterReveal from './BeforeAfterReveal' // Alternative fast option
 
 const Services = () => {
 
@@ -11,12 +12,23 @@ const Services = () => {
         <div className="row g-3 g-lg-5 mb-4 mb-lg-5">
           {/* Left Side - Interactive Before/After Comparison */}
           <div className="col-12 col-lg-5 wow zoomIn" data-wow-delay="0.3s" style={{ minHeight: '300px' }}>
+            {/* Fast Slider Version - Uses transforms instead of clip-path */}
             <BeforeAfterSlider
               beforeImage={ASSET_PATHS.services.before}
               afterImage={ASSET_PATHS.services.after}
               beforeLabel="Before"
               afterLabel="After"
             />
+            
+            {/* Alternative: Ultra-fast Reveal Version - Uncomment to use */}
+            {/* 
+            <BeforeAfterReveal
+              beforeImage={ASSET_PATHS.services.before}
+              afterImage={ASSET_PATHS.services.after}
+              beforeLabel="Before"
+              afterLabel="After"
+            />
+            */}
           </div>
 
           {/* Right Side - Section Title and First Two Service Cards */}
