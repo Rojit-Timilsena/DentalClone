@@ -11,6 +11,7 @@
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+  touch-action: none; /* Prevent scrolling during touch interactions */
 }
 
 /* Before Image (Background - always visible) */
@@ -122,6 +123,7 @@
   transition: all 0.2s ease;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   z-index: 6;
+  touch-action: none; /* Prevent scrolling when touching the handle */
 }
 
 .slider-handle-simple:hover {

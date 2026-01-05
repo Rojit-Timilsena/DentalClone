@@ -35,10 +35,10 @@
   opacity: 0.3;
 }
 
-/* Navigation Buttons - Matching website style */
+/* Navigation Buttons - Improved mobile positioning */
 .testimonial-nav-btn {
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   background: var(--primary);
   color: white;
@@ -51,23 +51,29 @@
   top: 50%;
   transform: translateY(-50%);
   z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .testimonial-nav-btn:hover {
   background: var(--secondary);
   transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.testimonial-nav-btn:active {
+  transform: translateY(-50%) scale(0.95);
 }
 
 .prev-btn {
-  left: -25px;
+  left: -22px;
 }
 
 .next-btn {
-  right: -25px;
+  right: -22px;
 }
 
 .testimonial-nav-btn i {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 /* Testimonial Content */
@@ -188,15 +194,66 @@
   margin-right: 0.1rem;
 }
 
-/* Responsive Design */
+/* Mobile Navigation Bar Styles */
+.mobile-nav-bar {
+  background: transparent;
+  padding: 0;
+  border: none;
+}
+
+.mobile-nav-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(6, 163, 218, 0.3);
+}
+
+.mobile-nav-btn:hover {
+  background: var(--secondary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(6, 163, 218, 0.4);
+}
+
+.mobile-nav-btn:active {
+  transform: translateY(0);
+}
+
+.mobile-nav-btn.animating {
+  background: var(--secondary);
+  transform: scale(0.95);
+}
+
+.mobile-nav-btn i {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.mobile-testimonial-counter {
+  background: var(--light);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  border: 2px solid var(--primary);
+  font-weight: 600;
+  color: var(--primary);
+  font-size: 0.95rem;
+  min-width: 80px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design - Mobile Navigation Improvements */
 @media (max-width: 991.98px) {
-  .testimonial-nav-btn {
+  .testimonial-main-card {
     position: relative;
-    left: auto !important;
-    right: auto !important;
-    transform: none;
-    margin: 0 0.5rem;
-    display: inline-flex;
+    overflow: visible;
   }
   
   .testimonial-indicators {
@@ -212,6 +269,21 @@
 @media (max-width: 767.98px) {
   .testimonial-main-card {
     padding: 2rem !important;
+  }
+  
+  .mobile-nav-btn {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .mobile-nav-btn i {
+    font-size: 1rem;
+  }
+  
+  .mobile-testimonial-counter {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+    min-width: 70px;
   }
   
   .testimonial-text {
@@ -239,6 +311,21 @@
 @media (max-width: 575.98px) {
   .testimonial-main-card {
     padding: 1.5rem !important;
+  }
+  
+  .mobile-nav-btn {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .mobile-nav-btn i {
+    font-size: 0.9rem;
+  }
+  
+  .mobile-testimonial-counter {
+    font-size: 0.8rem;
+    padding: 0.35rem 0.7rem;
+    min-width: 65px;
   }
   
   .quote-icon-wrapper i {
@@ -310,14 +397,19 @@
   }
 }
 
-/* Button Animation States */
+/* Button Animation States - Mobile Optimized */
 .testimonial-nav-btn.animating {
-  transform: translateY(-50%) scale(0.9);
   background: var(--secondary);
+  transform: translateY(-50%) scale(0.9);
+}
+
+.mobile-nav-btn.animating {
+  background: var(--secondary);
+  transform: scale(0.95);
 }
 
 .testimonial-nav-btn.animating i {
-  animation: buttonPulse 0.3s ease-in-out; /* Reduced from 0.6s */
+  animation: buttonPulse 0.3s ease-in-out;
 }
 
 @keyframes buttonPulse {
@@ -336,9 +428,13 @@
   opacity: 0.5;
 }
 
-/* Enhanced Button Hover Effects */
+/* Enhanced Button Hover Effects - Mobile Optimized */
 .testimonial-nav-btn:active {
   transform: translateY(-50%) scale(0.95);
+}
+
+.mobile-nav-btn:active {
+  transform: translateY(0);
 }
 
 /* Smooth transitions for all interactive elements */

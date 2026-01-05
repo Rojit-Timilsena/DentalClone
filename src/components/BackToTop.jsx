@@ -17,25 +17,20 @@ const BackToTop = memo(() => {
       }
     }
 
-    window.addEventListener('scroll', toggleVisibility, { passive: true })
+    window.addEventListener('scroll', toggleVisibility, { passive: true })  
     return () => window.removeEventListener('scroll', toggleVisibility)
   }, [])
 
-  // Memoized scroll handler
+  // Memoized scroll handler - React-only version
   const scrollToTop = useCallback((e) => {
     e.preventDefault()
     e.stopPropagation()
     
-    const $ = window.$ || window.jQuery
-    if ($ && typeof $.fn.animate === 'function' && typeof $.easing !== 'undefined') {
-      try {
-        $('html, body').animate({scrollTop: 0}, 1500, 'easeInOutExpo')
-      } catch (error) {
-        window.scrollTo({ top: 0, behavior: 'smooth' })
-      }
-    } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' })
-    }
+    // Use native smooth scrolling
+    window.scrollTo({ 
+      top: 0, 
+      behavior: 'smooth' 
+    })
     return false
   }, [])
 

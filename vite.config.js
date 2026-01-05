@@ -38,10 +38,7 @@ export default defineConfig({
         // Optimized chunk splitting for better caching
         manualChunks: {
           vendor: ['react', 'react-dom'],
-          carousel: ['swiper'],
-          animations: ['wowjs'],
-          utils: ['moment', 'moment-timezone', 'jquery', 'jquery.easing'],
-          bootstrap: ['bootstrap']
+          carousel: ['swiper']
         },
         // Optimize asset naming
         chunkFileNames: 'assets/js/[name]-[hash].js',
@@ -86,10 +83,7 @@ export default defineConfig({
     include: [
       'react',
       'react-dom',
-      'swiper',
-      'jquery',
-      'bootstrap'
-    ],
-    exclude: ['wowjs']
+      'swiper'
+    ]
   }
 })

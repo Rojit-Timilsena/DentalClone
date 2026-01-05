@@ -31,8 +31,8 @@ const Testimonials = () => {
       setTimeout(() => {
         setSlideDirection('')
         setIsAnimating(false)
-      }, 150) // Reduced from 300ms
-    }, 150) // Reduced from 300ms
+      }, 150)
+    }, 150)
   }
 
   const handlePrev = () => {
@@ -48,8 +48,8 @@ const Testimonials = () => {
       setTimeout(() => {
         setSlideDirection('')
         setIsAnimating(false)
-      }, 150) // Reduced from 300ms
-    }, 150) // Reduced from 300ms
+      }, 150)
+    }, 150)
   }
 
   const handleIndicatorClick = (index) => {
@@ -68,8 +68,8 @@ const Testimonials = () => {
       setTimeout(() => {
         setSlideDirection('')
         setIsAnimating(false)
-      }, 150) // Reduced from 300ms
-    }, 150) // Reduced from 300ms
+      }, 150)
+    }, 150)
   }
 
   return (
@@ -90,9 +90,10 @@ const Testimonials = () => {
           {/* Left Side - Featured Testimonial */}
           <div className="col-12 col-lg-8">
             <div className="testimonial-main-card position-relative bg-light rounded p-4 p-lg-5">
-              {/* Navigation Arrows */}
+              
+              {/* Desktop Navigation Arrows */}
               <button 
-                className={`testimonial-nav-btn prev-btn position-absolute ${isAnimating ? 'animating' : ''}`}
+                className={`testimonial-nav-btn prev-btn position-absolute d-none d-lg-flex ${isAnimating ? 'animating' : ''}`}
                 onClick={handlePrev}
                 disabled={isAnimating}
                 aria-label="Previous testimonial"
@@ -101,13 +102,38 @@ const Testimonials = () => {
               </button>
               
               <button 
-                className={`testimonial-nav-btn next-btn position-absolute ${isAnimating ? 'animating' : ''}`}
+                className={`testimonial-nav-btn next-btn position-absolute d-none d-lg-flex ${isAnimating ? 'animating' : ''}`}
                 onClick={handleNext}
                 disabled={isAnimating}
                 aria-label="Next testimonial"
               >
                 <i className="bi bi-chevron-right"></i>
               </button>
+
+              {/* Mobile Navigation Bar */}
+              <div className="mobile-nav-bar d-flex d-lg-none justify-content-center align-items-center mb-4">
+                <button 
+                  className={`mobile-nav-btn prev ${isAnimating ? 'animating' : ''}`}
+                  onClick={handlePrev}
+                  disabled={isAnimating}
+                  aria-label="Previous testimonial"
+                >
+                  <i className="bi bi-chevron-left"></i>
+                </button>
+                
+                <div className="mobile-testimonial-counter mx-3">
+                  <span>{currentTestimonial + 1} of {testimonials.length}</span>
+                </div>
+                
+                <button 
+                  className={`mobile-nav-btn next ${isAnimating ? 'animating' : ''}`}
+                  onClick={handleNext}
+                  disabled={isAnimating}
+                  aria-label="Next testimonial"
+                >
+                  <i className="bi bi-chevron-right"></i>
+                </button>
+              </div>
 
               {/* Quote Icon */}
               <div className="quote-icon-wrapper mb-3">

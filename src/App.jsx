@@ -27,8 +27,8 @@ import { scrollToSection, getActiveSection, updateActiveNav, initializeSmoothScr
 // External libraries integration
 import { initializeAllLibraries, cleanupLibraries } from './utils/externalLibraries'
 
-// Asset preloading
-import { preloadCriticalImages } from './utils/assetPaths'
+// Asset preloading - removed to prevent preload warnings
+// import { preloadCriticalImages } from './utils/assetPaths'
 
 function App() {
   const [isLoading, setIsLoading] = useState(true)
@@ -67,9 +67,6 @@ function App() {
   // Initialize external libraries with proper cleanup
   useEffect(() => {
     if (!isLoading) {
-      // Preload critical images
-      preloadCriticalImages()
-      
       initializeAllLibraries()
       
       const scrollTimer = setTimeout(() => {

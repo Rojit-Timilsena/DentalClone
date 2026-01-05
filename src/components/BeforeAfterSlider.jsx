@@ -33,13 +33,13 @@ const BeforeAfterSlider = memo(({ beforeImage, afterImage, beforeLabel = "Before
 
   // Touch handlers
   const handleTouchStart = useCallback((e) => {
-    e.preventDefault()
     setIsDragging(true)
+    // Don't prevent default here to avoid passive listener issues
   }, [])
 
   const handleTouchMove = useCallback((e) => {
     if (!isDragging) return
-    e.preventDefault()
+    // Remove preventDefault to avoid passive listener issues
     const touch = e.touches[0]
     updateSliderPosition(touch.clientX)
   }, [isDragging, updateSliderPosition])
@@ -71,7 +71,7 @@ const BeforeAfterSlider = memo(({ beforeImage, afterImage, beforeLabel = "Before
 
     document.addEventListener('mousemove', handleMouseMove)
     document.addEventListener('mouseup', handleMouseUp)
-    document.addEventListener('touchmove', handleTouchMove, { passive: false })
+    document.addEventListener('touchmove', handleTouchMove, { passive: true })
     document.addEventListener('touchend', handleTouchEnd)
 
     return () => {

@@ -1,18 +1,8 @@
-import { useState, useEffect } from 'react'
-import { initializeTempusDominus } from '../utils/externalLibraries'
+import { useState } from 'react'
 
 const Banner = () => {
   const [selectedDate, setSelectedDate] = useState('')
   const [selectedService, setSelectedService] = useState('')
-
-  // Initialize Tempus Dominus after component mounts
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      initializeTempusDominus()
-    }, 100) // Small delay to ensure DOM is ready
-
-    return () => clearTimeout(timer)
-  }, [])
 
   const handleSearchDoctor = (e) => {
     e.preventDefault()
@@ -77,13 +67,10 @@ const Banner = () => {
               <h3 className="text-white mb-3 fs-5 fs-lg-4">Search A Doctor</h3>
               
               {/* Date Picker */}
-              <div className="date mb-3" id="date" data-target-input="nearest">
+              <div className="mb-3">
                 <input 
-                  type="text" 
-                  className="form-control bg-light border-0 datetimepicker-input"
-                  placeholder="Appointment Date" 
-                  data-target="#date" 
-                  data-toggle="datetimepicker" 
+                  type="date" 
+                  className="form-control bg-light border-0"
                   style={{ height: '40px' }}
                   value={selectedDate}
                   onChange={(e) => setSelectedDate(e.target.value)}

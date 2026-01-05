@@ -110,21 +110,8 @@ export const getImagePath = (category, filename) => {
 // Optimized asset URL helper
 export const getAssetUrl = (path) => path
 
-// Preload critical images for better performance
+// Preload critical images for better performance - removed to fix preload warnings
 export const preloadCriticalImages = () => {
-  const criticalImages = [
-    ASSET_PATHS.logo,
-    ASSET_PATHS.carousel.carousel1bg,
-    ASSET_PATHS.carousel.carousel1
-  ]
-  
-  criticalImages.forEach(src => {
-    if (src) {
-      const link = document.createElement('link')
-      link.rel = 'preload'
-      link.as = 'image'
-      link.href = src
-      document.head.appendChild(link)
-    }
-  })
+  // Images will be loaded on demand by React components
+  // This prevents preload warnings for unused resources
 }

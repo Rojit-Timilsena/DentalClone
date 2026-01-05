@@ -1,11 +1,7 @@
-// External Libraries Integration - Optimized
-import $ from 'jquery'
-window.$ = window.jQuery = $
+// External Libraries Integration - React-only version
+// Removed jQuery dependencies to prevent conflicts
 
 import 'wowjs/css/libs/animate.css'
-import moment from 'moment'
-import 'moment-timezone'
-import 'jquery.easing'
 
 // Lazy load external scripts for better performance
 const loadScript = (src, onLoad) => {
@@ -32,7 +28,7 @@ const loadStylesheet = (href) => {
   document.head.appendChild(link)
 }
 
-// Optimized WOW.js loader
+// React-based WOW.js loader
 const loadWOWjs = () => {
   loadScript('https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js', () => {
     if (window.WOW) {
@@ -51,103 +47,31 @@ const loadWOWjs = () => {
   })
 }
 
-// Optimized Waypoints loader
-const loadWaypoints = () => {
-  loadScript('https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js')
-}
-
-// Optimized Tempus Dominus loader
-const loadTempusDominus = () => {
-  loadStylesheet('https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css')
-  loadScript('https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js')
-}
-
 // Initialize WOW.js animations
 export const initializeWOW = () => {
   loadWOWjs()
 }
 
-// Initialize back to top functionality
-export const initializeBackToTop = () => {
-  // Handled by React BackToTop component
-}
-
-// Initialize pricing carousel
-export const initializePricingCarousel = () => {
-  // Uses Swiper React component
-}
-
-// Initialize testimonial carousel
-export const initializeTestimonialCarousel = () => {
-  // Uses React-based carousel
-}
-
-// Optimized Tempus Dominus initialization
-export const initializeTempusDominus = () => {
-  loadTempusDominus()
-  
-  // Use requestIdleCallback for non-critical initialization
-  const initDatePickers = () => {
-    try {
-      if (typeof $.fn.datetimepicker !== 'undefined') {
-        const commonConfig = {
-          format: 'L',
-          defaultDate: false,
-          useCurrent: false,
-          collapse: true,
-          locale: moment.locale(),
-          debug: false
-        }
-
-        $('#date, #date1').each(function() {
-          if ($(this).length) {
-            $(this).datetimepicker(commonConfig)
-          }
-        })
-
-        if ($('#time1').length) {
-          $('#time1').datetimepicker({
-            ...commonConfig,
-            format: 'LT',
-            viewMode: 'times'
-          })
-        }
-      } else {
-        // Fallback to native HTML5 inputs
-        $('#date input, #date1 input').attr('type', 'date')
-        $('#time1 input').attr('type', 'time')
-      }
-    } catch (error) {
-      // Fallback to native HTML5 inputs
-      $('#date input, #date1 input').attr('type', 'date')
-      $('#time1 input').attr('type', 'time')
-    }
-  }
-
-  if (window.requestIdleCallback) {
-    window.requestIdleCallback(() => {
-      setTimeout(initDatePickers, 1000)
-    })
-  } else {
-    setTimeout(initDatePickers, 1000)
-  }
-}
-
-// Optimized main template JS initialization
-export const initializeMainTemplateJS = () => {
+// React-based navbar scroll handler
+export const initializeNavbarScroll = () => {
   let ticking = false
   
-  // Throttled scroll handler for navbar
   const handleNavbarScroll = () => {
     if (!ticking) {
       requestAnimationFrame(() => {
-        const scrollTop = $(window).scrollTop()
-        const navbar = $('.navbar')
-        
-        if (scrollTop > 45) {
-          navbar.addClass('sticky-top shadow-sm')
-        } else {
-          navbar.removeClass('sticky-top shadow-sm')
+        try {
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+          const navbar = document.querySelector('.navbar')
+          
+          if (navbar) {
+            if (scrollTop > 45) {
+              navbar.classList.add('sticky-top', 'shadow-sm')
+            } else {
+              navbar.classList.remove('sticky-top', 'shadow-sm')
+            }
+          }
+        } catch (error) {
+          console.warn('Error in navbar scroll handler:', error)
         }
         ticking = false
       })
@@ -155,73 +79,121 @@ export const initializeMainTemplateJS = () => {
     }
   }
 
-  $(window).on('scroll', handleNavbarScroll, { passive: true })
+  window.addEventListener('scroll', handleNavbarScroll, { passive: true })
   
-  // Optimized dropdown hover
-  const $dropdown = $('.dropdown')
-  const showClass = 'show'
-  
+  // Return cleanup function
+  return () => {
+    window.removeEventListener('scroll', handleNavbarScroll)
+  }
+}
+
+// React-based dropdown hover handler
+export const initializeDropdownHover = () => {
   const handleDropdownHover = () => {
-    if (window.matchMedia('(min-width: 992px)').matches) {
-      $dropdown.hover(
-        function() {
-          const $this = $(this)
-          $this.addClass(showClass)
-          $this.find('.dropdown-toggle').attr('aria-expanded', 'true')
-          $this.find('.dropdown-menu').addClass(showClass)
-        },
-        function() {
-          const $this = $(this)
-          $this.removeClass(showClass)
-          $this.find('.dropdown-toggle').attr('aria-expanded', 'false')
-          $this.find('.dropdown-menu').removeClass(showClass)
-        }
-      )
-    } else {
-      $dropdown.off('mouseenter mouseleave')
+    try {
+      const dropdowns = document.querySelectorAll('.dropdown')
+      const showClass = 'show'
+      
+      if (window.matchMedia('(min-width: 992px)').matches) {
+        dropdowns.forEach(dropdown => {
+          const handleMouseEnter = () => {
+            dropdown.classList.add(showClass)
+            const toggle = dropdown.querySelector('.dropdown-toggle')
+            const menu = dropdown.querySelector('.dropdown-menu')
+            if (toggle) toggle.setAttribute('aria-expanded', 'true')
+            if (menu) menu.classList.add(showClass)
+          }
+          
+          const handleMouseLeave = () => {
+            dropdown.classList.remove(showClass)
+            const toggle = dropdown.querySelector('.dropdown-toggle')
+            const menu = dropdown.querySelector('.dropdown-menu')
+            if (toggle) toggle.setAttribute('aria-expanded', 'false')
+            if (menu) menu.classList.remove(showClass)
+          }
+          
+          dropdown.addEventListener('mouseenter', handleMouseEnter)
+          dropdown.addEventListener('mouseleave', handleMouseLeave)
+          
+          // Store cleanup functions
+          dropdown._cleanupHover = () => {
+            dropdown.removeEventListener('mouseenter', handleMouseEnter)
+            dropdown.removeEventListener('mouseleave', handleMouseLeave)
+          }
+        })
+      } else {
+        // Clean up hover listeners on mobile
+        dropdowns.forEach(dropdown => {
+          if (dropdown._cleanupHover) {
+            dropdown._cleanupHover()
+          }
+        })
+      }
+    } catch (error) {
+      console.warn('Error in dropdown hover handler:', error)
     }
   }
 
-  $(window).on('load resize', handleDropdownHover)
+  const handleResize = () => {
+    handleDropdownHover()
+  }
+
+  window.addEventListener('load', handleDropdownHover)
+  window.addEventListener('resize', handleResize)
   handleDropdownHover() // Initialize immediately
-}
-
-// Initialize all external libraries with performance optimization
-export const initializeAllLibraries = () => {
-  $(document).ready(() => {
-    // Use requestIdleCallback for non-critical initializations
-    const initNonCritical = () => {
-      loadWaypoints()
-      initializeWOW()
-      initializeTempusDominus()
-    }
-
-    // Initialize critical functionality immediately
-    initializeMainTemplateJS()
+  
+  // Return cleanup function
+  return () => {
+    window.removeEventListener('load', handleDropdownHover)
+    window.removeEventListener('resize', handleResize)
     
-    // Defer non-critical initializations
-    if (window.requestIdleCallback) {
-      window.requestIdleCallback(initNonCritical)
-    } else {
-      setTimeout(initNonCritical, 100)
-    }
-  })
-}
-
-// Optimized cleanup function
-export const cleanupLibraries = () => {
-  try {
-    // Clean up Tempus Dominus instances
-    $('#date, #date1, #time1').each(function() {
-      if ($(this).data('DateTimePicker')) {
-        $(this).datetimepicker('destroy')
+    // Clean up dropdown listeners
+    const dropdowns = document.querySelectorAll('.dropdown')
+    dropdowns.forEach(dropdown => {
+      if (dropdown._cleanupHover) {
+        dropdown._cleanupHover()
       }
     })
+  }
+}
+
+// Initialize all external libraries with React-only approach
+export const initializeAllLibraries = () => {
+  const cleanupFunctions = []
+  
+  try {
+    // Initialize WOW.js
+    initializeWOW()
     
-    // Remove event listeners
-    $(window).off('scroll resize')
-    $('.dropdown').off('mouseenter mouseleave')
+    // Initialize navbar scroll with cleanup
+    const navbarCleanup = initializeNavbarScroll()
+    cleanupFunctions.push(navbarCleanup)
+    
+    // Initialize dropdown hover with cleanup
+    const dropdownCleanup = initializeDropdownHover()
+    cleanupFunctions.push(dropdownCleanup)
+    
+    // Store cleanup functions globally for later use
+    window._libraryCleanupFunctions = cleanupFunctions
+    
   } catch (error) {
-    // Silent cleanup failure
+    console.warn('Error in library initialization:', error)
+  }
+}
+
+// React-based cleanup function
+export const cleanupLibraries = () => {
+  try {
+    // Run all stored cleanup functions
+    if (window._libraryCleanupFunctions) {
+      window._libraryCleanupFunctions.forEach(cleanup => {
+        if (typeof cleanup === 'function') {
+          cleanup()
+        }
+      })
+      window._libraryCleanupFunctions = []
+    }
+  } catch (error) {
+    console.warn('Error in library cleanup:', error)
   }
 }

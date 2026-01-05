@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react'
-import { initializeTempusDominus } from '../utils/externalLibraries'
+import { useState } from 'react'
 import { serviceOptions, doctorOptions } from '../data/siteData'
 import { ASSET_PATHS } from '../utils/assetPaths'
 
@@ -14,15 +13,6 @@ const AppointmentSection = () => {
   })
 
   const [isSubmitting, setIsSubmitting] = useState(false)
-
-  // Initialize Tempus Dominus after component mounts
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      initializeTempusDominus()
-    }, 100) // Small delay to ensure DOM is ready
-
-    return () => clearTimeout(timer)
-  }, [])
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -152,38 +142,28 @@ const AppointmentSection = () => {
 
                   {/* Date Input */}
                   <div className="col-12 col-sm-6">
-                    <div className="date" id="date1" data-target-input="nearest">
-                      <input 
-                        type="text"
-                        name="date"
-                        value={formData.date}
-                        onChange={handleInputChange}
-                        className="form-control bg-light border-0 datetimepicker-input"
-                        placeholder="Appointment Date" 
-                        data-target="#date1" 
-                        data-toggle="datetimepicker" 
-                        style={{ height: '55px' }}
-                        required
-                      />
-                    </div>
+                    <input 
+                      type="date"
+                      name="date"
+                      value={formData.date}
+                      onChange={handleInputChange}
+                      className="form-control bg-light border-0"
+                      style={{ height: '55px' }}
+                      required
+                    />
                   </div>
 
                   {/* Time Input */}
                   <div className="col-12 col-sm-6">
-                    <div className="time" id="time1" data-target-input="nearest">
-                      <input 
-                        type="text"
-                        name="time"
-                        value={formData.time}
-                        onChange={handleInputChange}
-                        className="form-control bg-light border-0 datetimepicker-input"
-                        placeholder="Appointment Time" 
-                        data-target="#time1" 
-                        data-toggle="datetimepicker" 
-                        style={{ height: '55px' }}
-                        required
-                      />
-                    </div>
+                    <input 
+                      type="time"
+                      name="time"
+                      value={formData.time}
+                      onChange={handleInputChange}
+                      className="form-control bg-light border-0"
+                      style={{ height: '55px' }}
+                      required
+                    />
                   </div>
 
                   {/* Submit Button */}
